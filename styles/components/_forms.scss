@@ -1,0 +1,202 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the forms component.
+// -----------------------------------------------------------------------------
+
+.wpcf7 {
+    br {
+        display: none;
+    }
+
+    .contact-form .required-asterisk, 
+    .wpcf7 .required-asterisk {
+        color: #e42313;
+    }
+
+    .columns {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding: 0 15px;
+        margin-bottom: 30px;
+
+        &-right {
+            margin-left: auto;
+        }
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            & + .column-item {
+                margin-top: 30px;
+            }
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    label {
+        display: flex;
+        margin-bottom: 10px;
+        font-size: 20px;
+        font-family: $font-helveticaneue;
+        color: $text-color;
+    }
+
+    .cf-input,
+    .cf-select,
+    .cf-textarea {
+        width: 100%;
+        max-width: 100%;
+        padding: 8px 10px;
+        font-family: $font-helveticaneue;
+        font-size: 18px;
+        color: $text-color;
+        background: #fff;
+        border: 1px solid #dbdbdb;
+        border-radius: 0;
+        outline: none;
+        transition: .35s all ease-in-out;
+
+        &:focus,
+        &:focus-visible {
+            border-color: $text-color;
+            outline: none;
+        }
+    }
+
+    .cf-input,
+    .cf-select {
+        height: 45px;
+    }
+
+    .cf-select {
+        appearance: none;
+    }
+
+    .cf-textarea {
+        height: 263px;
+        resize: none;
+    }
+
+    .field-select {
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 17px;
+            right: 15px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 9px solid $text-color;
+            // border-top: 10px solid #dbdbdb;
+            pointer-events: none;
+        }
+
+        select {
+            padding-right: 40px;
+        }
+    }
+
+    .field-submit {
+        @extend .btn-brand;
+        @extend .btn-arrow-right;
+        
+        margin-left: auto;
+        padding: 0;
+        box-shadow: none;
+
+        input {
+            @extend .btn-brand;
+            @extend .btn-arrow-right;
+
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .wpcf7-spinner {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        label {
+            font-size: 18px;
+        }
+
+        .cf-input,
+        .cf-select,
+        .cf-textarea {
+            font-size: 16px;
+        }
+
+        .cf-textarea {
+            height: 258px;
+        }
+
+        .field-submit input {
+            padding-top: 17px;
+            padding-bottom: 17px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .column {
+            width: 100%;
+            padding: 0;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-size: 16px;
+        }
+
+        .cf-input,
+        .cf-select,
+        .cf-textarea {
+            font-size: 14px;
+        }
+
+        .field-select::after {
+            top: 17px;
+            right: 15px;
+            border-left-width: 6px;
+            border-right-width: 6px;
+            border-top-width: 7px;
+        }
+
+        .cf-textarea {
+            height: 200px;
+        }
+
+        .field-submit input {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .field-submit {
+            width: 100%;
+
+            input {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    }
+}

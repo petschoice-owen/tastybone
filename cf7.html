@@ -1,0 +1,73 @@
+<div class="columns">
+    <div class="column">
+        <div class="column-item">
+            <label for="firstname">First Name <span class="required-asterisk">*</span></label>
+            [text* firstname id:firstname class:cf-input placeholder "Enter your first name"]
+        </div>
+    </div>
+    <div class="column">
+        <div class="column-item">
+            <label for="surname">Surname <span class="required-asterisk">*</span></label>
+            [text* surname id:surname class:cf-input placeholder "Enter your surname"]
+        </div>
+    </div>
+    <div class="column">
+        <div class="column-item">
+            <label for="email">Email <span class="required-asterisk">*</span></label>
+            [email* email id:email class:cf-input placeholder "Enter your email"]
+        </div>
+    </div>
+    <div class="column">
+        <div class="column-item">
+            <label for="country">Country <span class="required-asterisk">*</span></label>
+            <div class="field-select">
+                [country_auto* country id:country class:cf-select]
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="column-item">
+            <label for="telephone">Telephone </label>
+            [text* telephone id:telephone class:cf-input placeholder "Enter your telephone number"]
+        </div>
+        <div class="column-item">
+            <label for="social">How did you hear about us? <span class="required-asterisk">*</span></label>
+            <div class="field-select">
+                [select* social id:social class:cf-select "---" "Search Engine" "UK Trade Exhibition" "Press" "Direct Mail" "Consumer Show" "Recommendation" "Other"]    
+            </div>
+        </div>
+        <div class="column-item">
+            <label for="enquiry">Nature of enquiry <span class="required-asterisk">*</span></label>
+            <div class="field-select">
+                [select* enquiry id:enquiry class:cf-select "---" "Become a stockist" "General Enquiry" "Feedback" "Delivery/Order Enquiry"]
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="column-item">
+            <label for="message">Message <span class="required-asterisk">*</span></label>
+            [textarea* message id:message class:cf-textarea placeholder "Enter your message"]
+        </div>
+    </div>
+    <div class="column column-right">
+        <div class="field-submit">
+            [submit id:submitform class:cf-submit "SUBMIT"]
+        </div>
+    </div>
+</div>
+
+
+
+From: [firstname] [surname]
+Email: [email]
+Telephone: [telephone]
+Country: [country]
+
+Enquiry: [enquiry]
+How did they know about us? [social]
+
+Message Body:
+[message]
+
+-- 
+This e-mail was sent from a contact form on [_site_title] ([_site_url])

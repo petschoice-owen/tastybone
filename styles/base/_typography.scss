@@ -1,0 +1,172 @@
+//main: ../main.scss
+
+/**
+ * Basic typography style for copy text
+ */
+ 
+body {
+    color: $text-color;
+    font: normal 125% / 1.4 $text-font-stack;
+}
+
+.text {
+    &-color-white {
+        color: #fff;
+    }
+
+    &-color-black {
+        color: #000;
+    }
+
+    &-color-default {
+        color: $text-color;
+    }
+
+    &-color-brand {
+        color: $brand-color;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-helveticaneue-black;
+    line-height: 1.4;
+    text-transform: none;
+}
+
+h1 {
+    font-size: 44px;
+}
+
+h2 {
+    font-size: 38px;
+}
+
+h3 {
+    font-size: 32px;
+}
+
+h4 {
+    font-size: 28px;
+}
+
+h5 {
+    font-size: 24px;
+}
+
+h6 {
+    font-size: 22px;
+}
+
+p, ul, ol, label, input, textarea {
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+ul {
+    list-style: disc;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul, ol {
+    padding-left: 40px;
+}
+
+strong, b {
+    font-weight: 700;
+}
+
+em, i {
+    font-style: italic;
+}
+
+a {
+    color: $text-color;
+
+    &:hover {
+        color: $brand-color;
+        text-decoration: none;
+    }
+
+    @include on-event() {
+        text-decoration: none;
+    }
+}
+
+.section-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 52px;
+    line-height: 1.05;
+    text-transform: uppercase;
+
+    span {
+        padding-left: 20px;
+        color: $brand-color;
+    }
+
+    &-column {
+        flex-direction: column;
+
+        span {
+            padding-left: 0;
+        }
+    }
+}
+
+
+@media (max-width: 991px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 34px;
+    }
+
+    h3 {
+        font-size: 28px;
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+
+    h5 {
+        font-size: 22px;
+    }
+
+    h6 {
+        font-size: 20px;
+    }
+
+    p, ul, ol, label, input, textarea {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 30px;
+    }
+
+    ul, ol {
+        padding-left: 30px;
+    }
+
+    .section-heading {
+        font-size: 32px;
+        line-height: 1.1;
+    }
+}

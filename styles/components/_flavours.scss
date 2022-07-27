@@ -1,0 +1,478 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the flavours component.
+// -----------------------------------------------------------------------------
+
+.flavours {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    .flavour-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20%;
+        padding: 7px;
+    }
+
+    i {
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        margin: auto;
+        font-size: 18px;
+        color: #fff;
+        background-color: #000;
+        border-radius: 50%;
+        transition: all .25s ease-in-out;
+        opacity: 0;
+    }
+
+    .flavour-link {
+        position: relative;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+        height: 120px;
+        padding: 10px;
+        color: #fff;
+        text-align: center;
+        text-transform: uppercase;
+        background-color: #ccc;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        transition: all .25s ease-in-out;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+
+    .flavour-selected {
+        border-color: #000;
+
+        i {
+            opacity: 1;
+        }
+    }
+
+    .flavour-name {
+        font-family: $font-helveticaneue-black;
+        font-size: 11px;
+        line-height: 1.2;
+    }
+
+    .world-flavours {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        &.flavour-selected {
+            background-color: transparent;
+        }
+
+        .flavour-name {
+            font-size: 0;
+
+            &::before {
+                height: auto;
+            }
+        }
+
+        .flavour-text {
+            line-height: 16px;
+            font-size: 17px;
+            // line-height: 14px;
+            // font-size: 16px;
+        }
+    }
+
+    .apple-pie {
+        color: $text-color;
+        background-color: #95D389;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    .bacon {
+        color: #fff;
+        background-color: #E64C58;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .bbq-prawn {
+        color: $text-color;
+        background-color: #FF5031;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    .beef {
+        color: #fff;
+        background-color: #AC2913;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .beef-sausage {
+        color: #fff;
+        background-color: #750D0E;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+
+    .beef-wellington {
+        color: #fff;
+        background-color: #47121D;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .cheese {
+        color: $text-color;
+        background-color: #FFEBA3;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    .chicken {
+        color: $text-color;
+        background-color: #FFE93D;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    .chicken-cordon-bleu {
+        color: $text-color;
+        background-color: #E0D995;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    .chicken-tikka {
+        color: #f79427;
+        background-color: transparent;
+        background-image: url(../assets/images/bg-chicken-tikka.png);
+
+        &:hover,
+        &:focus {
+            color: #f79427;
+        }
+    }
+
+    .chocolate {
+        color: #fff;
+        background-color: #744A10;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .chorizo {
+        color: #c81b3e;
+        background-color: transparent;
+        background-image: url(../assets/images/bg-chorizo.png);
+
+        &:hover,
+        &:focus {
+            color: #c81b3e;
+        }
+    }
+    .cinnamon-mint {
+        color: #fff;
+        background-color: #FF9270;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .duck {
+        color: #fff;
+        background-color: #7B1340;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .fish-n-chips {
+        color: #d22332;
+        background-color: transparent;
+        background-image: url(../assets/images/bg-fish-n-chips.png);
+
+        &:hover,
+        &:focus {
+            color: #d22332;
+        }
+    }
+
+    .hickory-smoked-steak {
+        color: #fff;
+        background-color: #FF674C;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .hoisin-duck {
+        color: #ffd42d;
+        background-color: transparent;
+        background-image: url(../assets/images/bg-hoisin-duck.png);
+
+        &:hover,
+        &:focus {
+            color: #ffd42d;
+        }
+    }
+    .lamb {
+        color: #fff;
+        background-color: #B0714A;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .lamb-chop {
+        color: #fff;
+        background-color: #BF3B15;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .parsley {
+        color: #fff;
+        background-color: #74CE9D;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+
+    .peanut-butter {
+        color: #fff;
+        background-color: #C4721E;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .peppermint {
+        color: #fff;
+        background-color: #009FA5;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .pheasant {
+        color: $text-color;
+        background-color: #B64A16;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    .raspberry-mint {
+        color: #fff;
+        background-color: #B78BC5;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .roast-beef {
+        color: #fff;
+        background-color: #973C17;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    
+    .roast-beef-red-wine {
+        color: #fff;
+        background-color: #670E30;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .roast-chicken {
+        color: $text-color;
+        background-color: #FF482F;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    .roast-chicken-thyme {
+        color: $text-color;
+        background-color: #FFB157;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    .smoked-salmon {
+        color: $text-color;
+        background-color: #FFA88C;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    .spearmint {
+        color: $text-color;
+        background-color: #10C2F3;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    
+    .stilton {
+        color: $text-color;
+        background-color: #86D0EC;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+    .strawberry {
+        color: #fff;
+        background-color: #FF3818;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .surf-n-turf {
+        color: $text-color;
+        background-color: #81BCBE;
+        border: 1px solid #000;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+
+        &.flavour-selected {
+            border-width: 3px;
+        }
+    }
+    .tbone-steak {
+        color: #fff;
+        background-color: #E22738;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+    .vanilla {
+        color: $text-color;
+        background-color: #fff;
+        border: 1px solid #000;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+
+        &.flavour-selected {
+            border-width: 3px;
+        }
+    }
+    
+    .venison {
+        color: $text-color;
+        background-color: #E63075;
+
+        &:hover,
+        &:focus {
+            color: $text-color;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .flavour-item {
+            width: 25%;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .flavour-link:hover {
+            top: -3px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .flavour-item {
+            width: 20%;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .flavour-item {
+            width: 25%;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .flavour-item {
+            width: 50%;
+        }
+    }
+}

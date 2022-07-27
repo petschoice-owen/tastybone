@@ -1,0 +1,89 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the contact page.
+// -----------------------------------------------------------------------------
+
+.page-contact {
+    .content {
+        padding: 50px 0;
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-holder {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+
+            img {
+                width: auto;
+                max-width: calc(100% - 50px);
+                height: auto;
+                max-height: 600px;
+            }
+        }
+
+        .text {
+            padding: 10px 0;
+            text-align: center;
+
+            p {
+                font-size: 24px;
+            }
+        }
+
+        .text-small {
+            padding: 10px 0;
+            text-align: center;
+
+            p {
+                font-size: 16px;
+                line-height: 1.3;
+            }
+
+            a {
+                color: $brand-color;
+
+                &:hover {
+                    color: $brand-hover;
+                }
+            }
+        }
+
+        & + .contact-form {
+            padding-top: 0;
+        }
+    }
+
+    .contact-form {
+        padding: 50px 0;
+    }
+
+    @media (max-width: 991px) {
+        .content {
+            .text p {
+                font-size: 22px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        .content, .contact-form {
+            padding: 25px 0;
+        }
+
+        .content {
+            .image-holder img {
+                max-height: 300px;
+            }
+
+            .text p {
+                font-size: 20px;
+            }
+        }
+    }
+}

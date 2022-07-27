@@ -1,0 +1,208 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+// .btn-brown {
+//     position: relative;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: fit-content;
+//     padding: 22px 30px;
+//     font-weight: 700;
+//     font-size: 20px;
+//     text-transform: uppercase;
+//     text-align: center;
+//     color: #fff;
+//     background-color: #96302F;
+//     border-radius: 14px;
+//     box-shadow: 0 2px 7px 0 rgba(0,0,0,.5);
+//     transition: all .35s ease-in-out;
+    
+//     @include on-event {
+//         color: #fff;
+//         text-decoration: none;
+//         background-color: #000;    
+//     }
+
+//     &:before {
+//         content: "";
+//         position: absolute;
+//         top: 0;
+//         right: 0;
+//         bottom: 0;
+//         left: 0;
+//         margin: 5px;
+//         border: 2px solid #fff;
+//         border-radius: 10px;
+//     }
+
+//     @media (max-width: 1439px) {
+//         font-size: 15px;
+//     }
+
+//     @media (max-width: 1199px) {
+//         font-size: 14px;
+//     }
+
+//     @media (max-width: 991px) {
+//         padding: 16px 26px;
+//     }
+// }
+
+.btn-brand {
+    display: flex;
+    width: fit-content;
+    padding: 25px;
+    font-family: $font-helveticaneue-bold;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #fff;
+    text-transform: uppercase;
+    background-color: $brand-color;
+    border: none;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+    border-radius: 4px;
+    transition: all .25s ease-in-out;
+
+    &.btn-arrow-right {
+        border-left-color: #fff;
+    }
+
+    &.btn-arrow-down {
+        border-top-color: #fff;
+    }
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background-color: $brand-hover;
+        outline: none;
+        box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+    }
+
+    @media (max-width: 991px) {
+        padding: 18px 20px;
+    }
+}
+
+.btn-white {
+    display: flex;
+    width: fit-content;
+    padding: 25px;
+    font-family: $font-helveticaneue-bold;
+    font-size: 18px;
+    line-height: 1.2;
+    color: $text-color;
+    text-transform: uppercase;
+    background-color: #fff;
+    border: none;
+    border-radius: 4px;
+    // box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+    transition: all .25s ease-in-out;
+
+    &.btn-arrow-right {
+        border-left-color: $text-color;
+    }
+
+    &:hover,
+    &:focus {
+        color: $text-color;
+        background-color: $white-hover;
+        outline: none;
+    }
+
+    @media (max-width: 991px) {
+        padding: 18px 20px;
+    }
+}
+
+.btn-arrow-right {
+    position: relative;
+    padding-right: 60px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 30px;
+        bottom: 0;
+        z-index: 5;
+        width: 0;
+        height: 0;
+        margin: auto;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-left: 15px solid;
+        pointer-events: none;
+    }
+
+    @media (max-width: 991px) {
+        padding-right: 50px;
+        
+        &::after {
+            right: 20px;
+        }
+    }
+}
+
+.btn-arrow-down {
+    position: relative;
+    padding-right: 60px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        // right: 30px;
+        right: 25px;
+        bottom: 0;
+        z-index: 5;
+        width: 0;
+        height: 0;
+        margin: auto;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 15px solid;
+    }
+
+    @media (max-width: 991px) {
+        padding-right: 50px;
+        
+        &::after {
+            // right: 20px;
+            right: 17px;
+        }
+    }
+}
+
+.btn-arrow-back {
+    position: relative;
+    padding-left: 60px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 30px;
+        bottom: 0;
+        z-index: 5;
+        width: 0;
+        height: 0;
+        margin: auto;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-right: 15px solid;
+        pointer-events: none;
+    }
+
+    @media (max-width: 991px) {
+        padding-left: 50px;
+        
+        &::after {
+            left: 20px;
+        }
+    }
+}

@@ -1,0 +1,155 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the blog page.
+// -----------------------------------------------------------------------------
+
+.page-blog {
+    .blog {
+        .section-heading {
+            margin: 50px 0;
+        }
+
+        .blog-item {
+            padding: 30px 0;
+            background-image: url(../assets/images/bg-blog-item.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-top: 5px solid $brand-color;
+
+            .container {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .image-link {
+            display: flex;
+            object-fit: cover;
+            object-position: center;
+            width: 380px;
+            height: 380px;
+            overflow: hidden;
+            border-radius: 50%;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .content {
+            padding-left: 50px;
+            color: #fff;
+        }
+
+        .blog-title {
+            margin-bottom: 10px;
+            font-size: 29px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .author-section {
+            margin-bottom: 20px;
+        }
+
+        .author-name {
+            font-family: $font-helveticaneue-black;
+        }
+
+        .excerpt {
+            margin-bottom: 30px;
+        }
+    }
+
+    .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 20px;
+        margin: 0;
+        list-style: none;        
+        border-top: 5px solid $brand-color;
+
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            padding: 7px;
+            margin: 5px;
+            font-family: $font-helveticaneue-black;
+            font-size: 30px;
+            box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+            transition: all .35s ease-in-out;
+
+            &::after {
+                right: 0;
+                left: 0;
+                border-left-width: 17px;
+            }
+        }
+
+        .active {
+            color: #fff;
+            background-color: $text-color;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .blog {
+            .image-link {
+                width: 300px;
+                height: 300px;
+            }
+        }
+    }
+
+    @media (max-width: 991px) {
+        .blog {
+            .image-link {
+                width: 270px;
+                height: 270px;
+            }
+
+            .content {
+                padding-left: 35px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        .blog {
+            .section-heading {
+                margin: 20px 0;
+            }
+
+            .blog-item {
+                .container {
+                    flex-direction: column;
+                }
+            }
+
+            .image-link {
+                width: 300px;
+                height: 300px;
+                margin-bottom: 30px;
+            }
+
+            .content {
+                padding-left: 0;
+            }
+        }
+    }
+
+    @media (max-width: 575px) {
+        .blog .image-link {
+            width: 260px;
+            height: 260px;
+        }
+    }
+}

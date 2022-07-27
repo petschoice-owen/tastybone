@@ -1,0 +1,298 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the stockists page.
+// -----------------------------------------------------------------------------
+
+.page-stockists {
+    .store-locator {
+        padding: 50px 0;
+
+        & + .stockists {
+            padding-top: 0;
+        }
+
+        .stores {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin-bottom: 30px;
+            list-style: none;
+
+            .store-link {
+                position: relative;
+                top: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 130px;
+                height: 74px;
+                padding: 15px 8px;
+                margin: 0 5px;
+                background-color: #fff;
+                box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+                border-radius: 5px;
+                transition: all .25s ease-in-out;
+
+                &:hover {
+                    top: -5px;
+                    box-shadow: 0 3px 6px 2px rgba(0,0,0,.2);
+                }
+            }
+
+            img {
+                width: auto;
+                max-width: 100%;
+                height: auto;
+                max-height: 47px;
+            }
+        }
+
+        .text-editor {
+            text-align: center;
+
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .stockists {
+        padding: 50px 0;
+    }
+
+    .search-section {
+        display: flex;
+        margin-bottom: 30px;
+    }
+
+    form {
+        .form-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 310px;
+            max-width: 100%;
+            height: 45px;
+            padding: 8px 10px;
+            margin-right: 10px;
+            font-family: $font-helveticaneue;
+            font-size: 18px;
+            color: $text-color;
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 0;
+            outline: none;
+            appearance: none;
+            transition: .35s all ease-in-out;
+
+            &:focus,
+            &:focus-visible {
+                border-color: $text-color;
+                outline: none;
+            }
+        }
+
+        .btn-search {
+            padding: 22.5px;
+
+            &::after {
+                right: 0;
+                left: 0;
+                border-top-width: 10px;
+                border-bottom-width: 10px;
+                border-left-width: 13px;
+            }
+        }
+
+        .btn-not-clickable {
+            pointer-events: none;
+        }
+    }
+
+    .map-section {
+        display: flex;
+    }
+
+    .search-results-section {
+        margin-top: 30px;
+        padding-top: 20px;
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .item {
+            background-color: rgba(172,143,99,.25);
+            box-shadow: 0 2px 5px 1px rgba(0,0,0,.1);
+            transition: .35s all ease-in-out;
+
+            &:hover {
+                box-shadow: 0 2px 20px 1px rgba(0,0,0,.3);
+            }
+
+            & + .item {
+                margin-top: 20px;
+            }
+        }
+
+        .item-wrapper {
+            display: flex;
+            padding: 25px 30px;
+        }
+
+        .information {
+            padding-right: 50px;
+            margin-right: 50px;
+        }
+
+        .name {
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .address {
+            line-height: 1.3;
+        }
+
+        .contact {
+            position: relative;
+            width: 250px;
+            margin-left: auto;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -50px;
+                width: 3px;
+                height: 100%;
+                background-color: #000;
+            }
+
+            a {
+                display: flex;
+                width: fit-content;
+
+                &:hover {
+                    color: $brand-hover;
+                }
+            }
+
+            .web-email a {
+                margin: 7px 0;
+                font-size: 16px;
+                line-height: 1;
+            }
+        }
+
+        .phone {
+            font-family: $font-helveticaneue-black;
+            font-size: 22px;
+        }
+
+        .view {
+            display: flex;
+            width: fit-content;
+            margin-top: 15px;
+            font-size: 16px;
+            color: $brand-color;
+        }
+    }
+
+    .search-results-none {
+        display: flex;
+        padding: 25px 30px;
+        background-color: rgba(172,143,99,.25);
+    }
+
+    @media (max-width: 991px) {
+        form .search-input {
+            font-size: 16px;
+        }
+
+        .store-locator .stores .store-link {
+            margin: 5px;
+        }
+
+       .search-results-section {
+            .information {
+                padding-right: 35px;
+                margin-right: 35px;
+            }
+
+            .contact {
+                width: 220px;
+
+                &::before {
+                    left: -35px;
+                }
+
+                ul a {
+                    font-size: 15px;
+                }
+            }
+
+            .view {
+                font-size: 15px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        form {
+            .search-input {
+                width: 225px;
+            }
+        }
+
+        .map-section iframe {
+            height: 450px;
+        }
+
+        .search-results-section {
+            margin-top: 20px;
+            
+            .item-wrapper {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .information {
+                padding-right: 0;
+                padding-bottom: 20px;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .contact {
+                width: 100%;
+
+                &::before {
+                    left: 0;
+                    top: -20px;
+                    width: 100%;
+                    height: 2px;
+                }
+            }
+
+            .phone {
+                font-size: 20px;
+            }
+
+            .view {
+                margin-top: 10px;
+            }
+        }
+
+        .search-results-none {
+            padding: 20px;
+        }
+    }
+}

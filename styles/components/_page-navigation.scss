@@ -1,0 +1,58 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the page-navigation component.
+// -----------------------------------------------------------------------------
+
+.page-navigation {
+    box-shadow: 0 2px 14px 0 rgba(0,0,0,.5);
+
+    ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        display: flex;
+        padding: 36px 28px;
+        font-family: $font-helveticaneue-black;
+        font-size: 17px;
+        color: $text-color;
+        text-transform: uppercase;
+        background-color: #fff;
+        transition: all .35s ease-in-out;
+
+        &.active,
+        &:hover {
+            color: #fff;
+            background-color: $brand-color;
+        }
+    }
+
+    @media (max-width: 991px) {
+        a {
+            padding: 30px 20px;
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        ul {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        li {
+            width: 100%;
+        }
+
+        a {
+            justify-content: center;
+            padding: 12px 15px;
+            font-size: 16px;
+        }
+    }
+}
