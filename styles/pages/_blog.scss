@@ -26,16 +26,19 @@
 
         .image-link {
             display: flex;
-            object-fit: cover;
-            object-position: center;
             width: 380px;
             height: 380px;
             overflow: hidden;
             border-radius: 50%;
 
             img {
+                display: flex;
+                object-fit: cover;
+                object-position: center;
+                // width: 380px;
+                // height: 380px;
                 width: 100%;
-                height: auto;
+                height: 100%;
             }
         }
 

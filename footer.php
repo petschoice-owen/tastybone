@@ -14,13 +14,13 @@
             <div class="footer-right">
                 <ul class="socials">
                     <?php if( get_field('theme_facebook', 'option') ): ?>
-                        <li><a href="<?php the_field('theme_facebook', 'option'); ?>"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="<?php the_field('theme_facebook', 'option'); ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
                     <?php endif; ?>
                     <?php if( get_field('theme_twitter', 'option') ): ?>
-                        <li><a href="<?php the_field('theme_twitter', 'option'); ?>"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="<?php the_field('theme_twitter', 'option'); ?>" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
                     <?php endif; ?>
                     <?php if( get_field('theme_instagram', 'option') ): ?>
-                        <li><a href="<?php the_field('theme_instagram', 'option'); ?>"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="<?php the_field('theme_instagram', 'option'); ?>" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                     <?php endif; ?>
                 </ul>
                 <p class="copyright-text"><?php the_field('copyright_text', 'option'); ?></p>
