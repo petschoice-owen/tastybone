@@ -20,11 +20,16 @@
                     <div class="container">
                         <a href="/blog" class="btn-brand btn-arrow-back">Back to Blog</a>
                         <h1 class="blog-title"><?php the_title(); ?></h1>
-                        <?php if(get_the_author_meta('display_name') != 'dev-owen'): ?>
+                        <!-- <?php if(get_the_author_meta('display_name') != 'dev-owen'): ?>
                             <div class="blog-meta">
                                 <p>Written by <strong><?php the_author_meta('display_name'); ?></strong></p>
                             </div>
                         <?php else: ?>
+                        <?php endif; ?> -->
+                        <?php if( get_field('blog_author_name') ): ?>
+                            <div class="blog-meta">
+                                <p>Written by <strong><?php the_field('blog_author_name'); ?></strong></p>
+                            </div>
                         <?php endif; ?>
                         <div class="featured-image">
                             <?php $featured_img = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full' ); ?>

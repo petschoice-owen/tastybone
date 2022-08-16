@@ -503,6 +503,9 @@
                                 </div>
                                 <div class="content">
                                     <h3 class="blog-title"><?php the_title(); ?></h3>
+                                    <?php if( get_field('blog_author_name') ): ?>
+                                        <p class="author-section">Written by: <span class="author-name"><?php the_field('blog_author_name'); ?></span></p>
+                                    <?php endif; ?>
                                     <p class="excerpt">	
                                         <?php echo get_the_excerpt(); ?>
                                     </p>
