@@ -481,7 +481,7 @@
             $args = array(
                 'post_type' => 'blog',
                 'post_status' => 'publish',
-                'posts_per_page' => -1, 
+                'posts_per_page' => 3, 
                 'orderby' => 'date', 
                 'order' => 'DESC',
             );

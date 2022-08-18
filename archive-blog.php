@@ -4,6 +4,78 @@
 **/
 ?>
 <?php get_header(); ?>
+<style>
+	.ajax-load-more-wrap .alm-btn-wrap {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding: 30px;
+    	margin: 0;
+	}
+	.ajax-load-more-wrap .alm-load-more-btn.btn-brand {
+		height: auto !important;
+		display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+        padding: 25px 45px !important;
+        font-family: "HelveticaNeue Bold" !important;
+        font-size: 18px !important;
+        line-height: 1.2 !important;
+        color: #fff;
+        text-transform: uppercase;
+        background-color: #ac8f63 !important;
+        border: none;
+        -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+        box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+        border-radius: 4px;
+        -webkit-transition: all .25s ease-in-out;
+        -o-transition: all .25s ease-in-out;
+        transition: all .25s ease-in-out;
+	}
+	.ajax-load-more-wrap .alm-load-more-btn.btn-brand:hover,
+    .ajax-load-more-wrap .alm-load-more-btn.btn-brand:focus {
+		color: #fff;
+        background-color: #90754c !important;
+        outline: none !important;
+        box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+	}
+    .ajax-load-more-wrap .alm-load-more-btn.btn-brand::before {
+        opacity: 0 !important;
+        -webkit-transition: all .25s ease-in-out;
+        -o-transition: all .25s ease-in-out;
+        transition: all .25s ease-in-out;
+    }
+    .ajax-load-more-wrap .alm-load-more-btn.btn-brand.done {
+		display: none !important;
+	}
+    .ajax-load-more-wrap .alm-load-more-btn.btn-brand.loading {
+		color: transparent !important;
+	}
+    .ajax-load-more-wrap .alm-load-more-btn.btn-brand.loading::before {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        background: url(/wp-content/themes/tastybone/assets/images/custom-loading.gif) no-repeat center center;
+        background-size: 30px;
+        background-color: transparent;
+        opacity: 1 !important;
+	}
+
+    @media (max-width: 991px) {
+        .ajax-load-more-wrap .alm-load-more-btn.btn-brand {
+            padding: 18px 30px !important;
+        }
+    }
+</style>
+
 <body <?php body_class(); ?>>
     <?php include 'top-navigation.php'; ?>
     <main class="page-blog">
@@ -18,7 +90,7 @@
             $args = array(
                 'post_type' => 'blog',
                 'post_status' => 'publish',
-                'posts_per_page' => -1, 
+                'posts_per_page' => 3, 
                 'orderby' => 'date', 
                 'order' => 'DESC',
             );
@@ -48,8 +120,9 @@
                                 </div>
                             </div>
                         </div>
-                    <?php endwhile;
-                    wp_reset_postdata(); ?>
+                    <?php endwhile; ?>
+                    <?php echo do_shortcode( '[ajax_load_more seo="true" loading_style="grey" container_type="div" post_type="blog" sticky_posts="true" posts_per_page="6" images_loaded="true" offset="3" pause="true" transition_container="false"]' ); ?>
+                    <?php wp_reset_postdata(); ?>
                 </div>
             </section>
         <?php else : ?>	
