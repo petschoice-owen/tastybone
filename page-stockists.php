@@ -33,7 +33,8 @@
         </section>
         <section class="stockists">
             <div class="container">
-                <div class="search-section">
+                <?php the_content(); ?>
+                <!-- <div class="search-section">
                     <div class="search">
                         <form action="" class="search-form">
                             <div class="form-group">
@@ -105,7 +106,7 @@
                         <?php endif; wp_reset_query(); ?>
                     </ul>
                     <p class="search-results-none d-none" id="search_results_none">Sorry, please try a different postcode or town.</p>
-                </div>
+                </div> -->
             </div>
         </section>
     </main>

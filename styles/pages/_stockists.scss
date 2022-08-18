@@ -52,6 +52,7 @@
 
         .text-editor {
             text-align: center;
+            word-break: break-word;
 
             a {
                 text-decoration: underline;
@@ -61,6 +62,7 @@
 
     .stockists {
         padding: 50px 0;
+
     }
 
     .search-section {
@@ -293,6 +295,413 @@
 
         .search-results-none {
             padding: 20px;
+        }
+    }
+}
+
+.page-template-page-stockists {
+    #wpsl-search-wrap {
+        form {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            label {
+                width: auto !important;
+                font-family: $font-helveticaneue;
+                font-size: 16px !important;
+            }
+        }
+
+        .wpsl-input {
+            display: flex;
+            align-items: center;
+
+            div {
+                margin-bottom: 0;
+            }
+
+            #wpsl-search-input {
+                width: 450px; // this value varies
+                height: 39px;
+                padding: 5px 8px;
+                font-family: $font-helveticaneue;
+                font-size: 16px;
+            }
+        }
+
+        .wpsl-select-wrap {
+            display: flex;
+            align-items: center;
+
+            #wpsl-radius {
+                display: flex;
+                align-items: center;
+                margin-bottom: 0;
+            }
+
+            .wpsl-dropdown {
+                width: auto;
+
+                &:focus-visible,
+                &:focus-within,
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            #wpsl-results {
+                display: flex;
+                align-items: center;
+                margin-bottom: 0;
+            }
+
+            .wpsl-selected-item,
+            ul li {
+                font-family: $font-helveticaneue;
+                font-size: 16px;
+            }
+        }
+
+        .wpsl-search-btn-wrap {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            margin-right: 0;
+
+            #wpsl-search-btn {
+                margin-right: 0;
+                padding: 9px 30px;
+                font-family: $font-helveticaneue;
+                font-size: 16px !important;
+                color: #fff;
+                background: $brand-color;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    #wpsl-result-list {
+        .wpsl-no-results-msg,
+        .wpsl-preloader {
+            font-size: 16px;
+        }
+
+        .wpsl-store-location {
+            margin-bottom: 0;
+
+            & > p {
+                span {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        li:not(.wpsl-no-results-msg) {
+            background-color: transparent;
+            color: #343434;
+            transition: .35s ease-in-out all;
+
+            p {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 0;
+                font-size: 14px;
+                line-height: 1.4;
+                transition: .35s ease-in-out all;
+
+                strong {
+                    width: 100%;
+                    margin-bottom: 5px;
+                    font-size: 18px;
+                    line-height: 1.2;
+                }
+            }
+
+            &:hover {
+                color: #fff;
+                background-color: $brand-color;
+
+                p,
+                a {
+                    color: #fff;
+                }
+
+                a:hover {
+                    color: #101010;
+
+                    &::before {
+                        color: #fff;
+                        transition: .35s ease-in-out all;
+                    }
+                }
+            }
+        }
+
+        .wpsl-preloader:hover {
+            background-color: transparent !important;
+            color: #343434 !important;
+
+            div, p, li {
+                color: #343434 !important;
+            }
+        }
+
+        a {
+            font-family: $font-helveticaneue-bold;
+            text-decoration: underline;
+            color: #343434;
+            transition: .35s ease-in-out all;
+        }
+
+        .wpsl-contact-details strong {
+            margin-bottom: 0 !important;
+            font-family: $font-helveticaneue !important;
+            font-size: 14px !important;
+            line-height: 1.4 !important;
+        }
+
+        .wpsl-direction-wrap {
+            display: flex;
+            font-size: 14px;
+            line-height: 1.4;
+
+            a {
+                position: relative;
+                margin-left: 15px;
+
+                &::before {
+                    content: "-";
+                    position: absolute;
+                    top: 0;
+                    left: -10px;
+                    font-family: $font-helveticaneue;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1399px) {
+        .content .holder {
+            padding: 30px;
+        }
+
+        #wpsl-search-wrap {
+            form label,
+            .wpsl-input #wpsl-search-input,
+            .wpsl-select-wrap .wpsl-selected-item,
+            .wpsl-select-wrap ul li {
+                font-size: 14px !important;
+            }
+
+            .wpsl-input #wpsl-search-input {
+                height: 36px;
+            }
+
+            .wpsl-search-btn-wrap #wpsl-search-btn {
+                padding: 9px 20px;
+                font-size: 14px !important;
+            }
+        }
+    }
+
+    @media (max-width: 1199px) {
+        #wpsl-search-wrap {
+            form label,
+            .wpsl-input #wpsl-search-input,
+            .wpsl-select-wrap .wpsl-selected-item,
+            .wpsl-select-wrap ul li {
+                font-size: 13px !important;
+            }
+            
+            #wpsl-search-input {
+                width: 300px !important; // this value varies
+            }
+
+            .wpsl-input #wpsl-search-input {
+                height: 35px;
+            }
+
+            .wpsl-search-btn-wrap #wpsl-search-btn {
+                padding: 7.5px 18px;
+                font-size: 13px !important;
+            }
+        }
+    }
+
+    @media (max-width: 991px) {
+        #wpsl-search-wrap {
+            form {
+                flex-wrap: wrap;
+            }
+
+            form label,
+            .wpsl-input #wpsl-search-input,
+            .wpsl-select-wrap .wpsl-selected-item,
+            .wpsl-select-wrap ul li,
+            .wpsl-select-wrap .wpsl-dropdown {
+                font-size: 14px !important;
+                line-height: 20px;
+            }
+
+            .wpsl-input {
+                justify-content: space-between;
+                width: 100%;
+                padding-bottom: 5px;
+                margin-right: 0;
+            }
+            
+            #wpsl-search-input {
+                width: calc(100% - 195px) !important;
+            }
+
+            .wpsl-input #wpsl-search-input {
+                height: 40px;
+            }
+
+            .wpsl-select-wrap {
+                padding-bottom: 5px;
+
+                #wpsl-results {
+                    padding-left: 20px;
+                }
+            }
+
+            .wpsl-search-btn-wrap {
+                padding-bottom: 5px;
+                margin-top: -3px;
+                margin-left: 20px;
+                margin-right: auto;
+                
+                #wpsl-search-btn {
+                    position: relative;
+                    top: 1px;
+                    padding: 9px 30px;
+                    line-height: 20px;
+                    font-size: 14px!important;
+                }
+            }
+        }
+    }
+
+    // @media (max-width: 991px) {
+    //     #wpsl-search-wrap {
+    //         form label,
+    //         .wpsl-input #wpsl-search-input,
+    //         .wpsl-select-wrap .wpsl-selected-item,
+    //         .wpsl-select-wrap ul li {
+    //             font-size: 14px !important;
+    //             line-height: 20px;
+    //         }
+            
+    //         #wpsl-search-input {
+    //             width: 270px !important;
+    //         }
+
+    //         .wpsl-input #wpsl-search-input {
+    //             height: 40px;
+    //         }
+
+    //         .wpsl-select-wrap {
+    //             padding-bottom: 5px;
+
+    //             #wpsl-results {
+    //                 padding-left: 20px;
+    //             }
+    //         }
+
+    //         .wpsl-search-btn-wrap {
+    //             padding-bottom: 5px;
+                
+    //             #wpsl-search-btn {
+    //                 position: relative;
+    //                 top: 1px;
+    //                 padding: 9px 30px;
+    //                 line-height: 20px;
+    //                 font-size: 14px!important;
+    //             }
+    //         }
+    //     }
+    // }
+
+    @media (max-width: 700px) {
+        #wpsl-search-wrap .wpsl-search-btn-wrap #wpsl-search-btn {
+            top: 2px;
+            padding: 9.5px 30px;
+        }
+    }
+
+    @media (max-width: 675px) {
+        .content .holder {
+            padding: 15px;
+        }
+
+        #wpsl-wrap #wpsl-result-list li {
+            padding: 10px;
+        }
+
+        #wpsl-search-wrap .wpsl-select-wrap .wpsl-dropdown {
+            height: 40px;
+            padding: 5px 8px;
+        }
+
+        #wpsl-search-wrap .wpsl-search-btn-wrap {
+            padding-bottom: 0;
+            margin-top: 0;
+        }
+
+        #wpsl-stores {
+            height: 320px !important;
+        }
+    }
+
+    @media (max-width: 575px) {
+        #wpsl-search-wrap {
+            .wpsl-input {
+                align-items: flex-start;
+                flex-direction: column;
+
+                #wpsl-search-input {
+                    width: 100% !important;
+                    margin-top: 5px;
+                }
+            }
+
+            .wpsl-select-wrap {
+                flex-direction: column;
+                align-items: flex-start;
+
+                #wpsl-radius,
+                #wpsl-results {
+                    align-items: flex-start;
+                    flex-direction: column;
+                    width: 100%;
+                    padding: 0;
+                }
+
+                .wpsl-dropdown {
+                    width: 100% !important;
+                    margin-top: 5px;
+                }
+
+                #wpsl-results {
+                    width: 100%;
+                    padding-left: 0;
+                    margin-top: 15px;
+                }
+            }
+            
+            .wpsl-search-btn-wrap {
+                width: 100%;
+                margin: 5px 0 0;
+                padding: 0;
+
+                #wpsl-search-btn {
+                    top: 0;
+                    width: 100%;
+                    padding: 9px 15px;
+                }
+            }
         }
     }
 }
