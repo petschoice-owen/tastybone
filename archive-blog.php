@@ -12,7 +12,7 @@
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
-        padding: 30px;
+        padding: 0;
     	margin: 0;
 	}
 	.ajax-load-more-wrap .alm-load-more-btn.btn-brand {
@@ -24,6 +24,7 @@
         width: -moz-fit-content;
         width: fit-content;
         padding: 25px 45px !important;
+        margin: 30px auto;
         font-family: "HelveticaNeue Bold" !important;
         font-size: 18px !important;
         line-height: 1.2 !important;
