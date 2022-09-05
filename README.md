@@ -1,2 +1,2 @@
 ## WordPress Theme: TastyBone
-* [Home](https://dev.tastybone.com/)
+* [Home - Static](https://petschoice-owen.github.io/tastybone-static/index.html)

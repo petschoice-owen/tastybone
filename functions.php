@@ -39,24 +39,22 @@ register_nav_menus(
 /*-----------------------------------------------------------------------------------*/
 /* Activate sidebar for Wordpress use
 /*-----------------------------------------------------------------------------------*/
-/*
-	function theme_register_sidebars() {
-		register_sidebar(array(				// Start a series of sidebars to register
-			'id' => 'sidebar', 					// Make an ID
-			'name' => 'Sidebar',				// Name it
-			'description' => 'Take it on the side...', // Dumb description for the admin side
-			'before_widget' => '<div>',	// What to display before each widget
-			'after_widget' => '</div>',	// What to display following each widget
-			'before_title' => '<h3 class="side-title">',	// What to display before each widget's title
-			'after_title' => '</h3>',		// What to display following each widget's title
-			'empty_title'=> '',					// What to display in the case of no title defined for a widget
-			// Copy and paste the lines above right here if you want to make another sidebar, 
-			// just change the values of id and name to another word/name
-		));
-	} 
-	// adding sidebars to Wordpress (these are created in functions.php)
-	add_action( 'widgets_init', 'theme_register_sidebars' );
-*/
+function theme_register_sidebars() {
+	register_sidebar(array(				// Start a series of sidebars to register
+		'id' => 'product_filter', 					// Make an ID
+		'name' => 'Product Filter',				// Name it
+		'description' => 'Take it on the side...', // Dumb description for the admin side
+		'before_widget' => '<div>',	// What to display before each widget
+		'after_widget' => '</div>',	// What to display following each widget
+		'before_title' => '<h3 class="side-title">',	// What to display before each widget's title
+		'after_title' => '</h3>',		// What to display following each widget's title
+		'empty_title'=> '',					// What to display in the case of no title defined for a widget
+		// Copy and paste the lines above right here if you want to make another sidebar, 
+		// just change the values of id and name to another word/name
+	));
+} 
+// adding sidebars to Wordpress (these are created in functions.php)
+add_action( 'widgets_init', 'theme_register_sidebars' );
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -138,6 +136,12 @@ if( function_exists('acf_add_options_page') ) {
 	acf_add_options_sub_page(array(
 		'page_title' 	=> 'Social Media',
 		'menu_title'	=> 'Social Media',
+		'parent_slug'	=> 'general-settings',
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Shop Page',
+		'menu_title'	=> 'Shop Page',
 		'parent_slug'	=> 'general-settings',
 	));
 	
@@ -311,3 +315,9 @@ function create_blog_cpt() {
 	register_post_type( 'blog', $args );
 }
 add_action( 'init', 'create_blog_cpt', 0 );
+
+
+/*-----------------------------------------------------------------------------------*/
+/* WooCoomerce Shop Page
+/*-----------------------------------------------------------------------------------*/
+add_theme_support( 'woocommerce' );
