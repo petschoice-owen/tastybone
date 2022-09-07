@@ -1,0 +1,115 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the shop page.
+// -----------------------------------------------------------------------------
+
+.page-shop {
+    .accordion {
+        &-body {
+            padding: 30px 20px;
+        }
+
+        &-item {
+            position: relative;
+            border: 0;
+            border-radius: 0;
+        }
+
+        &-header {
+            display: flex;
+            justify-content: center;
+        }
+
+        &-button {
+            width: fit-content;
+            padding: 8px 30px 8px 20px;
+            font-size: 26px;
+            text-transform: uppercase;
+            color: #000;
+            background: transparent;
+            box-shadow: none;
+            outline: none;
+
+            &:focus,
+            &:focus-within,
+            &:focus-visible  {
+                outline: none;
+                background: transparent;
+                box-shadow: none;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: -1px;
+                right: 0;
+                bottom: 0;
+                z-index: 5;
+                width: 0;
+                height: 0;
+                margin: auto;
+                background-image: none;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 12px solid;
+            }
+
+            b,
+            strong {
+                padding-left: 12px;
+                color: $brand-color;
+            }
+        }
+
+        .button-holder {
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+        }
+
+        .btn-apply {
+            padding: 15px 25px;
+
+            &.disabled {
+                opacity: .7;
+                pointer-events: none;
+            }
+        }
+
+        &-collapse {
+            position: absolute;
+            top: calc(100% + 15px);
+            left: 0;
+            right: 0;
+            z-index: 5;
+            width: 900px;
+            width: 1020px;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0 3px 10px 5px  rgba(0,0,0,.1);
+            border-radius: 5px;
+        }
+    }
+
+    .flavour-item {
+        // width: 16.66%;
+        width: 14.28%;
+    }
+
+    .product-filter {
+        padding: 50px 0;
+    }
+
+    .products {
+        .product-items {
+            display: flex;
+        }
+    
+        .product-item {
+            display: flex;
+            width: 25%;
+            padding: 15px;
+        }
+    }
+}

@@ -321,3 +321,8 @@ add_action( 'init', 'create_blog_cpt', 0 );
 /* WooCoomerce Shop Page
 /*-----------------------------------------------------------------------------------*/
 add_theme_support( 'woocommerce' );
+
+// shop page - make filter section display faster
+add_filter('woocommerce_attribute_lookup_regeneration_step_size', function() {
+    return 100;
+});
