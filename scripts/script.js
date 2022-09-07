@@ -64,38 +64,42 @@ var mainAutoPadding = () => {
 
 // flavours - select/unselect function
 var flavours = () => {
-    // if ($(".flavours .flavour-name").length) {
-    //     $(".flavours .flavour-link").each(function() {
-    //         $(this).click(function(e) {
-    //             e.preventDefault();
-    //             $(this).toggleClass("flavour-selected");
-    //             // console.log($(this).data("filter"));
-
-    //             if ($(".wc-block-attribute-filter").length) {
-    //                 var dataFilter = $(this).data("filter");
-
-    //                 $(".product-attribute-flavour .wc-block-attribute-filter input").each(function() {
-    //                     if ($(this).attr('id') == dataFilter) {
-    //                         console.log($(this).attr('id'));
-    //                         $(this).trigger('change');
-
-    //                         // $(".product-attribute-flavour .wc-block-attribute-filter__actions .wc-block-filter-submit-button").prop("disabled", false);
-    //                         // $(".product-attribute-flavour .wc-block-attribute-filter__actions .wc-block-filter-submit-button").trigger("change");
-    //                     }
-    //                 });
-    //             }
-    //         });
-    //     });
-    // }
-
     if ($(".flavours .flavour-name").length) {
         // check url if has filter
+        // if (window.location.href.indexOf("filter_flavour") > -1) {
+        //     var pathArray = window.location.href.split("/").pop();
+        //     var removeFirstLast = pathArray.replace('shop?filter_flavour=','').replace('&query_type_flavour=or','');
+        //     var arrayFilter = removeFirstLast.split('%2C'); // array of selected flavours
+        //     var filterSelected = removeFirstLast.split('%2C'); // array of selected flavours
+        //     $(".flavours .flavour-link").each(function() {
+        //         flavourFilter = $(this).data('filter');
+        //         if (filterSelected.indexOf(flavourFilter) !== -1) {
+        //             $(this).addClass('flavour-selected');
+        //         }
+        //         else {
+        //             $(this).removeClass('flavour-selected');
+        //         }
+        //     });
+        // }
         if (window.location.href.indexOf("filter_flavour") > -1) {
-            var pathArray = window.location.href.split("/").pop();
-            var removeFirstLast = pathArray.replace('shop?filter_flavour=','').replace('&query_type_flavour=or','');
-            var arrayFilter = removeFirstLast.split('%2C'); // array of selected flavours
+            // var pathArray = window.location.href.split("/").pop();
+            // var removeFirstLast = pathArray.replace('shop?filter_flavour=','').replace('&query_type_flavour=or','');
+            // var arrayFilter = removeFirstLast.split('%2C'); // array of selected flavours
+            // var filterSelected = removeFirstLast.split('%2C'); // array of selected flavours
 
+            var pathArray = window.location.href.split("/").pop();
+            var originUrlArray = [];
+            var pathUrlArray = [];
+            var originUrl = window.location.origin;
+            originUrlArray.push(originUrl);
+            var pathUrl = window.location.pathname.substring(1);
+            var pathUrlFormatted = pathUrl.split("/").pop();
+            pathUrlArray.push(pathUrlFormatted);
+            var removeFirstLast = pathArray.replace(pathUrlFormatted+'?filter_flavour=','').replace('&query_type_flavour=or','');
+            
+            var arrayFilter = removeFirstLast.split('%2C'); // array of selected flavours
             var filterSelected = removeFirstLast.split('%2C'); // array of selected flavours
+            
             $(".flavours .flavour-link").each(function() {
                 flavourFilter = $(this).data('filter');
                 if (filterSelected.indexOf(flavourFilter) !== -1) {
@@ -130,21 +134,47 @@ var flavours = () => {
             e.preventDefault();
             
             if ($(".flavour-selected").length == 0) {
-                window.location = window.location.origin+"/shop";
+                // window.location = window.location.origin+"/shop";
+                window.location = window.location.pathname;
             }
             else if ($(".flavour-selected").length == 1) {
                 $("#product_filter_trigger").removeClass("disabled");
-                var currentUrl = window.location.href;
-                var updatedUrl = currentUrl.substring(0,currentUrl.lastIndexOf("/"));
-                var newUrl = updatedUrl+'/shop?filter_flavour='+$(".flavour-selected").data("filter")+'&query_type_flavour=or';
+                // var currentUrl = window.location.href;
+                // var updatedUrl = currentUrl.substring(0,currentUrl.lastIndexOf("/"));
+                // var newUrl = updatedUrl+'/shop?filter_flavour='+$(".flavour-selected").data("filter")+'&query_type_flavour=or';
+
+                var originUrlArray = [];
+                var pathUrlArray = [];
+
+                var originUrl = window.location.origin;
+                originUrlArray.push(originUrl);
+                console.log(originUrlArray[0]);
+
+                var pathUrl = window.location.pathname;
+                pathUrlArray.push(pathUrl);
+                console.log(pathUrlArray[0]);
+
+                var newUrl = originUrlArray[0] + pathUrlArray[0] +'?filter_flavour='+$(".flavour-selected").data("filter")+'&query_type_flavour=or';
                 window.location = newUrl;
+                // console.log(newUrl);
             }
             else {
-                var currentUrl = window.location.href;
-                var updatedUrl = currentUrl.substring(0,currentUrl.lastIndexOf("/"));
+                // var currentUrl = window.location.href;
+                // var updatedUrl = currentUrl.substring(0,currentUrl.lastIndexOf("/"));
+
+                var originUrlArray = [];
+                var pathUrlArray = [];
+
+                var originUrl = window.location.origin;
+                originUrlArray.push(originUrl);
+
+                var pathUrl = window.location.pathname;
+                pathUrlArray.push(pathUrl);
+
                 var selectedFilter = arrayFilter.sort().join('%2C');
-                var newUrl = updatedUrl+'/shop?filter_flavour='+selectedFilter+'&query_type_flavour=or';
+                var newUrl = originUrlArray[0] + pathUrlArray[0] +'?filter_flavour='+selectedFilter+'&query_type_flavour=or';
                 window.location = newUrl;
+                // console.log(newUrl);
             }
         });
     }
@@ -255,14 +285,31 @@ var stockists = () => {
     }
 }
 
-// shop page - filter function
+// display products depending on the url
 var filterShop = () => {
-    if ($("body").hasClass("woocommerce-shop")) {
+    // if ($("body").hasClass("woocommerce-shop")) {
+    if ($("main").hasClass("page-shop")) {
+        $(".top-navigation .navbar-nav li a").each(function() {
+            var menuText = $(this).text().toLowerCase();
+
+            if (menuText == "shop") {
+                $(this).parent().addClass("current-menu-item");
+            }
+        });
+
         if (window.location.href.indexOf("?filter_flavour") > -1) {
+            // var pathArray = window.location.href.split("/").pop();
+            // var removeFirstLast = pathArray.replace('shop?filter_flavour=','').replace('&query_type_flavour=or','');
+
             var pathArray = window.location.href.split("/").pop();
-            var removeFirstLast = pathArray.replace('shop?filter_flavour=','').replace('&query_type_flavour=or','');
-            // var removeSeparator = removeFirstLast.replaceAll('%2C','_');
-            // var flavourSelected = removeSeparator.split('_');
+            var originUrlArray = [];
+            var pathUrlArray = [];
+            var originUrl = window.location.origin;
+            originUrlArray.push(originUrl);
+            var pathUrl = window.location.pathname.substring(1);
+            var pathUrlFormatted = pathUrl.split("/").pop();
+            pathUrlArray.push(pathUrlFormatted);
+            var removeFirstLast = pathArray.replace(pathUrlFormatted+'?filter_flavour=','').replace('&query_type_flavour=or','');
             var flavourSelected = removeFirstLast.split('%2C'); // array of selected flavours
 
             $(".products .product-items .product-item").each(function() {
@@ -274,10 +321,38 @@ var filterShop = () => {
                     $(this).addClass('not-selected');
                 }
             });
-        }        
-    }
 
-    // if product-items == display.none.length -> show no products/please change your filter
+            var numberOfProducts = $(".products .product-items .product-item").length;
+            var numberOfProductsHidden = $(".products .product-items .product-item.not-selected").length;
+
+            if (numberOfProducts == numberOfProductsHidden) {
+                $(".products .product-items .no-product").removeClass("d-none");
+            }
+        }
+
+        $(".products .product-items").removeClass("opacity-hide");
+        $(".products .product-items").addClass("opacity-show");   
+    }
+}
+
+// active category - highlight
+var activeCategory = () => {
+    if ($("body").hasClass("woocommerce-shop")) {
+        $(".product-categories .categories li:first-child a").addClass("active");
+    }
+    else if ($("body").hasClass("tax-product_cat")) {
+        var pageCategory = $(".product-categories").data("category").toLowerCase();
+        $(".product-categories").attr("data-category",pageCategory);
+
+        $(".product-categories .categories li a").each(function() {
+            var categoryName = $(this).text().toLowerCase();
+            $(this).attr("data-category",categoryName);
+
+            if ($(this).data("category") == pageCategory) {
+                $(this).addClass("active");
+            }
+        });
+    }
 }
   
 // initialize the functions
@@ -291,6 +366,7 @@ $(document).ready(function() {
     customAccordion();
     // stockists();
     filterShop();
+    activeCategory();
 });
   
 $(window).resize(function() {

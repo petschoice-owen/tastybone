@@ -92,6 +92,32 @@
         }
     }
 
+    .product-categories {
+        .categories {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        a {
+            display: flex;
+            padding: 25px 22px;
+            font-family: $font-helveticaneue-black;
+            font-size: 18px;
+            color: $text-color;
+            text-transform: uppercase;
+            background-color: #fff;
+            transition: .35s ease-in-out all;
+
+            &:hover,
+            &.active {
+                color: #fff;
+                background-color: $brand-color;
+            }
+        }
+    }
+
     .flavour-item {
         // width: 16.66%;
         width: 14.28%;
@@ -104,12 +130,29 @@
     .products {
         .product-items {
             display: flex;
+            transition: .5s all ease-in-out;
         }
     
         .product-item {
             display: flex;
             width: 25%;
             padding: 15px;
+
+            &.not-selected {
+                display: none;
+            }
+        }
+
+        .no-product {
+            display: flex;
+            justify-content: center;
+            width: 1050px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .heading-no-result {
+            font-size: 34px;
         }
     }
 }

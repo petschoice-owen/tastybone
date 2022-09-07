@@ -29,19 +29,17 @@
 		<section class="product-categories box-shadow-hero">
 			<div class="container">
 				<div class="wrapper">
-					<!-- <div class="categories">
-						<ul>
-							<li><a href="#">All</a></li>
-							<li><a href="#">Nylon</a></li>
-							<li><a href="#">Dental</a></li>
-							<li><a href="#">Gourmet</a></li>
-							<li><a href="#">Flexi</a></li>
-							<li><a href="#">Festive</a></li>
-							<li><a href="#">Halloween</a></li>
-							<li><a href="#">Offers</a></li>
-							<li><a href="#">Wild</a></li>
-						</ul>
-					</div> -->
+					<ul class="categories">
+                        <li><a href="#">All</a></li>
+                        <li><a href="#">Nylon</a></li>
+                        <li><a href="#">Dental</a></li>
+                        <li><a href="#">Gourmet</a></li>
+                        <li><a href="#">Flexi</a></li>
+                        <li><a href="#">Festive</a></li>
+                        <li><a href="#">Halloween</a></li>
+                        <li><a href="#">Offers</a></li>
+                        <li><a href="#">Wild</a></li>
+                    </ul>
 				</div>
 			</div>
 		</section>
@@ -62,7 +60,7 @@
                                 <div class="accordion-body">
                                     <div class="flavours">
                                         <div class="flavour-item">
-                                            <a href="#" class="flavour-link apple-pie">
+                                            <a href="#" class="flavour-link apple-pie" data-filter="apple-pie">
                                                 <i class="fa-solid fa-check"></i>
                                                 <p class="flavour-name">I am <span class="flavour-text">apple pie</span> flavour</p>
                                             </a>
@@ -291,7 +289,7 @@
                             </div>
                         </div>
                     </div>
-					<div class="product-attribute-flavour">
+					<div class="product-attribute-flavour d-none">
 						<?php dynamic_sidebar('product_filter'); ?> 
 					</div>
 				</div>
@@ -310,7 +308,7 @@
 					$products = new WP_Query($args);
 				?>
 				<?php if ($products->have_posts()) : ?>
-					<div class="product-items">
+					<div class="product-items opacity-hide">
 						<?php while ($products->have_posts()) : $products->the_post(); ?>
 							<?php 
 								global $product;
@@ -330,9 +328,16 @@
 								</div>
 							</div>
 						<?php endwhile; wp_reset_postdata(); ?>
+                        <div class="no-product d-none">
+                            <h2 class="heading-no-result">
+                                Sorry, there are no products matching your selection.
+                                <br />
+                                Please change your filter selection and try again.
+                            </h2>
+                        </div>
 					</div>
 				<?php else: ?>
-                    <div class="no-product-items d-none">
+                    <div class="no-product">
                         <h2 class="heading-no-result">
                             Sorry, there are no products matching your selection.
                             <br />

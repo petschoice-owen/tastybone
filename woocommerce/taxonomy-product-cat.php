@@ -1,108 +1,60 @@
-<?php
+<?php	
 /**
-*** Template Name: Home Page
-**/
+ * The Template for displaying products in a product category. Simply includes the archive template
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/taxonomy-product-cat.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see         https://docs.woocommerce.com/document/template-structure/
+ * @package     WooCommerce\Templates
+ * @version     4.7.0
+ */
 ?>
 <?php get_header(); ?>
 <body <?php body_class(); ?>>
-    <?php include 'top-navigation.php'; ?>
-    <main class="page-home">
-        <section class="hero-home border-bottom-10">
-            <div class="container">
-                <img src="<?php the_field('hero_banner_image'); ?>" class="image-dog" alt="" />
-                <div class="hero-top">
-                    <ul class="badges">
-                        <?php
-                            if( have_rows('hero_badges') ):
-                            while( have_rows('hero_badges') ) : the_row();
-                                $image = get_sub_field('image'); ?>
-                                <li><img src="<?php echo $image; ?>" alt="" /></li>
-                            <?php endwhile;
-                            else :
-                            endif;
-                        ?>
+	<?php include(get_template_directory() . '/top-navigation.php'); ?>
+	<main class="page-shop">
+		<section class="hero-inner" style="background-image: url(<?php the_field('shop_hero_background_image', 'option'); ?>);">
+			<div class="container">
+				<div class="wrapper">
+					<h1 class="page-title"><?php the_field('shop_hero_title', 'option'); ?></h1>
+				</div>
+			</div>
+		</section>
+		<section class="product-categories box-shadow-hero" data-category="<?php $catname = single_term_title(); echo $catname; ?>">
+			<div class="container">
+				<div class="wrapper">
+					<ul class="categories">
+                        <li><a href="#">All</a></li>
+                        <li><a href="#">Nylon</a></li>
+                        <li><a href="#">Dental</a></li>
+                        <li><a href="#">Gourmet</a></li>
+                        <li><a href="#">Flexi</a></li>
+                        <li><a href="#">Festive</a></li>
+                        <li><a href="#">Halloween</a></li>
+                        <li><a href="#">Offers</a></li>
+                        <li><a href="#">Wild</a></li>
                     </ul>
-                    <div class="newsletter">
-                        <div class="accordion" id="accordionNewsletter">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingNewsletter">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewsletter" aria-expanded="false" aria-controls="collapseNewsletter">
-                                        <span class="text"><?php the_field('hero_newsletter_text'); ?></span>
-                                        <span class="image">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-envelope.png" alt="" />
-                                        </span>
-                                    </button>
-                                </h2>
-                                <div id="collapseNewsletter" class="accordion-collapse collapse" aria-labelledby="headingNewsletter" data-bs-parent="#accordionNewsletter">
-                                    <div class="accordion-body">
-                                        <form action="">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="newsletter_name" aria-describedby="emailHelp" placeholder="Full name">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" id="newsletter_email" aria-describedby="emailHelp" placeholder="Email">
-                                            </div>
-                                            <div class="form-check">
-                                                <input type="checkbox" class="input-checkbox" id="newsletter_checkbox">
-                                                <label class="form-check-label" for="newsletter_checkbox">Please send me the latest special offers, updates and promotions from TastyBone.</label>
-                                            </div>
-                                            <div class="form-submit">
-                                                <button type="submit" class="btn-brand btn-arrow-right">Subscribe</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <h1 class="heading"><?php the_field('hero_heading_white'); ?> <span><?php the_field('hero_heading_colored'); ?></span></h1>
-                    <p class="subheading"><?php the_field('hero_subheading'); ?></p>
-                    <div class="button-holder">
-                        <a href="<?php the_field('hero_button_link'); ?>" class="btn-white btn-arrow-right"><?php the_field('hero_button_text'); ?></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="tasty border-bottom-10">
-            <div class="container">
-                <div class="bones">
-                    <div class="slider-wrapper">
-                        <div class="custom-slider">
-                            <?php
-                                if( have_rows('flavour_slider_images') ):
-                                while( have_rows('flavour_slider_images') ) : the_row();
-                                    $image = get_sub_field('image'); ?>
-                                    <div class="slide-item">
-                                        <div class="image-holder">
-                                            <img src="<?php echo $image; ?>" alt="" />
-                                        </div>
-                                    </div>
-                                <?php endwhile;
-                                else :
-                                endif;
-                            ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="content">
-                    <h2 class="section-heading section-heading-column text-color-black"><?php the_field('flavour_heading_black'); ?> <span><?php the_field('flavour_heading_brown'); ?></span></h2>
-                    <p class="subheading"><?php the_field('flavour_subheading'); ?></p>
-                    <div class="accordion" id="accordionCategory">
+				</div>
+			</div>
+		</section>
+		<section class="product-filter">
+			<div class="container">
+				<div class="wrapper">
+					<div class="accordion" id="accordionCategory">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingCategory">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
-                                    <?php
-                                        if( have_rows('flavour_button') ):
-                                        while( have_rows('flavour_button') ) : the_row();
-                                            $button_toggler = get_sub_field('button_toggler_text'); ?>
-                                            <?php echo $button_toggler; ?>
-                                        <?php endwhile;
-                                        else :
-                                        endif;
-                                    ?>
+                                    Choose <b>Flavours</b></span>
                                 </button>
+								<div class="button-holder">
+									<a href="#" class="btn-brand btn-apply" id="product_filter_trigger">Apply</a>
+								</div>
                             </h2>
                             <div id="collapseCategory" class="accordion-collapse collapse" aria-labelledby="headingCategory" data-bs-parent="#accordionCategory">
                                 <div class="accordion-body">
@@ -333,207 +285,72 @@
 
 
                                     </div>
-                                    <div class="button-holder">
-                                        <?php
-                                            if( have_rows('flavour_button') ):
-                                            while( have_rows('flavour_button') ) : the_row();
-                                                $button_text = get_sub_field('button_range_text'); 
-                                                $button_link = get_sub_field('button_range_link'); ?>
-                                                <a href="<?php echo $button_link; ?>" class="btn-brand btn-arrow-right" id="product_filter_trigger"><?php echo $button_text; ?></a>
-                                            <?php endwhile;
-                                            else :
-                                            endif;
-                                        ?>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-        <section class="tastybone-test border-bottom-10">
-            <img src="<?php the_field('description_image'); ?>" class="bg-dog" alt="" />
-            <div class="container">
-                <div class="wrapper">
-                    <h2 class="section-heading section-heading-column text-color-white"><?php the_field('description_heading_white'); ?> <span><?php the_field('description_heading_brown'); ?></span></h2>
-                    <div class="custom-border custom-border-70 custom-border-brand"></div>
-                    <h5 class="text-color-white text-uppercase"><?php the_field('description_subheading'); ?></h5>
-                    <div class="items">
-                        <?php
-                            if( have_rows('description_category_1') ):
-                            while( have_rows('description_category_1') ) : the_row();
-                                $text = get_sub_field('category_text');
-                                $link = get_sub_field('category_link'); ?>                                
-                                <div class="item">
-                                    <a href="<?php echo $link; ?>"><?php echo $text; ?></a>
-                                </div>
-                            <?php endwhile;
-                            else :
-                            endif;
-                        ?>
-                        <?php
-                            if( have_rows('description_category_2') ):
-                            while( have_rows('description_category_2') ) : the_row();
-                                $text = get_sub_field('category_text');
-                                $link = get_sub_field('category_link'); ?>                                
-                                <div class="item">
-                                    <a href="<?php echo $link; ?>"><?php echo $text; ?></a>
-                                </div>
-                            <?php endwhile;
-                            else :
-                            endif;
-                        ?>
-                        <?php
-                            if( have_rows('description_category_3') ):
-                            while( have_rows('description_category_3') ) : the_row();
-                                $text = get_sub_field('category_text');
-                                $link = get_sub_field('category_link'); ?>                                
-                                <div class="item">
-                                    <a href="<?php echo $link; ?>"><?php echo $text; ?></a>
-                                </div>
-                            <?php endwhile;
-                            else :
-                            endif;
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="happy">
-            <div class="container">
-                <div class="titles">
-                    <div class="title-item">
-                        <?php
-                            if( have_rows('happy_column_1') ):
-                            while( have_rows('happy_column_1') ) : the_row();
-                                $heading = get_sub_field('heading');
-                                $button_link = get_sub_field('button_link'); ?>
-                                <a href="<?php echo $button_link; ?>"><?php echo $heading; ?></a>
-                            <?php endwhile;
-                            else :
-                            endif;
-                        ?>
-                    </div>
-                    <div class="title-item">
-                        <?php
-                            if( have_rows('happy_column_2') ):
-                            while( have_rows('happy_column_2') ) : the_row();
-                                $heading = get_sub_field('heading');
-                                $button_link = get_sub_field('button_link'); ?>
-                                <a href="<?php echo $button_link; ?>"><?php echo $heading; ?></a>
-                            <?php endwhile;
-                            else :
-                            endif;
-                        ?>
-                    </div>
-                    <div class="title-item">
-                        <?php
-                            if( have_rows('happy_column_3') ):
-                            while( have_rows('happy_column_3') ) : the_row();
-                                $heading = get_sub_field('heading');
-                                $button_link = get_sub_field('button_link'); ?>
-                                <a href="<?php echo $button_link; ?>"><?php echo $heading; ?></a>
-                            <?php endwhile;
-                            else :
-                            endif;
-                        ?>
-                    </div>
-                </div>
-                <div class="image-dogs">
-                    <img src="<?php the_field('happy_image'); ?>" alt="" />
-                </div>
-                <div class="buttons">
-                    <?php
-                        if( have_rows('happy_column_1') ):
-                        while( have_rows('happy_column_1') ) : the_row();
-                            $button_text = get_sub_field('button_text');
-                            $button_link = get_sub_field('button_link'); ?>
-                            <a href="<?php echo $button_link; ?>" class="btn-brand btn-arrow-right"><?php echo $button_text; ?></a>
-                        <?php endwhile;
-                        else :
-                        endif;
-                    ?>
-                    <?php
-                        if( have_rows('happy_column_2') ):
-                        while( have_rows('happy_column_2') ) : the_row();
-                            $button_text = get_sub_field('button_text');
-                            $button_link = get_sub_field('button_link'); ?>
-                            <a href="<?php echo $button_link; ?>" class="btn-brand btn-arrow-right"><?php echo $button_text; ?></a>
-                        <?php endwhile;
-                        else :
-                        endif;
-                    ?>
-                    <?php
-                        if( have_rows('happy_column_3') ):
-                        while( have_rows('happy_column_3') ) : the_row();
-                            $button_text = get_sub_field('button_text');
-                            $button_link = get_sub_field('button_link'); ?>
-                            <a href="<?php echo $button_link; ?>" class="btn-brand btn-arrow-right"><?php echo $button_text; ?></a>
-                        <?php endwhile;
-                        else :
-                        endif;
-                    ?>
-                </div>
-            </div>
-        </section>
-        <?php if ( have_posts() ) :
-            $args = array(
-                'post_type' => 'blog',
-                'post_status' => 'publish',
-                'posts_per_page' => 3, 
-                'orderby' => 'date', 
-                'order' => 'DESC',
-            );
-            $blog = new WP_Query( $args ); ?>
-            <section class="blog">
-                <div class="container">
-                    <div class="custom-border custom-border-100 custom-border-brand"></div>
-                    <h2 class="section-heading text-color-black"><?php the_field('blog_heading_black'); ?> <span><?php the_field('blog_heading_brown'); ?></span></h2>
-                </div>
-                <div class="blogs">
-                    <?php while ( $blog->have_posts() ) : $blog->the_post(); ?> 
-                        <?php $featured_img = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full' ); ?>
-                        <div class="blog-item">
-                            <div class="container">
-                                <div class="image">
-                                    <a href="<?php the_permalink(); ?>" class="image-link">
-                                        <img src="<?php echo $featured_img[0]; ?>" alt="" />
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h3 class="blog-title"><?php the_title(); ?></h3>
-                                    <?php if( get_field('blog_author_name') ): ?>
-                                        <p class="author-section">Written by: <span class="author-name"><?php the_field('blog_author_name'); ?></span></p>
-                                    <?php endif; ?>
-                                    <p class="excerpt">	
-                                        <?php echo get_the_excerpt(); ?>
-                                    </p>
-                                    <div class="button-holder">
-                                        <a href="<?php the_permalink(); ?>" class="btn-white btn-arrow-right">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
+					<div class="product-attribute-flavour d-none">
+						<?php dynamic_sidebar('product_filter'); ?> 
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="products">
+			<div class="container">
+				<?php
+					$args = array(
+                        'post_type'         => 'product',
+                        'post_status'       => 'publish',
+                        'posts_per_page'    => -1,
+                        'orderby'           => 'date', 
+						'order'             => 'DESC',
+                        'tax_query'         => array( array(
+                            'taxonomy'      => 'product_cat',
+                            'field'         => 'term_id',
+                            'terms'         => array( get_queried_object()->term_id ),
+                        ))
+					);
+					$products = new WP_Query($args);
+				?>
+				<?php if ($products->have_posts()) : ?>
+					<div class="product-items opacity-hide">
+						<?php while ($products->have_posts()) : $products->the_post(); ?>
+							<?php 
+								global $product;
+								$flavour = array_shift( wc_get_product_terms( $product->id, 'pa_flavour', array( 'fields' => 'id=>slug' ) ) );
+							?>
+							<div class="product-item" data-flavour="<?php echo $flavour; ?>">
+								<div class="product-wrapper">
+									<?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' ); ?>
+									<a href="<?php the_permalink(); ?>" class="thumbnail">
+										<img src="<?php echo $image[0]; ?>" alt="" />
+									</a>
+									<h4 class="name dashed"><?php the_title(); ?></h4>
+									<div class="button-holder">
+										<a href="<?php the_permalink(); ?>" class="btn-brown">Shop Now</a>
+									</div>
+									<?php echo $flavour; ?>
+								</div>
+							</div>
+						<?php endwhile; wp_reset_postdata(); ?>
+                        <div class="no-product d-none">
+                            <h2 class="heading-no-result">
+                                Sorry, there are no products matching your selection.
+                                <br />
+                                Please change your filter selection and try again.
+                            </h2>
                         </div>
-                    <?php endwhile;
-                    wp_reset_postdata(); ?>
-                </div>
-            </section>
-        <?php else : ?>	
-            <div class="page-404">
-                <section class="404">
-                    <div class="container">
-                        <div class="content">
-                            <h2><?php the_field('404_content_text', 'option'); ?></h2>
-                            <div class="button-holder">
-                                <a href="<?php the_field('404_content_button_link_1', 'option'); ?>" class="btn-brand btn-arrow-right"><?php the_field('404_content_button_text_1', 'option'); ?></a>
-                                <a href="<?php the_field('404_content_button_link_2', 'option'); ?>" class="btn-brand btn-arrow-right"><?php the_field('404_content_button_text_2', 'option'); ?></a>
-                            </div>
-                        </div>
+					</div>
+				<?php else: ?>
+                    <div class="no-product">
+                        <h2 class="heading-no-result">
+                            Sorry, there are no products matching your selection.
+                            <br />
+                            Please change your filter selection and try again.
+                        </h2>
                     </div>
-                    <img src="<?php the_field('404_content_image', 'option'); ?>" class="image-dog" alt="" />
-                </section>
-            </div>
-        <?php endif; wp_reset_query(); ?>
-    </main>
+				<?php endif; wp_reset_query(); ?>
+			</div>
+		</section>
+	</main>
 <?php get_footer(); ?>
