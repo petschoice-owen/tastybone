@@ -341,17 +341,33 @@ var activeCategory = () => {
         $(".product-categories .categories li:first-child a").addClass("active");
     }
     else if ($("body").hasClass("tax-product_cat")) {
-        var pageCategory = $(".product-categories").data("category").toLowerCase();
-        $(".product-categories").attr("data-category",pageCategory);
+        // var pageCategory = $(".product-categories").data("category").toLowerCase();
+        var pageArchiveCategory = $(".product-categories").data("archive");
+        // $(".product-categories").attr("data-category",pageArchiveCategory);
 
         $(".product-categories .categories li a").each(function() {
             var categoryName = $(this).text().toLowerCase();
             $(this).attr("data-category",categoryName);
 
-            if ($(this).data("category") == pageCategory) {
+            if ($(this).data("category") == pageArchiveCategory) {
                 $(this).addClass("active");
             }
         });
+    }
+}
+
+// Category Banners
+var categoryBanner = () => {
+    if ($(".tax-product_cat .category-banners .banner-detail").length) {
+        $(".banner-detail").each(function() {
+            if ($(this).data("identifier") == $(".product-categories").data("archive")) {
+                var categoryName = $(this).data("name");
+                var categoryBanner = $(this).data("banner");
+
+                $(".hero-inner-category").css("background-image","url("+categoryBanner+")");
+                $(".page-title-category").text(categoryName);
+            }
+        })
     }
 }
   
@@ -367,6 +383,7 @@ $(document).ready(function() {
     // stockists();
     filterShop();
     activeCategory();
+    categoryBanner();
 });
   
 $(window).resize(function() {

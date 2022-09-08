@@ -19,26 +19,59 @@
 <body <?php body_class(); ?>>
 	<?php include(get_template_directory() . '/top-navigation.php'); ?>
 	<main class="page-shop">
-		<section class="hero-inner" style="background-image: url(<?php the_field('shop_hero_background_image', 'option'); ?>);">
-			<div class="container">
-				<div class="wrapper">
-					<h1 class="page-title"><?php the_field('shop_hero_title', 'option'); ?></h1>
-				</div>
-			</div>
-		</section>
-		<section class="product-categories box-shadow-hero">
+        <?php 
+            if (is_product_category()) {
+                $archive_title = single_cat_title( '', false );
+                $archive_title = preg_replace('/\s+/', '', $archive_title); ?>
+
+                <div class="category-banners d-none">
+                    <?php
+                        if( have_rows('category_list', 'option') ):
+                        while( have_rows('category_list', 'option') ) : the_row();
+                            $category_name = get_sub_field('category_name'); 
+                            $category_banner = get_sub_field('category_banner'); ?>
+                            <div class="banner-detail" data-identifier="<?php echo strtolower($category_name); ?>" data-name="<?php echo $category_name; ?>" data-banner="<?php echo $category_banner; ?>"></div>
+                        <?php endwhile;
+                        else :
+                        endif;
+                    ?>
+                </div>
+                <section class="hero-inner hero-inner-category">
+                    <div class="container">
+                        <div class="wrapper">
+                            <h1 class="page-title page-title-category opacity-0"></h1>
+                        </div>
+                    </div>
+                </section>
+            <?php }
+            else { ?>
+                <section class="hero-inner" style="background-image: url(<?php the_field('shop_hero_background_image', 'option'); ?>);">
+                    <div class="container">
+                        <div class="wrapper">
+                            <h1 class="page-title"><?php the_field('shop_hero_title', 'option'); ?></h1>
+                        </div>
+                    </div>
+                </section>
+            <?php }
+        ?>
+		<section class="product-categories box-shadow-hero" <?php if (is_product_category()) { ?> data-archive="<?php echo strtolower($archive_title); ?>"<?php } ?> >
 			<div class="container">
 				<div class="wrapper">
 					<ul class="categories">
-                        <li><a href="#">All</a></li>
-                        <li><a href="#">Nylon</a></li>
-                        <li><a href="#">Dental</a></li>
-                        <li><a href="#">Gourmet</a></li>
-                        <li><a href="#">Flexi</a></li>
-                        <li><a href="#">Festive</a></li>
-                        <li><a href="#">Halloween</a></li>
-                        <li><a href="#">Offers</a></li>
-                        <li><a href="#">Wild</a></li>
+                        <li><a href="/shop">All</a></li>
+                        <?php
+                            if( have_rows('category_list', 'option') ):
+                            while( have_rows('category_list', 'option') ) : the_row();
+                                $category_name = get_sub_field('category_name');
+                                $name = strtolower($category_name);
+                                $lower_case = preg_replace('/\s+/', ' ', $name);
+                                $single_space = preg_replace('/\s+/', ' ', $lower_case);
+                                $slug = preg_replace('#[ -]+#', '-', $single_space); ?>
+                                <li><a href="/category/<?php echo $slug; ?>"><?php echo $category_name; ?></a></li>
+                            <?php endwhile;
+                            else :
+                            endif;
+                        ?>
                     </ul>
 				</div>
 			</div>
@@ -324,7 +357,7 @@
 									<div class="button-holder">
 										<a href="<?php the_permalink(); ?>" class="btn-brown">Shop Now</a>
 									</div>
-									<?php echo $flavour; ?>
+									<p style="font-size: 10px;"><?php echo $flavour; ?></p>
 								</div>
 							</div>
 						<?php endwhile; wp_reset_postdata(); ?>
@@ -349,3 +382,118 @@
 		</section>
 	</main>
 <?php get_footer(); ?>
+
+
+
+
+
+
+
+
+
+
+<?php
+/**
+ * The Template for displaying product archives, including the main shop page which is a post type archive
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/archive-product.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see https://docs.woocommerce.com/document/template-structure/
+ * @package WooCommerce\Templates
+ * @version 3.4.0
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+get_header( 'shop' );
+
+/**
+ * Hook: woocommerce_before_main_content.
+ *
+ * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+ * @hooked woocommerce_breadcrumb - 20
+ * @hooked WC_Structured_Data::generate_website_data() - 30
+ */
+do_action( 'woocommerce_before_main_content' );
+
+?>
+<header class="woocommerce-products-header">
+	<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
+		<h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
+	<?php endif; ?>
+
+	<?php
+	/**
+	 * Hook: woocommerce_archive_description.
+	 *
+	 * @hooked woocommerce_taxonomy_archive_description - 10
+	 * @hooked woocommerce_product_archive_description - 10
+	 */
+	do_action( 'woocommerce_archive_description' );
+	?>
+</header>
+<?php
+if ( woocommerce_product_loop() ) {
+
+	/**
+	 * Hook: woocommerce_before_shop_loop.
+	 *
+	 * @hooked woocommerce_output_all_notices - 10
+	 * @hooked woocommerce_result_count - 20
+	 * @hooked woocommerce_catalog_ordering - 30
+	 */
+	do_action( 'woocommerce_before_shop_loop' );
+
+	woocommerce_product_loop_start();
+
+	if ( wc_get_loop_prop( 'total' ) ) {
+		while ( have_posts() ) {
+			the_post();
+
+			/**
+			 * Hook: woocommerce_shop_loop.
+			 */
+			do_action( 'woocommerce_shop_loop' );
+
+			wc_get_template_part( 'content', 'product' );
+		}
+	}
+
+	woocommerce_product_loop_end();
+
+	/**
+	 * Hook: woocommerce_after_shop_loop.
+	 *
+	 * @hooked woocommerce_pagination - 10
+	 */
+	do_action( 'woocommerce_after_shop_loop' );
+} else {
+	/**
+	 * Hook: woocommerce_no_products_found.
+	 *
+	 * @hooked wc_no_products_found - 10
+	 */
+	do_action( 'woocommerce_no_products_found' );
+}
+
+/**
+ * Hook: woocommerce_after_main_content.
+ *
+ * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+ */
+do_action( 'woocommerce_after_main_content' );
+
+/**
+ * Hook: woocommerce_sidebar.
+ *
+ * @hooked woocommerce_get_sidebar - 10
+ */
+do_action( 'woocommerce_sidebar' );
+
+get_footer( 'shop' );
