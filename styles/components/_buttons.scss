@@ -206,3 +206,50 @@
         }
     }
 }
+
+.woocommerce form.cart button.single_add_to_cart_button {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 10px 18px;
+    font-family: $font-helveticaneue-bold;
+    font-size: 14px;
+    line-height: 1;
+    color: #fff;
+    text-transform: uppercase;
+    background-color: $brand-color;
+    border: none;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+    border-radius: 4px;
+    transition: all .35s ease-in-out;
+
+    &:hover,
+    &:focus {
+        color: #fff;
+        background-color: $brand-hover;
+        outline: none;
+        box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+    }
+
+    @media (max-width: 1399px) {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    @media (max-width: 1199px) {
+        padding: 10px 22px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 991px) {
+        justify-content: center;
+        width: 125px;
+        padding: 10px;
+    }
+
+    @media (max-width: 767px) {
+        width: 110px;
+        padding: 10px 5px;
+        font-size: 12px;
+    }
+}

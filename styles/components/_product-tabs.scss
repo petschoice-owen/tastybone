@@ -1,0 +1,74 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the product tabs component.
+// -----------------------------------------------------------------------------
+
+.product-tabs {
+    .nav-tabs {
+        border: none;
+
+        .nav-link {
+            padding: 10px 20px;
+            margin: 0;
+            font-family: $font-helveticaneue-bold;
+            font-size: 16px;
+            color: $text-color;
+            text-transform: uppercase;
+            border: none;
+            background-color: $light-grey;
+            border-radius: 2px;
+            transition: .35s ease-in-out all;
+
+            &:hover {
+                color: #fff;
+                background-color: $brand-hover;
+            }
+
+            &.active {
+                color: #fff;
+                background-color: $brand-color;
+            }
+
+            &:not(:first-child) {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .tab-group {
+        padding-top: 25px;
+
+        p {
+            font-size: 18px;
+            line-height: 1.3;
+        }
+    }
+
+    .tab-group-heading {
+        display: flex;
+        margin-bottom: 7px;
+        line-height: 1;
+        font-size: 26px;
+        text-transform: uppercase;
+    }
+
+    @media (max-width: 767px) {
+        .tab-group-heading {
+            font-size: 23px;
+        }
+
+        .tab-group p {
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .nav-tabs {
+            .nav-link {
+                width: calc(50% - 5px);
+                line-height: 1.15;
+            }
+        }
+    }
+}

@@ -1,0 +1,210 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the product category component.
+// -----------------------------------------------------------------------------
+
+.product-categories {
+    position: relative;
+    z-index: 1;
+    transition: .5s ease-in-out all;
+    background-color: #fff;
+
+    .accordion {
+        &-body {
+            padding: 30px 20px;
+        }
+
+        &-item {
+            position: relative;
+            border: 0;
+            border-radius: 0;
+        }
+
+        &-header {
+            display: flex;
+            justify-content: center;
+        }
+
+        &-button {
+            width: fit-content;
+            padding: 8px 30px 8px 20px;
+            font-size: 26px;
+            text-transform: uppercase;
+            color: #000;
+            background: transparent;
+            box-shadow: none;
+            outline: none;
+
+            &:focus,
+            &:focus-within,
+            &:focus-visible  {
+                outline: none;
+                background: transparent;
+                box-shadow: none;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: -1px;
+                right: 0;
+                bottom: 0;
+                z-index: 5;
+                width: 0;
+                height: 0;
+                margin: auto;
+                background-image: none;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 12px solid;
+            }
+
+            b,
+            strong {
+                padding-left: 12px;
+                color: $brand-color;
+            }
+        }
+    }
+
+    .wrapper-responsive {
+        display: none;
+    }
+
+    .categories {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+    a {
+        display: flex;
+        padding: 25px 22px;
+        font-family: $font-helveticaneue-black;
+        font-size: 18px;
+        color: $text-color;
+        text-transform: uppercase;
+        background-color: #fff;
+        transition: .35s ease-in-out all;
+
+        &:hover,
+        &.active {
+            color: #fff;
+            background-color: $brand-color;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .container {
+            max-width: 100%;
+            padding: 0;
+        }
+
+        .wrapper {
+            display: none;
+        }
+
+        .wrapper-responsive {
+            display: block;
+
+            .accordion-body {
+                padding: 0;
+            }
+
+            .categories {
+                flex-direction: column;
+            }
+        }
+
+        a {
+            justify-content: center;
+            padding: 11px;
+        }
+
+        .accordion-item {
+            position: relative;
+            border: 0;
+            border-radius: 0; 
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        .accordion-button {
+            width: fit-content;
+            padding: 8px 30px 8px 20px;
+            font-size: 26px;
+            text-transform: uppercase;
+            color: #000;
+            background: transparent;
+            box-shadow: none;
+            outline: none;
+
+            &:focus,
+            &:focus-within,
+            &:focus-visible  {
+                outline: none;
+                background: transparent;
+                box-shadow: none;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: -1px;
+                right: 0;
+                bottom: 0;
+                z-index: 5;
+                width: 0;
+                height: 0;
+                margin: auto;
+                background-image: none;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 12px solid;
+            }
+
+            b,
+            strong {
+                padding-left: 12px;
+                color: $brand-color;
+            }
+        }
+    }
+    
+    @media (max-width: 991px) {
+        .accordion-button {
+            padding-right: 26px;
+            font-size: 20px;
+
+            &::after {
+                border-left-width: 8px;
+                border-right-width: 8px;
+                border-top-width: 9px;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        a {
+            padding: 9px;
+            font-size: 17px;
+        }
+    }
+
+    @media (max-width: 575px) {
+        a {
+            padding: 8px;
+            font-size: 16px;
+        }
+        
+        .accordion-button {
+            font-size: 16px;
+        }
+    }
+}

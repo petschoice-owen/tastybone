@@ -130,6 +130,7 @@ var flavours = () => {
             });
         });
 
+        // Shop Page and Category Pages filter button to self
         $("#product_filter_trigger").click(function(e) {
             e.preventDefault();
             
@@ -175,6 +176,48 @@ var flavours = () => {
                 var newUrl = originUrlArray[0] + pathUrlArray[0] +'?filter_flavour='+selectedFilter+'&query_type_flavour=or';
                 window.location = newUrl;
                 // console.log(newUrl);
+            }
+        });
+
+        // Home Page filter button to Shop Page
+        $("#product_filter_trigger_home").click(function(e) {
+            e.preventDefault();
+            
+            if ($(".flavour-selected").length == 0) {
+                // window.location = window.location.origin+"/shop";
+                window.location = window.location.pathname;
+                $("#product_filter_trigger_home").addClass("disabled");
+            }
+            else if ($(".flavour-selected").length == 1) {
+                $("#product_filter_trigger_home").removeClass("disabled");
+
+                var originUrlArray = [];
+                var pathUrlArray = [];
+
+                var originUrl = window.location.origin;
+                originUrlArray.push(originUrl);
+                console.log(originUrlArray[0]);
+
+                var pathUrl = window.location.pathname;
+                pathUrlArray.push(pathUrl);
+                console.log(pathUrlArray[0]);
+
+                var newUrl = "/shop" +'?filter_flavour='+$(".flavour-selected").data("filter")+'&query_type_flavour=or';
+                window.location = newUrl;
+            }
+            else {
+                var originUrlArray = [];
+                var pathUrlArray = [];
+
+                var originUrl = window.location.origin;
+                originUrlArray.push(originUrl);
+
+                var pathUrl = window.location.pathname;
+                pathUrlArray.push(pathUrl);
+
+                var selectedFilter = arrayFilter.sort().join('%2C');
+                var newUrl = "/shop" +'?filter_flavour='+selectedFilter+'&query_type_flavour=or';
+                window.location = newUrl;
             }
         });
     }
@@ -288,51 +331,62 @@ var stockists = () => {
 // display products depending on the url
 var filterShop = () => {
     // if ($("body").hasClass("woocommerce-shop")) {
-    if ($("main").hasClass("page-shop")) {
-        $(".top-navigation .navbar-nav li a").each(function() {
-            var menuText = $(this).text().toLowerCase();
-
-            if (menuText == "shop") {
-                $(this).parent().addClass("current-menu-item");
-            }
-        });
-
-        if (window.location.href.indexOf("?filter_flavour") > -1) {
-            // var pathArray = window.location.href.split("/").pop();
-            // var removeFirstLast = pathArray.replace('shop?filter_flavour=','').replace('&query_type_flavour=or','');
-
-            var pathArray = window.location.href.split("/").pop();
-            var originUrlArray = [];
-            var pathUrlArray = [];
-            var originUrl = window.location.origin;
-            originUrlArray.push(originUrl);
-            var pathUrl = window.location.pathname.substring(1);
-            var pathUrlFormatted = pathUrl.split("/").pop();
-            pathUrlArray.push(pathUrlFormatted);
-            var removeFirstLast = pathArray.replace(pathUrlFormatted+'?filter_flavour=','').replace('&query_type_flavour=or','');
-            var flavourSelected = removeFirstLast.split('%2C'); // array of selected flavours
-
-            $(".products .product-items .product-item").each(function() {
-                productFlavour = $(this).data('flavour');
-                if (flavourSelected.indexOf(productFlavour) !== -1) {
-                    $(this).addClass('selected');
-                }
-                else {
-                    $(this).addClass('not-selected');
+    if ($("body").hasClass("woocommerce-shop") || $("body").hasClass("tax-product_cat")) {
+        $("body main").addClass("page-shop");
+    }
+    setTimeout(() => {
+        if ($("main").hasClass("page-shop")) {
+            $(".top-navigation .navbar-nav li a").each(function() {
+                var menuText = $(this).text().toLowerCase();
+    
+                if (menuText == "shop") {
+                    $(this).parent().addClass("current-menu-item");
                 }
             });
-
-            var numberOfProducts = $(".products .product-items .product-item").length;
-            var numberOfProductsHidden = $(".products .product-items .product-item.not-selected").length;
-
-            if (numberOfProducts == numberOfProductsHidden) {
-                $(".products .product-items .no-product").removeClass("d-none");
+    
+            if (window.location.href.indexOf("?filter_flavour") > -1) {
+                // var pathArray = window.location.href.split("/").pop();
+                // var removeFirstLast = pathArray.replace('shop?filter_flavour=','').replace('&query_type_flavour=or','');
+    
+                var pathArray = window.location.href.split("/").pop();
+                var originUrlArray = [];
+                var pathUrlArray = [];
+                var originUrl = window.location.origin;
+                originUrlArray.push(originUrl);
+                var pathUrl = window.location.pathname.substring(1);
+                var pathUrlFormatted = pathUrl.split("/").pop();
+                pathUrlArray.push(pathUrlFormatted);
+                var removeFirstLast = pathArray.replace(pathUrlFormatted+'?filter_flavour=','').replace('&query_type_flavour=or','');
+                var flavourSelected = removeFirstLast.split('%2C'); // array of selected flavours
+    
+                $(".products .product-items .product-item").each(function() {
+                    productFlavour = $(this).data('flavour');
+                    if (flavourSelected.indexOf(productFlavour) !== -1) {
+                        $(this).addClass('selected');
+                    }
+                    else {
+                        $(this).addClass('not-selected');
+                    }
+                });
+    
+                var numberOfProducts = $(".products .product-items .product-item").length;
+                var numberOfProductsHidden = $(".products .product-items .product-item.not-selected").length;
+    
+                if (numberOfProducts == numberOfProductsHidden) {
+                    $(".products .product-items .no-product").removeClass("d-none");
+                }
             }
-        }
+    
+            $(".products .product-items").removeClass("opacity-hide");
+            $(".products .product-items").addClass("opacity-show");
 
-        $(".products .product-items").removeClass("opacity-hide");
-        $(".products .product-items").addClass("opacity-show");   
-    }
+            setTimeout(() => {
+                if ($(".products").hasClass("opacity-0")) {
+                    $(".products").removeClass("opacity-0"); 
+                } 
+            }, 300);           
+        }
+    }, 100);
 }
 
 // active category - highlight
@@ -354,10 +408,31 @@ var activeCategory = () => {
             }
         });
     }
+    else if ($("body").hasClass("single-product")) {
+        var productCategory = $(".hero-inner-product").data("category");
+
+        $(".top-navigation .navbar-nav li a").each(function() {
+            var menuText = $(this).text().toLowerCase();
+
+            if (menuText == "shop") {
+                $(this).parent().addClass("current-menu-item");
+            }
+        });
+
+        $(".product-categories .categories li a").each(function() {
+            var categoryName = $(this).text().toLowerCase();
+            $(this).attr("data-category",categoryName);
+
+            if ($(this).data("category") == productCategory) {
+                $(this).addClass("active");
+            }
+        });
+    }
 }
 
 // Category Banners
 var categoryBanner = () => {
+    // if Category Page
     if ($(".tax-product_cat .category-banners .banner-detail").length) {
         $(".banner-detail").each(function() {
             if ($(this).data("identifier") == $(".product-categories").data("archive")) {
@@ -366,6 +441,148 @@ var categoryBanner = () => {
 
                 $(".hero-inner-category").css("background-image","url("+categoryBanner+")");
                 $(".page-title-category").text(categoryName);
+            }
+        })
+    }
+
+    // if Single Product Page
+    if ($(".single-product .category-banners .banner-detail").length) {
+        $(".banner-detail").each(function() {
+            if ($(this).data("identifier") == $(".hero-inner-product").data("category")) {
+                var categoryName = $(this).data("name");
+                var categoryBanner = $(this).data("banner");
+
+                $(".hero-inner-product").css("background-image","url("+categoryBanner+")");
+                $(".page-title-product").text(categoryName);
+            }
+        })
+    }
+}
+
+// Show Product Filter and Product Category section
+var sectionCategoryFilter = () => {
+    if ($(".product-categories").length) {
+        $(".product-categories").removeClass("d-none");
+    }
+
+    if ($(".product-filter").length) {
+        $(".product-filter").removeClass("d-none");
+    }
+}
+
+// product quantity function
+var productQuantity = () => {
+    if ($(".qty-input").length) {
+        $('.increment-btn').click(function (e) {
+            e.preventDefault();
+        
+            var inc_value = $(this).closest('.product-quantity').find('.qty-input').val();
+            var value = parseInt(inc_value, 10);
+            value = isNaN(value) ? 0 : value;
+            
+            if (value < 99) {
+                value++;
+                $(this).closest('.product-quantity').find('.qty-input').val(value);
+
+                // var newQuantity = $("#qty_display").val();                
+                var newQuantity = $(this).closest('.product-quantity').find('.qty-input').val();
+
+                $(this).closest(".variation-quantity").find(".woocommerce-quantity .quantity .input-text.qty.text").val(newQuantity);
+            }
+        });
+        
+        $('.decrement-btn').click(function (e) {
+            e.preventDefault();
+        
+            var dec_value = $(this).closest('.product-quantity').find('.qty-input').val();
+            var value = parseInt(dec_value, 10);
+            value = isNaN(value) ? 0 : value;
+            if (value > 1) {
+                value--;
+                $(this).closest('.product-quantity').find('.qty-input').val(value);
+
+                // var newQuantity = $("#qty_display").val();                
+                var newQuantity = $(this).closest('.product-quantity').find('.qty-input').val();
+
+                // $(this).closest(".variation-quantity")(".quantity .input-text.qty.text").val(newQuantity);
+                $(this).closest(".variation-quantity").find(".woocommerce-quantity .quantity .input-text.qty.text").val(newQuantity);
+            }
+        });
+    }
+}
+
+// Single Product Page functions 
+var singleProduct = () => {
+    // identify flavour
+    if ($(".woocommerce-product-attributes-item__label").length) {
+        var relatedFlavours = [];
+
+        if ($(".related-wrapper .product-item").length) {
+            $(".related-wrapper .product-item").each(function() {
+                var dataFlavour = $(this).data("flavour");
+                relatedFlavours.push(dataFlavour);
+            })
+        }
+
+        $(".woocommerce-product-attributes-item__label").each(function() {
+            var flavourAttr = $(this).text().toLowerCase();
+            if (flavourAttr == "flavour") {
+                var flavourName = $(this).closest(".woocommerce-product-attributes-item").find(".woocommerce-product-attributes-item__value p").text();
+                var flavourNoSpecial = flavourName.replace(/[^a-zA-Z ]/g, " ");
+                var flavourSmallCaps = flavourNoSpecial.replace(/\s\s+/g, " ");
+                var flavour = flavourSmallCaps.replace(/\s/g , "-").toLowerCase();
+                
+                relatedFlavours.push(flavour);
+
+                if ($(".single-product-flavour").length) {
+                    $(".single-product-flavour").attr("data-flavour", flavour);
+
+                    $(".related-wrapper .flavours .flavour-item a").each(function() {
+                        var dataFilter = $(this).data("filter");
+
+                        if ( relatedFlavours.includes(dataFilter) ) {
+                            $(this).parent().removeClass("d-none");
+                        }
+                    })
+                }
+            }
+        })
+
+        if ( $(".related-wrapper .flavours .flavour-item").length ) {
+            $(".related-wrapper .flavours .flavour-item a").each(function() {
+                var slug = $(this).data("filter");
+                var newUrl = "/shop?filter_flavour=" + slug + "&query_type_flavour=or";
+
+                $(this).attr("href", newUrl);
+                $(this).click(function() {
+                    $(this).removeClass("flavour-selected");
+                    window.location = newUrl;
+                });
+            })
+        }
+    }
+
+    // identify sizes
+    if ($(".woocommerce-product-attributes-item__label").length) {
+        $(".woocommerce-product-attributes-item__label").each(function() {
+            var sizeAttr = $(this).text().toLowerCase();
+            if (sizeAttr == "size") {
+                var sizes = $(this).closest(".woocommerce-product-attributes-item").find(".woocommerce-product-attributes-item__value p").text().toLowerCase();
+                var sizes = sizes.replace(/ dog/g, '');
+                var sizesArray = sizes.split(',');
+
+                if ( $(".heading-thumbnail-size").length ) {
+                    $(".heading-thumbnail-size li").each(function() {
+                        var size = $(this).data("size").toLowerCase();
+                        var sizeName = size.replace(/ dog/g, '');
+
+                        if ( sizesArray.indexOf(sizeName) ) {
+                            setTimeout(() => {
+                                $(this).removeClass("d-none");
+                            }, 100);
+                        }                       
+                    })
+                }
             }
         })
     }
@@ -384,6 +601,8 @@ $(document).ready(function() {
     filterShop();
     activeCategory();
     categoryBanner();
+    productQuantity();
+    singleProduct();
 });
   
 $(window).resize(function() {
@@ -392,5 +611,6 @@ $(window).resize(function() {
 
 window.onload = function() {
     // stockists();
+    sectionCategoryFilter();
 }
   

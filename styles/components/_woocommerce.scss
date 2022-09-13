@@ -1,0 +1,109 @@
+//main: ../main.scss
+
+// ---------------------------------------------------------------------------------
+// This file contains all styles related to the woocommerce notifications component.
+// ---------------------------------------------------------------------------------
+
+// Shop Page or Category Pages
+.woocommerce-message,
+.woocommerce-info {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 18px;
+    border-top-color: $brand-color;
+
+    &::before {
+        color: $brand-color;
+    }
+
+    a.button {
+        order: 2;
+        margin-left: auto;
+        font-family: $font-helveticaneue-bold;
+        font-size: 16px;
+        color: #fff;
+        background-color: $brand-color;
+
+        &:hover {
+            color: #fff;
+            background-color: $brand-hover;
+        }
+    }
+
+    a.restore-item {
+        margin-left: 8px;
+        font-weight: 900;
+    }
+
+    @media (max-width: 767px) {
+        a.button {
+            margin-top: 5px;
+            margin-left: 0;
+        }
+    }
+}
+
+// Cart Page
+.woocommerce-page .page-default {
+    .woocommerce-message,
+    .woocommerce-info {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 18px;
+        border-top-color: $brand-color;
+    
+        &::before {
+            color: $brand-color;
+        }
+    
+        a.button {
+            order: 2;
+            margin-left: auto;
+            font-family: $font-helveticaneue-bold;
+            font-size: 16px;
+            color: #fff;
+            background-color: $brand-color;
+    
+            &:hover {
+                color: #fff;
+                background-color: $brand-hover;
+            }
+        }
+    
+        a.restore-item {
+            margin-left: 8px;
+            font-weight: 900;
+        }
+    
+        @media (max-width: 767px) {
+            a.button {
+                margin-top: 5px;
+                margin-left: 0;
+            }
+        }
+    }
+
+    .return-to-shop {
+        .button {
+            padding: 15px 20px;
+            font-family: $font-helveticaneue-bold;
+            font-size: 16px;
+            color: #fff;
+            text-transform: uppercase;
+            text-decoration: none;
+            background-color: $brand-color;
+            box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+            border-radius: 4px;
+            transition: all .35s ease-in-out;
+
+            &:hover,
+            &:focus {
+                color: #fff;
+                background-color: $brand-hover;
+                outline: none;
+                box-shadow: 0 0 5px 0 rgba(0,0,0,.5);
+            }
+        }
+    }
+}
+

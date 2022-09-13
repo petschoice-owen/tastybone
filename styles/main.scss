@@ -25,7 +25,11 @@
     'components/flavours',
     'components/page-navigation',
     'components/forms',
-    'components/modal-newsletter';
+    'components/modal-newsletter',
+    'components/product-quantity',
+    'components/product-category',
+    'components/woocommerce',
+    'components/product-tabs';
 
 // 5. Layout-related sections
 @import
@@ -44,4 +48,5 @@
     'pages/stockists',
     'pages/blog',
     'pages/single-blog',
-    'pages/shop';
+    'pages/shop',
+    'pages/single-product';

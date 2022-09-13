@@ -1,0 +1,368 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the single product page.
+// -----------------------------------------------------------------------------
+
+.single-product {
+    .woocommerce-notices-wrapper {
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 2px 14px 0 rgba(0,0,0,.5);
+    }
+
+    .single-product-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 50px 0;
+    }
+
+    .heading-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 25px;
+
+        .single-product-title {
+            font-size: 36px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+
+        .heading-thumbnail-size {
+            display: flex;
+            flex-wrap: wrap;
+
+            .size-detail {
+                margin-right: 10px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+
+            img {
+                max-width: 85px;
+            }
+        }
+    }
+
+    .image-wrapper {
+        display: flex;
+        width: 50%;
+        padding: 0 70px 0 50px;
+
+        div.woocommerce-product-gallery.images {
+            float: none;
+            width: 100%;
+        }
+        
+        a {
+            pointer-events: none;
+        }
+    }
+
+    .description-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+
+        .product_title,
+        .entry-title {
+            display: none;
+        }
+
+        .summary.entry-summary {
+            float: none;
+            width: 100%;
+            margin: 30px 0;
+
+            form,
+            .variations {
+                margin-bottom: 0;
+            }
+
+            .label,
+            .reset_variations {
+                display: none !important;
+            }
+
+            .value {
+                line-height: 1;
+
+                select {
+                    padding: 7px 10px;
+                    min-width: initial;
+                    font-family: $font-helveticaneue-black;
+                    font-size: 18px;
+                    background-color: #fff;
+                    border: 2px solid #ac8f63;
+                    border-radius: 0;
+                    outline: 0;
+                    cursor: pointer;
+                }
+            }
+
+            .single_variation_wrap {
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+
+                .single_variation {
+                    position: absolute;
+                    top: -34px;
+                    left: 165px;
+                }
+
+                .price {
+                    margin: 0;
+                    font-family: $font-helveticaneue-bold;
+                    font-size: 24px;
+                    line-height: 1;
+                    color: #000;
+                }
+
+                .variations {
+                    float: none;
+                    width: fit-content;
+                    margin: 15px 0 0;
+                }
+
+                .qty-input {
+                    width: 68px;
+                    height: 41px;
+                    font-size: 18px;
+                }
+
+                .qty-btn {
+                    width: 40px;
+                    height: 41px;
+                }
+
+                .decrement-btn::before {
+                    width: 14px;
+                    height: 3px;
+                }
+
+                .increment-btn::before,
+                .increment-btn::after {
+                    width: 14px;
+                    height: 3px;
+                }
+
+                .variations_button {
+                    display: flex;
+                    align-items: flex-end;
+                    margin-left: 20px;
+
+                    .button {
+                        width: 100%;
+                        height: 41px;
+                        padding: 8px 20px;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+
+    .related-wrapper {
+        display: block;
+        width: 100%;
+
+        .woocommerce-tabs,
+        .wc-tabs-wrapper,
+        .product-items {
+            display: none;
+        }
+
+        .product-item {
+            a h2,
+            form {
+                display: none;
+            }
+        }
+
+        .related {
+            margin-top: 30px;
+            padding-top: 40px;
+            border-top: 2px solid $brand-color;
+        }
+
+        .heading-related {
+            display: flex;
+            justify-content: center;
+        }
+
+        .heading {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 25px;
+            line-height: 1.4;
+            font-size: 26px;
+            text-align: center;
+            text-transform: uppercase;
+
+            .colored-text {
+                color: $brand-color;
+            }
+        }
+
+        .flavours {
+            justify-content: center;
+        }
+
+        .flavour-item {
+            width: 134px;
+            height: 134px;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .heading-wrapper {
+            .single-product-title {
+                font-size: 32px;
+            }
+
+            .heading-thumbnail-size img {
+                max-width: 80px;
+            }
+        }
+    }
+
+    @media (max-width: 991px) {
+        .image-wrapper {
+            width: 100%;
+            padding: 0 50px;
+
+            .woocommerce-product-gallery .woocommerce-product-gallery__wrapper img {
+                object-fit: contain;
+                width: 75%;
+                max-height: 500px;
+                margin: auto;
+            }
+        }
+
+        .description-wrapper {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .single-product-wrapper {
+            padding: 30px 0;
+        }
+
+        .heading-wrapper {
+            margin-bottom: 20px;
+
+            .single-product-title {
+                margin-right: 0;
+                font-size: 30px;
+                line-height: 1;
+                text-align: center;
+            }
+
+            .heading-product-sizes {
+                width: 100%;
+            }
+
+            .heading-thumbnail-size {
+                justify-content: center;
+
+                .size-detail {
+                    margin-right: 5px;
+                }
+
+                img {
+                    max-width: 65px;
+                }
+            }
+        }
+
+        .image-wrapper {
+            padding: 0 20px;
+
+            .woocommerce-product-gallery .woocommerce-product-gallery__wrapper img {
+                width: 80%;
+                max-height: 350px;
+            }
+        }
+
+        .related-wrapper {
+            .related {
+                padding-top: 25px;
+                margin-top: 10px;
+            }
+            
+            .heading {
+                font-size: 23px;
+            }
+
+            .flavour-item {
+                width: 114px;
+                height: 114px;
+            }
+
+            .flavour-link {
+                width: 100px;
+                height: 100px;
+            }
+
+            .flavour-name {
+                font-size: 9px;
+                line-height: 1.15;
+            }
+
+            .world-flavours .flavour-name {
+                font-size: 0;
+
+                .flavour-text {
+                    font-size: 14px;
+                    line-height: 13px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        .description-wrapper {
+            .summary.entry-summary {
+                .variations {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .value select {
+                    margin-right: 0;
+                }
+
+                .single_variation_wrap {
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 10px;
+                    line-height: 1;
+
+                    .single_variation {
+                        position: relative;
+                        top: initial;
+                        left: initial;
+                    }
+
+                    .variations {
+                        margin-top: 10px;
+                    }
+
+                    .variations_button {
+                        margin-top: 15px;
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
+}

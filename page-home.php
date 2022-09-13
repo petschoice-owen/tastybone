@@ -89,10 +89,10 @@
                 <div class="content">
                     <h2 class="section-heading section-heading-column text-color-black"><?php the_field('flavour_heading_black'); ?> <span><?php the_field('flavour_heading_brown'); ?></span></h2>
                     <p class="subheading"><?php the_field('flavour_subheading'); ?></p>
-                    <div class="accordion" id="accordionCategory">
+                    <div class="accordion" id="accordionFlavour">
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingCategory">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
+                            <h2 class="accordion-header" id="headingFlavour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFlavour" aria-expanded="false" aria-controls="collapseFlavour">
                                     <?php
                                         if( have_rows('flavour_button') ):
                                         while( have_rows('flavour_button') ) : the_row();
@@ -104,234 +104,55 @@
                                     ?>
                                 </button>
                             </h2>
-                            <div id="collapseCategory" class="accordion-collapse collapse" aria-labelledby="headingCategory" data-bs-parent="#accordionCategory">
+                            <div id="collapseFlavour" class="accordion-collapse accordion-collapse-flavour collapse" aria-labelledby="headingFlavour" data-bs-parent="#accordionFlavour">
                                 <div class="accordion-body">
                                     <div class="flavours">
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link apple-pie" data-filter="apple-pie">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">apple pie</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link bacon">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">bacon</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link bbq-prawn">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">bbq prawn</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link beef" data-filter="beef">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">beef</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link beef-sausage">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">beef sausage</span> flavour</p>
-                                            </a>
-                                        </div>
+                                        <?php
+                                            if( have_rows('flavour_list', 'option') ):
+                                                while ( have_rows('flavour_list', 'option') ) : the_row();                                                    
+                                                    if( get_row_layout() == 'flavour_color' ):
+                                                        $flavour_name = get_sub_field('flavour_name','option');
+                                                        $name = strtolower($flavour_name);
+                                                        $lower_case = preg_replace('/\s+/', ' ', $name);
+                                                        $single_space = preg_replace('/\s+/', ' ', $lower_case);
+                                                        $data_filter = preg_replace('#[ -]+#', '-', $single_space);
+                                                        $text_color = get_sub_field('text_color','option');
+                                                        $background_color = get_sub_field('background_color','option');
+                                                        $border = get_sub_field('border','option'); ?>
+                                                        <div class="flavour-item">
+                                                            <a href="#" 
+                                                                class="flavour-link <?php echo $data_filter; ?> <?php if( get_sub_field('border', 'option') == 'bordered' ) { ?>bordered<?php } ?>" 
+                                                                data-filter="<?php echo $data_filter; ?>" 
+                                                                style="background-color: <?php echo $background_color; ?>;">
+                                                                <i class="fa-solid fa-check"></i>
+                                                                <p class="flavour-name">I am <span class="flavour-text" style="color: <?php echo $text_color; ?>;"><?php echo $flavour_name; ?></span> flavour</p>
+                                                            </a>
+                                                        </div>
 
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link beef-wellington">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">beef wellington</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link cheese" data-filter="cheese">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">cheese</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link chicken" data-filter="chicken">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">chicken</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link chicken-cordon-bleu">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">chicken cordon bleu</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link world-flavours chicken-tikka">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">chicken tikka</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link chocolate">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">chocolate</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link world-flavours chorizo">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">chorizo</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link cinnamon-mint">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">cinnamon mint</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link duck">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">duck</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link world-flavours fish-n-chips">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">fish n chips</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link hickory-smoked-steak">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">hickory smoked steak</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link world-flavours hoisin-duck">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">hoisin duck</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link lamb" data-filter="lamb">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">lamb</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link lamb-chop">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">lamb chop</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link parsley">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">parsley</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link peanut-butter" data-filter="peanut-butter">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">peanut butter</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link peppermint">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">peppermint</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link pheasant">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">pheasant</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link raspberry-mint">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">raspberry mint</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link roast-beef">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">roast beef</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link roast-beef-red-wine" data-filter="roast-beef-red-wine">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">roast beef & red wine</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link roast-chicken">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">roast chicken</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link roast-chicken-thyme">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">roast chicken & thyme</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link smoked-salmon">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">smoked salmon</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link spearmint">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">spearmint</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link stilton">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">stilton</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link strawberry">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">strawberry</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link surf-n-turf">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">surf n turf</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link tbone-steak">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">t-bone steak</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link vanilla">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">vanilla</span> flavour</p>
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="flavour-item">
-                                            <a href="#" class="flavour-link venison">
-                                                <i class="fa-solid fa-check"></i>
-                                                <p class="flavour-name">I am <span class="flavour-text">venison</span> flavour</p>
-                                            </a>
-                                        </div>
+                                                    <?php elseif( get_row_layout() == 'flavour_image' ): 
+                                                        $flavour_name = get_sub_field('flavour_name','option');
+                                                        $name = strtolower($flavour_name);
+                                                        $lower_case = preg_replace('/\s+/', ' ', $name);
+                                                        $single_space = preg_replace('/\s+/', ' ', $lower_case);
+                                                        $data_filter = preg_replace('#[ -]+#', '-', $single_space);
+                                                        $text_color = get_sub_field('text_color','option');
+                                                        $background_image = get_sub_field('background_image','option');
+                                                        $border = get_sub_field('border','option'); ?>
+                                                        <div class="flavour-item">
+                                                            <a href="#" 
+                                                                class="flavour-link world-flavours <?php echo $data_filter; ?> <?php if( get_sub_field('border', 'option') == 'bordered' ) { ?>bordered<?php } ?>" 
+                                                                data-filter="<?php echo $data_filter; ?>" 
+                                                                style="background-image: url(<?php echo $background_image; ?>);">
+                                                                <i class="fa-solid fa-check"></i>
+                                                                <p class="flavour-name">I am <span class="flavour-text" style="color: <?php echo $text_color; ?>;"><?php echo $flavour_name; ?></span> flavour</p>
+                                                            </a>
+                                                        </div>
 
-
+                                                    <?php endif;
+                                                endwhile;
+                                            else :
+                                            endif;
+                                        ?>
                                     </div>
                                     <div class="button-holder">
                                         <?php
@@ -339,7 +160,7 @@
                                             while( have_rows('flavour_button') ) : the_row();
                                                 $button_text = get_sub_field('button_range_text'); 
                                                 $button_link = get_sub_field('button_range_link'); ?>
-                                                <a href="<?php echo $button_link; ?>" class="btn-brand btn-arrow-right" id="product_filter_trigger"><?php echo $button_text; ?></a>
+                                                <a href="<?php echo $button_link; ?>" class="btn-brand btn-arrow-right" id="product_filter_trigger_home"><?php echo $button_text; ?></a>
                                             <?php endwhile;
                                             else :
                                             endif;
@@ -347,6 +168,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

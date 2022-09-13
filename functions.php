@@ -340,88 +340,113 @@ function filter_dropdown_option_html( $html, $args ) {
 }
 
 
+/*-----------------------------------------------------------------------------------*/
+/* WooCommerce - Remove elements on WooCommerce
+/*-----------------------------------------------------------------------------------*/
+function remove_woocommerce_elements() {
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 ); 				// Remove WooCommerce breadcrumbs
+	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 ); 					// Remove Result Count - before shop loop
+	remove_action( 'woocommerce_after_shop_loop', 'woocommerce_result_count', 20 );						// Remove Result Count - after shop loop
+	remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 ); 	// Remove Price Range of products in the loop
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );		// Remove Product Meta - Single Product Page
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );		// Remove Price - Single Product Page
+}
+add_action( 'after_setup_theme', 'remove_woocommerce_elements' );
+
+function woo_remove_product_tabs( $tabs ) {
+    unset( $tabs['description'] );					// Remove the description tab
+    unset( $tabs['reviews'] ); 						// Remove the reviews tab
+    // unset( $tabs['additional_information'] );	// Remove the additional information tab
+    return $tabs;
+}
+add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
+
+function remove_gallery_thumbnail_images() {
+	if ( is_product() ) {
+		remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );	// Remove product thumbnails - Single Product Page
+	}
+}
+add_action('loop_start', 'remove_gallery_thumbnail_images');
+
+// function remove_short_description() {
+// 	remove_meta_box( 'postexcerpt', 'product', 'normal');	// Remove product short description - Single Product Page CMS
+// }
+// add_action('add_meta_boxes', 'remove_short_description', 999);
+
+// add_action('template_redirect', 'remove_shop_breadcrumbs' );
+// function remove_shop_breadcrumbs(){
+ 
+//     if (is_shop())
+//         remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
+ 
+// }
 
 
 
-
-
-
-
-// Display variations dropdowns on shop page for variable products
+/*-----------------------------------------------------------------------------------*/
+/* Shop Page and Category Pages - Display variations dropdowns for variable products
+/*-----------------------------------------------------------------------------------*/
 add_filter( 'woocommerce_loop_add_to_cart_link', 'woo_display_variation_dropdown_on_shop_page' );
 
 function woo_display_variation_dropdown_on_shop_page() {
-
 	global $product;
+	if( $product->is_type( 'variable' )) {
+		$attribute_keys = array_keys( $product->get_attributes() ); ?>
+		<form class="variations_form cart" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->id ); ?>" data-product_variations="<?php echo htmlspecialchars( json_encode( $product->get_available_variations() ) ) ?>">
+			<?php do_action( 'woocommerce_before_variations_form' ); ?>
+			<?php if ( empty( $product->get_available_variations() ) && false !== $product->get_available_variations() ) : ?>
+				<p class="stock out-of-stock"><?php _e( 'This product is currently out of stock and unavailable.', 'woocommerce' ); ?></p>
+			<?php else : ?>
+				<table class="variations" cellspacing="0">
+					<tbody>
+						<?php foreach ( $product->get_variation_attributes() as $attribute_name => $options ) : ?>
+							<tr>
+								<!-- <td class="label"><label for="<?php echo sanitize_title( $attribute_name ); ?>"><?php echo wc_attribute_label( $attribute_name ); ?></label></td> -->
+								<td class="value">
+									<?php
+										$selected = isset( $_REQUEST[ 'attribute_' . sanitize_title( $attribute_name ) ] ) ? wc_clean( urldecode( $_REQUEST[ 'attribute_' . sanitize_title( $attribute_name ) ] ) ) : $product->get_variation_default_attribute( $attribute_name );
+										wc_dropdown_variation_attribute_options( array( 'options' => $options, 'attribute' => $attribute_name, 'product' => $product, 'selected' => $selected ) );
+										//    echo end( $attribute_keys ) === $attribute_name ? apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . __( 'Clear', 'woocommerce' ) . '</a>' ) : '';
+									?>
+								</td>
+							</tr>
+						<?php endforeach;?>
+					</tbody>
+				</table>
+				<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
+				<div class="single_variation_wrap">
+					<?php
+						/**
+							* woocommerce_before_single_variation Hook.
+							*/
+						do_action( 'woocommerce_before_single_variation' );
 
-   if( $product->is_type( 'variable' )) {
+						/**
+							* woocommerce_single_variation hook. Used to output the cart button and placeholder for variation data.
+							* @since 2.4.0
+							* @hooked woocommerce_single_variation - 10 Empty div for variation data.
+							* @hooked woocommerce_single_variation_add_to_cart_button - 20 Qty and cart button.
+							*/
+						do_action( 'woocommerce_single_variation' );
 
-   $attribute_keys = array_keys( $product->get_attributes() );
-   ?>
-
-   <form class="variations_form cart" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->id ); ?>" data-product_variations="<?php echo htmlspecialchars( json_encode( $product->get_available_variations() ) ) ?>">
-	   <?php do_action( 'woocommerce_before_variations_form' ); ?>
-
-	   <?php if ( empty( $product->get_available_variations() ) && false !== $product->get_available_variations() ) : ?>
-		   <p class="stock out-of-stock"><?php _e( 'This product is currently out of stock and unavailable.', 'woocommerce' ); ?></p>
-	   <?php else : ?>
-		   <table class="variations" cellspacing="0">
-			   <tbody>
-				   <?php foreach ( $product->get_variation_attributes() as $attribute_name => $options ) : ?>
-					   <tr>
-						   <!-- <td class="label"><label for="<?php echo sanitize_title( $attribute_name ); ?>"><?php echo wc_attribute_label( $attribute_name ); ?></label></td> -->
-						   <td class="value">
-							   <?php
-								   $selected = isset( $_REQUEST[ 'attribute_' . sanitize_title( $attribute_name ) ] ) ? wc_clean( urldecode( $_REQUEST[ 'attribute_' . sanitize_title( $attribute_name ) ] ) ) : $product->get_variation_default_attribute( $attribute_name );
-								   wc_dropdown_variation_attribute_options( array( 'options' => $options, 'attribute' => $attribute_name, 'product' => $product, 'selected' => $selected ) );
-								//    echo end( $attribute_keys ) === $attribute_name ? apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . __( 'Clear', 'woocommerce' ) . '</a>' ) : '';
-							   ?>
-						   </td>
-					   </tr>
-				   <?php endforeach;?>
-			   </tbody>
-		   </table>
-
-		   <?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
-
-		   <div class="single_variation_wrap">
-			   <?php
-				   /**
-					* woocommerce_before_single_variation Hook.
-					*/
-				   do_action( 'woocommerce_before_single_variation' );
-
-				   /**
-					* woocommerce_single_variation hook. Used to output the cart button and placeholder for variation data.
-					* @since 2.4.0
-					* @hooked woocommerce_single_variation - 10 Empty div for variation data.
-					* @hooked woocommerce_single_variation_add_to_cart_button - 20 Qty and cart button.
-					*/
-				   do_action( 'woocommerce_single_variation' );
-
-				   /**
-					* woocommerce_after_single_variation Hook.
-					*/
-				   do_action( 'woocommerce_after_single_variation' );
-			   ?>
-		   </div>
-
-		   <?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
-	   <?php endif; ?>
-
-	   <?php do_action( 'woocommerce_after_variations_form' ); ?>
-   </form>
-
-   <?php } else {
-
+						/**
+							* woocommerce_after_single_variation Hook.
+							*/
+						do_action( 'woocommerce_after_single_variation' );
+					?>
+				</div>
+				<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
+			<?php endif; ?>
+			<?php do_action( 'woocommerce_after_variations_form' ); ?>
+		</form>
+	<?php } 
+  	else {
 	   $html = '<form action="' . esc_url( $product->add_to_cart_url() ) . '" class="cart" method="post" enctype="multipart/form-data">';
 	   $html .= woocommerce_quantity_input( array(), $product, false );
 	   $html .= '<button type="submit" class="button alt">' . esc_html( $product->add_to_cart_text() ) . '</button>';
 	   $html .= '</form>';
 	   return $html;
-
-   }
-
+   	}
 }
 
 wp_enqueue_script('wc-add-to-cart-variation');
