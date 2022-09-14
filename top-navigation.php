@@ -8,18 +8,26 @@
                 <div class="menu-holder">
                     <ul class="socials">
                         <?php if( get_field('theme_facebook', 'option') ): ?>
-                            <li><a href="<?php the_field('theme_facebook', 'option'); ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href="<?php the_field('theme_facebook', 'option'); ?>" title="Facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
                         <?php endif; ?>
                         <?php if( get_field('theme_twitter', 'option') ): ?>
-                            <li><a href="<?php the_field('theme_twitter', 'option'); ?>" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                            <li><a href="<?php the_field('theme_twitter', 'option'); ?>" title="Twitter" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
                         <?php endif; ?>
                         <?php if( get_field('theme_instagram', 'option') ): ?>
-                            <li><a href="<?php the_field('theme_instagram', 'option'); ?>" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                            <li><a href="<?php the_field('theme_instagram', 'option'); ?>" title="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                         <?php endif; ?>
                     </ul>
                     <ul class="account">
-                        <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-user.png" alt="" /></a></li>
-                        <li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-cart.png" alt="" /></a></li>
+                        <li><a href="#" title="Account"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-user.png" alt="" /></a></li>
+                        <li>
+                            <div class="cart-holder">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-cart.png" class="icon-cart" alt="" />
+                                <?php echo do_shortcode("[woo_cart_but]"); ?>
+                            </div>
+                        </li>
+                        <!-- <li>
+                            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-cart.png" alt="" /></a>
+                        </li> -->
                     </ul>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

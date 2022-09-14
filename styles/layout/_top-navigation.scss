@@ -244,6 +244,53 @@
             }
         }
     }
+
+    .cart-holder {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            margin: auto;
+            pointer-events: none;
+        }
+
+        a {
+            position: relative;
+
+            &:hover {
+                span {
+                    background-color: $text-color;
+                }
+            }
+            
+            span {
+                position: absolute;
+                bottom: -7px;
+                right: -10px;
+                z-index: 2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 18px;
+                height: 18px;
+                font-size: 10px;
+                line-height: 10px;
+                background: $brand-color;
+                border: 1px solid $brand-color;
+                border-radius: 50%;
+                text-shadow: 0 0 2px #000;
+                transition: all .25s ease-in-out;
+            }
+        }
+    }
     
     .mobile-bottom {
         display: none;
