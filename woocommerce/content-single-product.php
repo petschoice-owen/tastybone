@@ -46,9 +46,11 @@ global $product;
 							<ul class="list-unstyled heading-thumbnail-size">
 								<?php while( have_rows('product_size', 'option') ) : the_row();
 									$size_name = get_sub_field('size_name'); 
+									$size_name_simple = str_replace(" dog","",$size_name);
+									$size_text = strtolower($size_name_simple);
 									$size_thumbnail = get_sub_field('size_thumbnail'); ?>
 
-									<li class="size-detail d-none" data-size="<?php echo strtolower($size_name); ?>"><img src="<?php echo $size_thumbnail; ?>" alt="size" /></li>
+									<li class="size-detail d-none" data-size="<?php echo $size_text; ?>"><img src="<?php echo $size_thumbnail; ?>" alt="size" /></li>
 								<?php endwhile; ?>
 							</ul>
 						<?php else :
@@ -127,69 +129,77 @@ global $product;
 				</div>
 			</div>
 
-			<div class="related-wrapper">
-				<?php
-				/**
-				 * Hook: woocommerce_after_single_product_summary.
-				 *
-				 * @hooked woocommerce_output_product_data_tabs - 10
-				 * @hooked woocommerce_upsell_display - 15
-				 * @hooked woocommerce_output_related_products - 20
-				 */
-				do_action( 'woocommerce_after_single_product_summary' );
-				?>
-				<!-- display flavour -->
-				<div class="single-product-flavour"></div>
-				<div class="flavours">
-					<?php
-						if( have_rows('flavour_list', 'option') ):
-							while ( have_rows('flavour_list', 'option') ) : the_row();                                                    
-								if( get_row_layout() == 'flavour_color' ):
-									$flavour_name = get_sub_field('flavour_name','option');
-									$name = strtolower($flavour_name);
-									$lower_case = preg_replace('/\s+/', ' ', $name);
-									$single_space = preg_replace('/\s+/', ' ', $lower_case);
-									$data_filter = preg_replace('#[ -]+#', '-', $single_space);
-									$data_url = "/shop?filter_flavour=" . $data_filter . "&query_type_flavour=or";
-									$text_color = get_sub_field('text_color','option');
-									$background_color = get_sub_field('background_color','option');
-									$border = get_sub_field('border','option'); ?>
-									<div class="flavour-item d-none">
-										<a href="<?php echo $data_url; ?>" 
-											class="flavour-link <?php echo $data_filter; ?> <?php if( get_sub_field('border', 'option') == 'bordered' ) { ?>bordered<?php } ?>" 
-											data-filter="<?php echo $data_filter; ?>" 
-											style="background-color: <?php echo $background_color; ?>;">
-											<i class="fa-solid fa-check"></i>
-											<p class="flavour-name">I am <span class="flavour-text" style="color: <?php echo $text_color; ?>;"><?php echo $flavour_name; ?></span> flavour</p>
-										</a>
-									</div>
+			<?php
+				$available_flavours = get_field('product_available_flavours');
+				if ( $available_flavours ): ?>
+				<div class="related-wrapper">
+					<section class="related products">
+						<div class="heading-related">
+							<h3 class="heading">
+								<span>Available in these</span>
+								<span class="colored-text">Lip-smacking flavours</span>
+							</h3>
+						</div>
+					</section>
+					<ul class="list-unstyled available-flavours d-none">
+						<?php foreach( $available_flavours as $flavour ): ?>
+							<li data-flavour="<?php echo $flavour; ?>"><?php echo $flavour; ?></li>
+						<?php endforeach; ?>
+					</ul>
+					<div class="flavours">
+						<?php
+							if( have_rows('flavour_list', 'option') ):
+								while ( have_rows('flavour_list', 'option') ) : the_row();                                                    
+									if( get_row_layout() == 'flavour_color' ):
+										$flavour_name = get_sub_field('flavour_name','option');
+										$name = strtolower($flavour_name);
+										$name = preg_replace('/[^A-Za-z0-9\-]/', '-', $name);
+										$lower_case = preg_replace('/\s+/', ' ', $name);
+										$single_space = preg_replace('/\s+/', ' ', $lower_case);
+										$data_filter = preg_replace('#[ -]+#', '-', $single_space);
+										$data_url = "/shop?filter_flavour=" . $data_filter . "&query_type_flavour=or";
+										$text_color = get_sub_field('text_color','option');
+										$background_color = get_sub_field('background_color','option');
+										$border = get_sub_field('border','option'); ?>
+										<div class="flavour-item d-none">
+											<a href="<?php echo $data_url; ?>" 
+												class="flavour-link <?php echo $data_filter; ?> <?php if( get_sub_field('border', 'option') == 'bordered' ) { ?>bordered<?php } ?>" 
+												data-filter="<?php echo $data_filter; ?>" 
+												style="background-color: <?php echo $background_color; ?>;">
+												<i class="fa-solid fa-check"></i>
+												<p class="flavour-name">I am <span class="flavour-text" style="color: <?php echo $text_color; ?>;"><?php echo $flavour_name; ?></span> flavour</p>
+											</a>
+										</div>
 
-								<?php elseif( get_row_layout() == 'flavour_image' ): 
-									$flavour_name = get_sub_field('flavour_name','option');
-									$name = strtolower($flavour_name);
-									$lower_case = preg_replace('/\s+/', ' ', $name);
-									$single_space = preg_replace('/\s+/', ' ', $lower_case);
-									$data_filter = preg_replace('#[ -]+#', '-', $single_space);
-									$text_color = get_sub_field('text_color','option');
-									$background_image = get_sub_field('background_image','option');
-									$border = get_sub_field('border','option'); ?>
-									<div class="flavour-item d-none">
-										<a href="#" 
-											class="flavour-link world-flavours <?php echo $data_filter; ?> <?php if( get_sub_field('border', 'option') == 'bordered' ) { ?>bordered<?php } ?>" 
-											data-filter="<?php echo $data_filter; ?>" 
-											style="background-image: url(<?php echo $background_image; ?>);">
-											<i class="fa-solid fa-check"></i>
-											<p class="flavour-name">I am <span class="flavour-text" style="color: <?php echo $text_color; ?>;"><?php echo $flavour_name; ?></span> flavour</p>
-										</a>
-									</div>
+									<?php elseif( get_row_layout() == 'flavour_image' ): 
+										$flavour_name = get_sub_field('flavour_name','option');
+										$name = strtolower($flavour_name);
+										$name = preg_replace('/[^A-Za-z0-9\-]/', '-', $name);
+										$lower_case = preg_replace('/\s+/', ' ', $name);
+										$single_space = preg_replace('/\s+/', ' ', $lower_case);
+										$data_filter = preg_replace('#[ -]+#', '-', $single_space);
+										$text_color = get_sub_field('text_color','option');
+										$background_image = get_sub_field('background_image','option');
+										$border = get_sub_field('border','option'); ?>
+										<div class="flavour-item d-none">
+											<a href="#" 
+												class="flavour-link world-flavours <?php echo $data_filter; ?> <?php if( get_sub_field('border', 'option') == 'bordered' ) { ?>bordered<?php } ?>" 
+												data-filter="<?php echo $data_filter; ?>" 
+												style="background-image: url(<?php echo $background_image; ?>);">
+												<i class="fa-solid fa-check"></i>
+												<p class="flavour-name">I am <span class="flavour-text" style="color: <?php echo $text_color; ?>;"><?php echo $flavour_name; ?></span> flavour</p>
+											</a>
+										</div>
 
-								<?php endif;
-							endwhile;
-						else :
-						endif;
-					?>
+									<?php endif;
+								endwhile;
+							else :
+							endif;
+						?>
+					</div>
 				</div>
-			</div>
+			<?php endif; ?>
+
 		</div>
 	</div>
 

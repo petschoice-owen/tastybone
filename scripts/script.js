@@ -514,37 +514,21 @@ var productQuantity = () => {
 // Single Product Page functions 
 var singleProduct = () => {
     // identify flavour
-    if ($(".woocommerce-product-attributes-item__label").length) {
-        var relatedFlavours = [];
+    if ( $(".available-flavours").length ) {
+        var availableFlavours = [];
 
-        if ($(".related-wrapper .product-item").length) {
-            $(".related-wrapper .product-item").each(function() {
+        if ($(".related-wrapper .available-flavours li").length) {
+            $(".related-wrapper .available-flavours li").each(function() {
                 var dataFlavour = $(this).data("flavour");
-                relatedFlavours.push(dataFlavour);
+                availableFlavours.push(dataFlavour);
             })
         }
 
-        $(".woocommerce-product-attributes-item__label").each(function() {
-            var flavourAttr = $(this).text().toLowerCase();
-            if (flavourAttr == "flavour") {
-                var flavourName = $(this).closest(".woocommerce-product-attributes-item").find(".woocommerce-product-attributes-item__value p").text();
-                var flavourNoSpecial = flavourName.replace(/[^a-zA-Z ]/g, " ");
-                var flavourSmallCaps = flavourNoSpecial.replace(/\s\s+/g, " ");
-                var flavour = flavourSmallCaps.replace(/\s/g , "-").toLowerCase();
-                
-                relatedFlavours.push(flavour);
+        $(".related-wrapper .flavours .flavour-item a").each(function() {
+            var dataFilter = $(this).data("filter");
 
-                if ($(".single-product-flavour").length) {
-                    $(".single-product-flavour").attr("data-flavour", flavour);
-
-                    $(".related-wrapper .flavours .flavour-item a").each(function() {
-                        var dataFilter = $(this).data("filter");
-
-                        if ( relatedFlavours.includes(dataFilter) ) {
-                            $(this).parent().removeClass("d-none");
-                        }
-                    })
-                }
+            if ( availableFlavours.includes(dataFilter) ) {
+                $(this).parent().removeClass("d-none");
             }
         })
 
@@ -561,31 +545,156 @@ var singleProduct = () => {
             })
         }
     }
+    
+    // if ($(".woocommerce-product-attributes-item__label").length) {
+    //     var relatedFlavours = [];
+
+    //     if ($(".related-wrapper .product-item").length) {
+    //         $(".related-wrapper .product-item").each(function() {
+    //             var dataFlavour = $(this).data("flavour");
+    //             relatedFlavours.push(dataFlavour);
+    //         })
+    //     }
+
+    //     $(".woocommerce-product-attributes-item__label").each(function() {
+    //         var flavourAttr = $(this).text().toLowerCase();
+    //         if (flavourAttr == "flavour") {
+    //             var flavourName = $(this).closest(".woocommerce-product-attributes-item").find(".woocommerce-product-attributes-item__value p").text();
+    //             var flavourNoSpecial = flavourName.replace(/[^a-zA-Z ]/g, " ");
+    //             var flavourSmallCaps = flavourNoSpecial.replace(/\s\s+/g, " ");
+    //             var flavour = flavourSmallCaps.replace(/\s/g , "-").toLowerCase();
+                
+    //             relatedFlavours.push(flavour);
+
+    //             if ($(".single-product-flavour").length) {
+    //                 $(".single-product-flavour").attr("data-flavour", flavour);
+
+    //                 $(".related-wrapper .flavours .flavour-item a").each(function() {
+    //                     var dataFilter = $(this).data("filter");
+
+    //                     if ( relatedFlavours.includes(dataFilter) ) {
+    //                         $(this).parent().removeClass("d-none");
+    //                     }
+    //                 })
+    //             }
+    //         }
+    //     })
+
+    //     if ( $(".related-wrapper .flavours .flavour-item").length ) {
+    //         $(".related-wrapper .flavours .flavour-item a").each(function() {
+    //             var slug = $(this).data("filter");
+    //             var newUrl = "/shop?filter_flavour=" + slug + "&query_type_flavour=or";
+
+    //             $(this).attr("href", newUrl);
+    //             $(this).click(function() {
+    //                 $(this).removeClass("flavour-selected");
+    //                 window.location = newUrl;
+    //             });
+    //         })
+    //     }
+    // }
 
     // identify sizes
-    if ($(".woocommerce-product-attributes-item__label").length) {
-        $(".woocommerce-product-attributes-item__label").each(function() {
-            var sizeAttr = $(this).text().toLowerCase();
-            if (sizeAttr == "size") {
-                var sizes = $(this).closest(".woocommerce-product-attributes-item").find(".woocommerce-product-attributes-item__value p").text().toLowerCase();
-                var sizes = sizes.replace(/ dog/g, '');
-                var sizesArray = sizes.split(',');
+    if ($(".heading-thumbnail-size").length) {
+        if ($(".summary.entry-summary th.label label").text() === "Size") {
+            $(".summary.entry-summary td.value #pa_size option").each(function() {
+                var sizeContainer = $(".heading-product-sizes .heading-thumbnail-size");
 
-                if ( $(".heading-thumbnail-size").length ) {
-                    $(".heading-thumbnail-size li").each(function() {
-                        var size = $(this).data("size").toLowerCase();
-                        var sizeName = size.replace(/ dog/g, '');
-
-                        if ( sizesArray.indexOf(sizeName) ) {
-                            setTimeout(() => {
-                                $(this).removeClass("d-none");
-                            }, 100);
-                        }                       
-                    })
+                if ($(this).val() === "toy-dog") {
+                    sizeContainer.find(".size-detail[data-size=toy]").removeClass("d-none");
                 }
-            }
-        })
+                if ($(this).val() === "small-dog") {
+                    sizeContainer.find(".size-detail[data-size=small]").removeClass("d-none");
+                }
+                if ($(this).val() === "large-dog") {
+                    sizeContainer.find(".size-detail[data-size=large]").removeClass("d-none");
+                }
+                if ($(this).val() === "giant-dog") {
+                    sizeContainer.find(".size-detail[data-size=giant]").removeClass("d-none");
+                }
+            });
+        }
     }
+
+    // if ($(".woocommerce-product-attributes-item__label").length) {
+    //     var dogSizes = [];
+
+    //     $(".woocommerce-product-attributes-item__label").each(function() {
+    //         var sizeAttr = $(this).text().toLowerCase();
+            
+    //         if (sizeAttr == "size") {
+    //             var sizes = $(this).closest(".woocommerce-product-attributes-item").find(".woocommerce-product-attributes-item__value p").text().toLowerCase();
+    //             var sizes = sizes.replace(/ dog/g, '');
+    //             // var sizes = sizes.replace(/toy/g, '1');
+    //             // var sizes = sizes.replace(/small/g, '2');
+    //             // var sizes = sizes.replace(/large/g, '3');
+    //             // var sizes = sizes.replace(/giant/g, '4');
+    //             var sizesArray = sizes.split(',');
+
+    //             dogSizes.push(sizes);
+    //             // var dogSizesArray = sizes.split(',');
+    //         }
+    //     })
+
+    //     // dogSizes.split(',');
+    //     console.log("dogSizes:"+dogSizes);
+    //     console.log("----------");
+        
+    //     // var numberArray = [];
+    //     // var length = dogSizes.length;
+
+    //     // for (var i = 0; i < length; i++) {
+    //     //     numberArray.push(parseInt(dogSizes[i]));
+    //     // }
+
+    //     // console.log(numberArray);
+
+
+
+    //     if ( $(".heading-thumbnail-size").length ) {
+    //         $(".heading-thumbnail-size li").each(function() {
+    //             // var size = $(this).data("size").toLowerCase();
+    //             // var sizeName = size.replace(/ dog/g, '');
+
+    //             var size = $(this).data("size");
+
+    //             // var size = $(this).data("size").toLowerCase().replace(/ dog/g, '');
+
+    //             // if ($(this).data("size") == "toy") {
+    //             //     $(this).attr("data-id", 1);
+    //             // }
+    //             // if ($(this).data("size") == "small") {
+    //             //     $(this).attr("data-id", 2);
+    //             // }
+    //             // if ($(this).data("size") == "large") {
+    //             //     $(this).attr("data-id", 3);
+    //             // }
+    //             // if ($(this).data("size") == "giant") {
+    //             //     $(this).attr("data-id", 4);
+    //             // }
+
+    //             // console.log(sizeName);
+
+    //             var itemSize = $(this).data("id");
+
+    //             console.log("dogSizes:"+dogSizes);
+    //             console.log("size:"+size);
+
+    //             var tempArr = [2,3];
+                
+    //             if ( dogSizes.includes(size) ) {
+    //                 $(this).removeClass("d-none");
+    //             }
+                
+    //             // console.log("before if");
+    //             // if ( dogSizes.indexOf(itemSize) ) { 
+    //             //     // console.log("inside if"); 
+    //             //     console.log(itemSize);
+    //             //     $(this).removeClass("d-none");
+    //             // }
+    //         })
+    //     }
+    // }
 }
   
 // initialize the functions

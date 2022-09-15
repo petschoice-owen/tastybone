@@ -158,6 +158,7 @@ get_header();
                                                 if( get_row_layout() == 'flavour_color' ):
                                                     $flavour_name = get_sub_field('flavour_name','option');
                                                     $name = strtolower($flavour_name);
+                                                    $name = preg_replace('/[^A-Za-z0-9\-]/', '-', $name);
                                                     $lower_case = preg_replace('/\s+/', ' ', $name);
                                                     $single_space = preg_replace('/\s+/', ' ', $lower_case);
                                                     $data_filter = preg_replace('#[ -]+#', '-', $single_space);
@@ -177,6 +178,7 @@ get_header();
                                                 <?php elseif( get_row_layout() == 'flavour_image' ): 
                                                     $flavour_name = get_sub_field('flavour_name','option');
                                                     $name = strtolower($flavour_name);
+                                                    $name = preg_replace('/[^A-Za-z0-9\-]/', '-', $name);
                                                     $lower_case = preg_replace('/\s+/', ' ', $name);
                                                     $single_space = preg_replace('/\s+/', ' ', $lower_case);
                                                     $data_filter = preg_replace('#[ -]+#', '-', $single_space);
