@@ -746,6 +746,11 @@
         }
 
         @media (max-width: 991px) {
+            table.shop_table th,
+            table.shop_table td {
+                vertical-align: middle;
+            }
+
             .woocommerce-thankyou-order-received,
             h2 {
                 font-size: 29px;
