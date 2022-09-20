@@ -595,26 +595,28 @@ var singleProduct = () => {
     // }
 
     // identify sizes
-    if ($(".heading-thumbnail-size").length) {
-        if ($(".summary.entry-summary th.label label").text() === "Size") {
-            $(".summary.entry-summary td.value #pa_size option").each(function() {
-                var sizeContainer = $(".heading-product-sizes .heading-thumbnail-size");
+    /*
+        if ($(".heading-thumbnail-size").length) {
+            if ($(".summary.entry-summary th.label label").text() === "Size") {
+                $(".summary.entry-summary td.value #pa_size option").each(function() {
+                    var sizeContainer = $(".heading-product-sizes .heading-thumbnail-size");
 
-                if ($(this).val() === "toy-dog") {
-                    sizeContainer.find(".size-detail[data-size=toy]").removeClass("d-none");
-                }
-                if ($(this).val() === "small-dog") {
-                    sizeContainer.find(".size-detail[data-size=small]").removeClass("d-none");
-                }
-                if ($(this).val() === "large-dog") {
-                    sizeContainer.find(".size-detail[data-size=large]").removeClass("d-none");
-                }
-                if ($(this).val() === "giant-dog") {
-                    sizeContainer.find(".size-detail[data-size=giant]").removeClass("d-none");
-                }
-            });
+                    if ($(this).val() === "toy-dog") {
+                        sizeContainer.find(".size-detail[data-size=toy]").removeClass("d-none");
+                    }
+                    if ($(this).val() === "small-dog") {
+                        sizeContainer.find(".size-detail[data-size=small]").removeClass("d-none");
+                    }
+                    if ($(this).val() === "large-dog") {
+                        sizeContainer.find(".size-detail[data-size=large]").removeClass("d-none");
+                    }
+                    if ($(this).val() === "giant-dog") {
+                        sizeContainer.find(".size-detail[data-size=giant]").removeClass("d-none");
+                    }
+                });
+            }
         }
-    }
+    */
 
     // if ($(".woocommerce-product-attributes-item__label").length) {
     //     var dogSizes = [];

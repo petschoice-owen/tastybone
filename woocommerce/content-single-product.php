@@ -40,24 +40,30 @@ global $product;
 		<div class="single-product-wrapper">
 			<div class="heading-wrapper">
 				<h1 class="single-product-title"><?php echo get_the_title(); ?></h1>
-				<div class="heading-product-sizes">
-					<?php
-						if( have_rows('product_size', 'option') ): ?>
-							<ul class="list-unstyled heading-thumbnail-size">
-								<?php while( have_rows('product_size', 'option') ) : the_row();
-									$size_name = get_sub_field('size_name'); 
-									$size_name_simple = str_replace(" dog","",$size_name);
-									$size_text = strtolower($size_name_simple);
-									$size_thumbnail = get_sub_field('size_thumbnail'); ?>
-
-									<li class="size-detail d-none" data-size="<?php echo $size_text; ?>"><img src="<?php echo $size_thumbnail; ?>" alt="size" /></li>
-								<?php endwhile; ?>
-							</ul>
-						<?php else :
-						endif;
-					?>
-				</div>
-				<!-- display sizes -->
+				<?php $thumbnail_sizes = get_field('product_thumbnail_sizes'); if( $thumbnail_sizes ): ?>
+					<div class="heading-product-sizes <?php foreach( $thumbnail_sizes as $size ): echo $size . ' '; endforeach; ?>">
+						<?php
+							// if( have_rows('product_size', 'option') ): ?>
+								<!-- <ul class="list-unstyled heading-thumbnail-size"> -->
+									<?php // while( have_rows('product_size', 'option') ) : the_row();
+										// $size_name = get_sub_field('size_name'); 
+										// $size_name_simple = str_replace(" dog","",$size_name);
+										// $size_text = strtolower($size_name_simple);
+										// $size_thumbnail = get_sub_field('size_thumbnail'); ?>
+										<!-- <li class="size-detail d-none" data-size="<?php echo $size_text; ?>"><img src="<?php echo $size_thumbnail; ?>" alt="size" /></li> -->
+									<?php // endwhile; ?>
+								</ul>
+							<?php // else :
+							// endif;
+						?>
+						<ul class="list-unstyled heading-thumbnail-size">
+							<li class="size-detail toy"><img src="/wp-content/uploads/2022/09/size-toy.png')" alt="size" /></li>
+							<li class="size-detail small"><img src="/wp-content/uploads/2022/09/size-small.png')" alt="size" /></li>
+							<li class="size-detail large"><img src="/wp-content/uploads/2022/09/size-large.png')" alt="size" /></li>
+							<li class="size-detail giant"><img src="/wp-content/uploads/2022/09/size-giant.png')" alt="size" /></li>
+						</ul>
+					</div>
+				<?php endif; ?>
 			</div>
 			<div class="image-wrapper">
 				<?php

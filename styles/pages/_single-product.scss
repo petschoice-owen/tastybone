@@ -49,6 +49,23 @@
                 max-width: 85px;
             }
         }
+
+        .size-detail {
+            display: none;
+        }
+
+        .toy .toy {
+            display: block;
+        }
+        .small .small {
+            display: block;
+        }
+        .large .large {
+            display: block;
+        }
+        .giant .giant {
+            display: block;
+        }
     }
 
     .image-wrapper {
