@@ -384,9 +384,9 @@ function remove_woocommerce_elements() {
     remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 ); 				// Remove WooCommerce breadcrumbs
 	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 ); 					// Remove Result Count - before shop loop
 	remove_action( 'woocommerce_after_shop_loop', 'woocommerce_result_count', 20 );						// Remove Result Count - after shop loop
-	remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 ); 	// Remove Price Range of products in the loop
+	// remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 ); 	// Remove Price Range of products in the loop
 	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );		// Remove Product Meta - Single Product Page
-	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );		// Remove Price - Single Product Page
+	// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );		// Remove Price - Single Product Page
 }
 add_action( 'after_setup_theme', 'remove_woocommerce_elements' );
 
@@ -478,10 +478,11 @@ function woo_display_variation_dropdown_on_shop_page() {
 		</form>
 	<?php } 
   	else {
-	   $html = '<form action="' . esc_url( $product->add_to_cart_url() ) . '" class="cart" method="post" enctype="multipart/form-data">';
-	   $html .= woocommerce_quantity_input( array(), $product, false );
+	   $html = '<form action="' . esc_url( $product->add_to_cart_url() ) . '" class="cart" method="post" enctype="multipart/form-data"><div class="variations varation-items quantity"><div class="variation-item options"><div class="value option-selection variation-quantity">';
+	   $html .= '<div class="product-quantity"><input type="hidden" value="1" class="prod_id"><div class="input-group" id="qty_selector"><a class="qty-btn decrement-btn"></a><input type="text" class="qty-input" value="1"/><a class="qty-btn increment-btn"></a></div></div>';
+	   $html .= '<div class="d-none woocommerce-quantity">' . woocommerce_quantity_input( array(), $product, false ) . '</div>';
 	   $html .= '<button type="submit" class="button alt">' . esc_html( $product->add_to_cart_text() ) . '</button>';
-	   $html .= '</form>';
+	   $html .= '</div></div></div></form>';
 	   return $html;
    	}
 }

@@ -618,85 +618,16 @@ var singleProduct = () => {
         }
     */
 
-    // if ($(".woocommerce-product-attributes-item__label").length) {
-    //     var dogSizes = [];
 
-    //     $(".woocommerce-product-attributes-item__label").each(function() {
-    //         var sizeAttr = $(this).text().toLowerCase();
-            
-    //         if (sizeAttr == "size") {
-    //             var sizes = $(this).closest(".woocommerce-product-attributes-item").find(".woocommerce-product-attributes-item__value p").text().toLowerCase();
-    //             var sizes = sizes.replace(/ dog/g, '');
-    //             // var sizes = sizes.replace(/toy/g, '1');
-    //             // var sizes = sizes.replace(/small/g, '2');
-    //             // var sizes = sizes.replace(/large/g, '3');
-    //             // var sizes = sizes.replace(/giant/g, '4');
-    //             var sizesArray = sizes.split(',');
-
-    //             dogSizes.push(sizes);
-    //             // var dogSizesArray = sizes.split(',');
-    //         }
-    //     })
-
-    //     // dogSizes.split(',');
-    //     console.log("dogSizes:"+dogSizes);
-    //     console.log("----------");
-        
-    //     // var numberArray = [];
-    //     // var length = dogSizes.length;
-
-    //     // for (var i = 0; i < length; i++) {
-    //     //     numberArray.push(parseInt(dogSizes[i]));
-    //     // }
-
-    //     // console.log(numberArray);
-
-
-
-    //     if ( $(".heading-thumbnail-size").length ) {
-    //         $(".heading-thumbnail-size li").each(function() {
-    //             // var size = $(this).data("size").toLowerCase();
-    //             // var sizeName = size.replace(/ dog/g, '');
-
-    //             var size = $(this).data("size");
-
-    //             // var size = $(this).data("size").toLowerCase().replace(/ dog/g, '');
-
-    //             // if ($(this).data("size") == "toy") {
-    //             //     $(this).attr("data-id", 1);
-    //             // }
-    //             // if ($(this).data("size") == "small") {
-    //             //     $(this).attr("data-id", 2);
-    //             // }
-    //             // if ($(this).data("size") == "large") {
-    //             //     $(this).attr("data-id", 3);
-    //             // }
-    //             // if ($(this).data("size") == "giant") {
-    //             //     $(this).attr("data-id", 4);
-    //             // }
-
-    //             // console.log(sizeName);
-
-    //             var itemSize = $(this).data("id");
-
-    //             console.log("dogSizes:"+dogSizes);
-    //             console.log("size:"+size);
-
-    //             var tempArr = [2,3];
-                
-    //             if ( dogSizes.includes(size) ) {
-    //                 $(this).removeClass("d-none");
-    //             }
-                
-    //             // console.log("before if");
-    //             // if ( dogSizes.indexOf(itemSize) ) { 
-    //             //     // console.log("inside if"); 
-    //             //     console.log(itemSize);
-    //             //     $(this).removeClass("d-none");
-    //             // }
-    //         })
-    //     }
-    // }
+    // Single Product - hide Price range if Single Variation only
+    if ( $(".products .product-item .single_variation_wrap .woocommerce-variation-price").length ) {
+        $(".products .product-item .single_variation_wrap .woocommerce-variation-price").each(function() {
+            if ( !$(this).find(".price").length ) {
+                $(this).closest(".product-item").addClass("product-type-custom");
+                $(this).closest(".product-item").find(".woocommerce-loop-product__link .price").addClass("d-block");
+            }
+        })
+    }
 }
   
 // initialize the functions
@@ -713,7 +644,7 @@ $(document).ready(function() {
     activeCategory();
     categoryBanner();
     productQuantity();
-    singleProduct();
+    // singleProduct();
 });
   
 $(window).resize(function() {
@@ -723,5 +654,6 @@ $(window).resize(function() {
 window.onload = function() {
     // stockists();
     sectionCategoryFilter();
+    singleProduct();
 }
   
