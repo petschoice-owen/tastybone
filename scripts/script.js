@@ -359,15 +359,15 @@ var filterShop = () => {
                 var removeFirstLast = pathArray.replace(pathUrlFormatted+'?filter_flavour=','').replace('&query_type_flavour=or','');
                 var flavourSelected = removeFirstLast.split('%2C'); // array of selected flavours
     
-                $(".products .product-items .product-item").each(function() {
-                    productFlavour = $(this).data('flavour');
-                    if (flavourSelected.indexOf(productFlavour) !== -1) {
-                        $(this).addClass('selected');
-                    }
-                    else {
-                        $(this).addClass('not-selected');
-                    }
-                });
+                // $(".products .product-items .product-item").each(function() {
+                //     productFlavour = $(this).data('flavour');
+                //     if (flavourSelected.indexOf(productFlavour) !== -1) {
+                //         $(this).addClass('selected');
+                //     }
+                //     else {
+                //         $(this).addClass('not-selected');
+                //     }
+                // });
     
                 var numberOfProducts = $(".products .product-items .product-item").length;
                 var numberOfProductsHidden = $(".products .product-items .product-item.not-selected").length;

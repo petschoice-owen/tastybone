@@ -21,12 +21,14 @@ global $product;
 
 $flavour = array_shift( wc_get_product_terms( $product->id, 'pa_flavour', array( 'fields' => 'id=>slug' ) ) );
 
+$data_flavours = wc_get_product_terms( $product->id, 'pa_flavour', array( 'fields' => 'all' ) );
+
 // Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<li <?php wc_product_class( 'product-item', $product ); ?> data-flavour="<?php echo $flavour; ?>">
+<li <?php wc_product_class( 'product-item', $product ); ?> data-flavour="<?php echo $flavour; ?>" data-flavours="<?php foreach($data_flavours as $dataflavour){echo $dataflavour->slug . ' ';}; ?>">
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.

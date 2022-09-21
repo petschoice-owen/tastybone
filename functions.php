@@ -199,66 +199,6 @@ add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
 
 
 /*-----------------------------------------------------------------------------------*/
-/* Register Custom Post Type Stockists
-/*-----------------------------------------------------------------------------------*/
-// Register Custom Post Type Stockist
-function create_stockist_cpt() {
-	$labels = array(
-		'name' => _x( 'Stockists', 'Post Type General Name', 'textdomain' ),
-		'singular_name' => _x( 'Stockist', 'Post Type Singular Name', 'textdomain' ),
-		'menu_name' => _x( 'Stockists', 'Admin Menu text', 'textdomain' ),
-		'name_admin_bar' => _x( 'Stockist', 'Add New on Toolbar', 'textdomain' ),
-		'archives' => __( 'Stockist Archives', 'textdomain' ),
-		'attributes' => __( 'Stockist Attributes', 'textdomain' ),
-		'parent_item_colon' => __( 'Parent Stockist:', 'textdomain' ),
-		'all_items' => __( 'All Stockists', 'textdomain' ),
-		'add_new_item' => __( 'Add New Stockist', 'textdomain' ),
-		'add_new' => __( 'Add New', 'textdomain' ),
-		'new_item' => __( 'New Stockist', 'textdomain' ),
-		'edit_item' => __( 'Edit Stockist', 'textdomain' ),
-		'update_item' => __( 'Update Stockist', 'textdomain' ),
-		'view_item' => __( 'View Stockist', 'textdomain' ),
-		'view_items' => __( 'View Stockists', 'textdomain' ),
-		'search_items' => __( 'Search Stockist', 'textdomain' ),
-		'not_found' => __( 'Not found', 'textdomain' ),
-		'not_found_in_trash' => __( 'Not found in Trash', 'textdomain' ),
-		'featured_image' => __( 'Featured Image', 'textdomain' ),
-		'set_featured_image' => __( 'Set featured image', 'textdomain' ),
-		'remove_featured_image' => __( 'Remove featured image', 'textdomain' ),
-		'use_featured_image' => __( 'Use as featured image', 'textdomain' ),
-		'insert_into_item' => __( 'Insert into Stockist', 'textdomain' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this Stockist', 'textdomain' ),
-		'items_list' => __( 'Stockists list', 'textdomain' ),
-		'items_list_navigation' => __( 'Stockists list navigation', 'textdomain' ),
-		'filter_items_list' => __( 'Filter Stockists list', 'textdomain' ),
-	);
-	$args = array(
-		'label' => __( 'Stockist', 'textdomain' ),
-		'description' => __( '', 'textdomain' ),
-		'labels' => $labels,
-		'menu_icon' => 'dashicons-location',
-		'supports' => array('title', 'thumbnail', 'revisions', 'custom-fields', 'author', 'revisions'),
-		'taxonomies' => array(),
-		'public' => true,
-		'show_ui' => true,
-		'show_in_menu' => true,
-		'menu_position' => 5,
-		'show_in_admin_bar' => true,
-		'show_in_nav_menus' => true,
-		'can_export' => true,
-		'has_archive' => false,
-		'hierarchical' => false,
-		'exclude_from_search' => false,
-		'show_in_rest' => true,
-		'publicly_queryable' => true,
-		'capability_type' => 'post',
-	);
-	register_post_type( 'stockists', $args );
-}
-add_action( 'init', 'create_stockist_cpt', 0 );
-
-
-/*-----------------------------------------------------------------------------------*/
 /* Register Custom Post Type Blogs
 /*-----------------------------------------------------------------------------------*/
 function create_blog_cpt() {
