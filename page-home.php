@@ -22,7 +22,7 @@
                             endif;
                         ?>
                     </ul>
-                    <div class="newsletter">
+                    <!-- <div class="newsletter">
                         <div class="accordion" id="accordionNewsletter">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingNewsletter">
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="wrapper">
                     <h1 class="heading"><?php the_field('hero_heading_white'); ?> <span><?php the_field('hero_heading_colored'); ?></span></h1>

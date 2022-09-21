@@ -25,9 +25,6 @@
                                 <?php echo do_shortcode("[woo_cart_but]"); ?>
                             </div>
                         </li>
-                        <!-- <li>
-                            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-cart.png" alt="" /></a>
-                        </li> -->
                     </ul>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,5 +66,13 @@
                 <div class="navigation-border"></div>
             </div>
         </nav>
+    </div>
+    <div class="wrapper-free-delivery">
+        <div class="container">
+            <div class="free-delivery">
+                <img src="https://www.meatiful.co.uk/wp-content/themes/meatiful/assets/images/icon-truck.png" class="icon-truck" alt="" />
+                <p>free delivery over £35</p>
+            </div>
+        </div>
     </div>
 </div>
