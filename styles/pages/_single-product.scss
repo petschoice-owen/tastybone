@@ -80,6 +80,12 @@
         
         a {
             pointer-events: none;
+
+            img {
+                width: auto !important;
+                max-width: 100%;
+                margin: auto;
+            }
         }
     }
 
