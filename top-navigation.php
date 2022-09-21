@@ -67,12 +67,16 @@
             </div>
         </nav>
     </div>
-    <div class="wrapper-free-delivery">
-        <div class="container">
-            <div class="free-delivery">
-                <img src="https://www.meatiful.co.uk/wp-content/themes/meatiful/assets/images/icon-truck.png" class="icon-truck" alt="" />
-                <p>free delivery over £35</p>
+    <?php if( get_field('theme_header_free_delivery_text', 'option') ): ?>
+        <div class="wrapper-free-delivery">
+            <div class="container">
+                <div class="free-delivery">
+                    <?php if( get_field('theme_header_free_delivery_icon', 'option') ): ?>
+                        <img src="<?php the_field('theme_header_free_delivery_icon', 'option'); ?>" class="icon-truck" alt="" />
+                    <?php endif; ?>
+                    <p><?php the_field('theme_header_free_delivery_text', 'option'); ?></p>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif; ?>
 </div>
