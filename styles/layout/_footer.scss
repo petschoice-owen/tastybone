@@ -109,8 +109,29 @@
     }
 
     .copyright-text {
-        margin-top: 30px;
+        // margin-top: 30px;
+        margin-top: 15px;
     }
+
+    .newsletter-section {
+        width: fit-content;
+        margin-top: 15px;
+        margin-left: auto;
+        text-decoration: underline;
+        cursor: pointer;
+
+        .newsletter-link {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        img {
+            display: flex;
+            max-width: 18px;
+            margin-left: 10px;
+        }
+    }
+
 
     @media (max-width: 1199px) {
         // .container {
@@ -158,6 +179,10 @@
 
         .links li:not(:last-child)::after {
             height: 18px;
+        }
+
+        .newsletter-section {
+            margin-right: auto;
         }
     }
   

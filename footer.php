@@ -23,6 +23,11 @@
                         <li><a href="<?php the_field('theme_instagram', 'option'); ?>" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                     <?php endif; ?>
                 </ul>
+                <p class="newsletter-section">
+                    <a href="#" class="newsletter-link">
+                        Get Tasty Treats to your inbox!<img src="https://dev.tastybone.com/wp-content/themes/tastybone/assets/images/icon-envelope.png" alt="" />
+                    </a>
+                </p>
                 <p class="copyright-text"><?php the_field('copyright_text', 'option'); ?></p>
                 <?php wp_nav_menu( array( 
                     'theme_location'    => 'footer_menu',
