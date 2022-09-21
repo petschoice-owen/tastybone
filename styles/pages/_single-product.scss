@@ -136,6 +136,7 @@
                 }
 
                 .price {
+                    display: flex;
                     margin: 0;
                     font-family: $font-helveticaneue-bold;
                     font-size: 24px;
@@ -236,6 +237,77 @@
         .flavour-item {
             width: 134px;
             height: 134px;
+        }
+    }
+
+    .product-type-variable .summary > .price {
+        display: none;
+    }
+
+    .product-type-custom .summary {
+        position: relative;
+
+        > .price {
+            position: absolute;
+            left: 165px;
+            bottom: 66px;
+            display: flex;
+            margin: 0;
+            font-family: $font-helveticaneue-bold;
+            font-size: 24px;
+            line-height: 1;
+            color: #000;
+        }
+    }
+
+    .product-type-simple .summary {
+        > .price {
+            display: flex;
+            margin: 0 0 25px;
+            font-family: $font-helveticaneue-bold;
+            font-size: 24px;
+            line-height: 1;
+            color: #000;
+        }
+
+        form.cart {
+            display: flex;
+
+            .variations {
+                display: flex;
+                float: none;
+                width: fit-content;
+                margin-right: 20px;
+            }
+
+            .button {
+                width: fit-content;
+                height: 41px;
+                padding: 8px 20px;
+                font-size: 16px;
+            }
+        }
+
+        .qty-input {
+            width: 68px;
+            height: 41px;
+            font-size: 18px;
+        }
+
+        .qty-btn {
+            width: 40px;
+            height: 41px;
+        }
+
+        .decrement-btn::before {
+            width: 14px;
+            height: 3px;
+        }
+
+        .increment-btn::before,
+        .increment-btn::after {
+            width: 14px;
+            height: 3px;
         }
     }
 
@@ -377,6 +449,38 @@
                     .variations_button {
                         margin-top: 15px;
                         margin-left: 0;
+                    }
+                }
+            }
+        }
+
+        .product-type-custom {
+            .description-wrapper .summary.entry-summary table.variations {
+                margin-bottom: 34px;
+            }
+
+            .summary > .price {
+                right: 0;
+                bottom: 107px;
+                left: 0;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .product-type-simple {
+            .summary {
+                > .price {
+                    justify-content: center;
+                    margin-bottom: 10px;
+                }
+
+                form.cart {
+                    flex-direction: column;
+                    align-items: center;
+
+                    .variations {
+                        margin: 0 0 15px;
                     }
                 }
             }

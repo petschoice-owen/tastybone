@@ -620,13 +620,21 @@ var singleProduct = () => {
 
 
     // Single Product - hide Price range if Single Variation only
-    if ( $(".products .product-item .single_variation_wrap .woocommerce-variation-price").length ) {
-        $(".products .product-item .single_variation_wrap .woocommerce-variation-price").each(function() {
-            if ( !$(this).find(".price").length ) {
-                $(this).closest(".product-item").addClass("product-type-custom");
-                $(this).closest(".product-item").find(".woocommerce-loop-product__link .price").addClass("d-block");
-            }
-        })
+    setTimeout(() => {
+        if ( $(".products .product-item .single_variation_wrap .woocommerce-variation-price").length ) {
+            $(".products .product-item .single_variation_wrap .woocommerce-variation-price").each(function() {
+                if ( !$(this).find(".price").length ) {
+                    $(this).closest(".product-item").addClass("product-type-custom");
+                    $(this).closest(".product-item").find(".woocommerce-loop-product__link .price").addClass("d-block");
+                }
+            })
+        }
+    }, 100);
+
+    if ( $(".single-product .product-type-variable .woocommerce-variation-price").length ) {
+        if ( !$(".single-product .product-type-variable .woocommerce-variation-price .price").length ) {
+            $(".single-product .product-type-variable").addClass("product-type-custom");
+        }
     }
 }
   
