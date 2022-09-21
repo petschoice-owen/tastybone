@@ -459,6 +459,16 @@
             color: $text-color;
         }
     }
+    
+    .fresh-mint {
+        color: #fff;
+        background-color: #07B38B;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
 
     @media (max-width: 1199px) {
         .flavour-item {
