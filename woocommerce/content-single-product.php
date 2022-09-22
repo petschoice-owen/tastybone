@@ -171,7 +171,7 @@ global $product;
 											<a href="<?php echo $data_url; ?>" 
 												class="flavour-link <?php echo $data_filter; ?> <?php if( get_sub_field('border', 'option') == 'bordered' ) { ?>bordered<?php } ?>" 
 												data-filter="<?php echo $data_filter; ?>" 
-												style="background-color: <?php echo $background_color; ?>;">
+												style="color: <?php echo $text_color; ?>; background-color: <?php echo $background_color; ?>;">
 												<i class="fa-solid fa-check"></i>
 												<p class="flavour-name">I am <span class="flavour-text" style="color: <?php echo $text_color; ?>;"><?php echo $flavour_name; ?></span> flavour</p>
 											</a>
