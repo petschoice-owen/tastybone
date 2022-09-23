@@ -45,6 +45,12 @@ get_header();
 		}
 	?>
 
+	<?php
+		if ( function_exists('yoast_breadcrumb') ) {
+			yoast_breadcrumb( '<div id="product_breadcrumbs" class="d-none">','</div>' );
+		}
+	?>
+
 	<div class="category-banners d-none">
 		<?php
 			if( have_rows('category_list', 'option') ):
