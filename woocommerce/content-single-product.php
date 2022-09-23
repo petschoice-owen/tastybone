@@ -59,6 +59,7 @@ global $product;
 						<ul class="list-unstyled heading-thumbnail-size">
 							<li class="size-detail toy"><img src="/wp-content/uploads/2022/09/size-toy.png')" alt="size" /></li>
 							<li class="size-detail small"><img src="/wp-content/uploads/2022/09/size-small.png')" alt="size" /></li>
+							<li class="size-detail puppy"><img src="/wp-content/uploads/2022/09/size-puppy.png')" alt="size" /></li>
 							<li class="size-detail large"><img src="/wp-content/uploads/2022/09/size-large.png')" alt="size" /></li>
 							<li class="size-detail giant"><img src="/wp-content/uploads/2022/09/size-giant.png')" alt="size" /></li>
 						</ul>
