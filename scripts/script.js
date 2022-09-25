@@ -650,6 +650,21 @@ var singleProduct = () => {
         }
     }
 }
+
+// Single Product - Variation - disabled products
+var disableProduct = () => {
+    if ($(".woocommerce .container .variations_form select").length) {
+        $(".woocommerce .container .product").each(function() {
+            $(this).find(".variations_form .value select").click(function() {
+                $(this).find("option").each(function() {
+                   if (!$(this).hasClass("enabled")) {
+                       $(this).attr("disabled", "disabled");
+                   }
+                });
+            })
+        })
+    }
+}
   
 // initialize the functions
 windowScrolled();
@@ -676,5 +691,6 @@ window.onload = function() {
     // stockists();
     sectionCategoryFilter();
     singleProduct();
+    disableProduct();
 }
   
