@@ -18,7 +18,7 @@
                         <?php endif; ?>
                     </ul>
                     <ul class="account">
-                        <li><a href="#" title="Account"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-user.png" alt="" /></a></li>
+                        <li><a href="/my-account" title="Account"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-user.png" alt="" /></a></li>
                         <li>
                             <div class="cart-holder">
                                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-cart.png" class="icon-cart" alt="" />
