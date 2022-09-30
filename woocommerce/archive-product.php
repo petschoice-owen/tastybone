@@ -98,7 +98,7 @@ get_header();
                             $lower_case = preg_replace('/\s+/', ' ', $name);
                             $single_space = preg_replace('/\s+/', ' ', $lower_case);
                             $slug = preg_replace('#[ -]+#', '-', $single_space); ?>
-                            <li><a href="/category/<?php echo $slug; ?>"><?php echo $category_name; ?></a></li>
+                            <li><a href="/shop/<?php echo $slug; ?>"><?php echo $category_name; ?></a></li>
                         <?php endwhile;
                         else :
                         endif;

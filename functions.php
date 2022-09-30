@@ -359,7 +359,6 @@ add_action('loop_start', 'remove_gallery_thumbnail_images');
 // }
 
 
-
 /*-----------------------------------------------------------------------------------*/
 /* Shop Page and Category Pages - Display variations dropdowns for variable products
 /*-----------------------------------------------------------------------------------*/
@@ -431,8 +430,8 @@ wp_enqueue_script('wc-add-to-cart-variation');
 
 
 /*-----------------------------------------------------------------------------------*/
-/*  Hide shipping rates when free shipping is available.
-/*  Updated to support WooCommerce 2.6 Shipping Zones.
+/* Hide shipping rates when free shipping is available.
+/* Updated to support WooCommerce 2.6 Shipping Zones.
 /*-----------------------------------------------------------------------------------*/
 function my_hide_shipping_when_free_is_available( $rates ) {
 	$free = array();
@@ -445,3 +444,15 @@ function my_hide_shipping_when_free_is_available( $rates ) {
 	return ! empty( $free ) ? $free : $rates;
 }
 add_filter( 'woocommerce_package_rates', 'my_hide_shipping_when_free_is_available', 100 );
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Force Product-Category url to start with "/shop/%product_cat%"
+/*-----------------------------------------------------------------------------------*/
+add_filter( 'rewrite_rules_array', function( $rules ) {
+    $new_rules = array(
+        'shop/([^/]*?)/page/([0-9]{1,})/?$' => 'index.php?product_cat=$matches[1]&paged=$matches[2]',
+        'shop/([^/]*?)/?$' => 'index.php?product_cat=$matches[1]',
+    );
+    return $new_rules + $rules;
+});
