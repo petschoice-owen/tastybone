@@ -185,8 +185,9 @@ var flavours = () => {
             
             if ($(".flavour-selected").length == 0) {
                 // window.location = window.location.origin+"/shop";
-                window.location = window.location.pathname;
-                $("#product_filter_trigger_home").addClass("disabled");
+                // window.location = window.location.pathname;
+                // $("#product_filter_trigger_home").addClass("disabled");
+                window.location = $("#product_filter_trigger_home").attr("href");
             }
             else if ($(".flavour-selected").length == 1) {
                 $("#product_filter_trigger_home").removeClass("disabled");
