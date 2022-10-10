@@ -23,15 +23,16 @@ var customSlider = () => {
             slidesToShow: 1,
             slidesToScroll: 1,
             autoplay: true,
-            autoplaySpeed: 3000,
+            autoplaySpeed: 2000,
             dots: false,
             infinite: true,
-            speed: 700,
+            speed: 500,
             dots: false,
             prevArrow: false,
             nextArrow: false,
             swipe: false,
             fade: true,
+            pauseOnHover: false,
             // cssEase: 'linear'
         });
     }  
