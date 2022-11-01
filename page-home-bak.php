@@ -7,21 +7,29 @@
 <body <?php body_class(); ?>>
     <?php include 'top-navigation.php'; ?>
     <main class="page-home">
-        <section class="hero-home-slider border-bottom-10">
+        <section class="hero-home border-bottom-10">
             <div class="container">
+                <img src="<?php the_field('hero_banner_image'); ?>" class="image-dog" alt="" />
                 <div class="hero-top">
                     <ul class="badges">
-                        <li><img src="assets/images/image-queene.png" alt=""></li>
-                        <li><img src="assets/images/image-great-britain.png" alt=""></li>
+                        <?php
+                            if( have_rows('hero_badges') ):
+                            while( have_rows('hero_badges') ) : the_row();
+                                $image = get_sub_field('image'); ?>
+                                <li><img src="<?php echo $image; ?>" alt="" /></li>
+                            <?php endwhile;
+                            else :
+                            endif;
+                        ?>
                     </ul>
                     <!-- <div class="newsletter">
                         <div class="accordion" id="accordionNewsletter">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingNewsletter">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewsletter" aria-expanded="false" aria-controls="collapseNewsletter">
-                                        <span class="text">Get Tasty Treats to your inbox!</span>
+                                        <span class="text"><?php the_field('hero_newsletter_text'); ?></span>
                                         <span class="image">
-                                            <img src="assets/images/icon-envelope.png" alt="" />
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-envelope.png" alt="" />
                                         </span>
                                     </button>
                                 </h2>
@@ -48,32 +56,12 @@
                         </div>
                     </div> -->
                 </div>
-                <div class="hero-slider">
-                    <?php
-                        if( have_rows('hero_slider_home') ):
-                        while( have_rows('hero_slider_home') ) : the_row();
-                            $hero_slider_heading_white = get_sub_field('hero_slider_heading_white');
-                            $hero_slider_heading_colored = get_sub_field('hero_slider_heading_colored');
-                            $hero_slider_subheading = get_sub_field('hero_slider_subheading');
-                            $hero_slider_banner_image = get_sub_field('hero_slider_banner_image');
-                            $hero_slider_button_text = get_sub_field('hero_slider_button_text');
-                            $hero_slider_button_link = get_sub_field('hero_slider_button_link'); ?>
-                            <div class="slide-item">
-                                <img src="<?php echo $hero_slider_banner_image; ?>" class="image-dog" alt="" />
-                                <div class="wrapper">
-                                    <h1 class="heading"><?php echo $hero_slider_heading_white; ?> <span><?php echo $hero_slider_heading_colored; ?></span></h1>
-                                    <div class="subheading">
-                                        <?php echo $hero_slider_subheading; ?>
-                                    </div>
-                                    <div class="button-holder">
-                                        <a href="<?php echo $hero_slider_button_link; ?>" class="btn-white btn-arrow-right"><?php echo $hero_slider_button_text; ?></a>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endwhile;
-                        else :
-                        endif;
-                    ?>
+                <div class="wrapper">
+                    <h1 class="heading"><?php the_field('hero_heading_white'); ?> <span><?php the_field('hero_heading_colored'); ?></span></h1>
+                    <p class="subheading"><?php the_field('hero_subheading'); ?></p>
+                    <div class="button-holder">
+                        <a href="<?php the_field('hero_button_link'); ?>" class="btn-white btn-arrow-right"><?php the_field('hero_button_text'); ?></a>
+                    </div>
                 </div>
             </div>
         </section>

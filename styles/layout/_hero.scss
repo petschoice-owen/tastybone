@@ -232,6 +232,247 @@
     }
 }
 
+.hero-home-slider {
+    color: #fff;
+    background-color: #1c1c1b;
+
+    .container {
+        position: relative; 
+    }
+
+    .image-dog {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        pointer-events: none;
+        width: auto;
+        max-width: 710px;
+        height: auto;
+        max-height: 600px;
+    }
+
+    .hero-top {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .badges {
+        display: flex;
+        margin: 20px 0 0;
+        padding: 0;
+
+        li {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        img {
+            width: auto;
+            height: 100%;
+            max-height: 85px;
+        }
+    }
+
+    .newsletter {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .accordion {
+        width: 100%;
+        max-width: 300px;
+        background-color: #fff;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+
+        .accordion-button {
+            padding: 20px;
+            outline: none;
+            box-shadow: none;
+
+            &::after {
+                display: none;
+            }
+
+            &:not(.collapsed) {
+                background-color: #fff;
+            }
+
+            .text {
+                display: flex;
+                margin-right: 10px;
+                font-family: $font-helveticaneue-black;
+                line-height: 1.1;
+                font-size: 20px;
+                letter-spacing: -1px;
+                color: $text-color;
+                text-transform: uppercase;
+            }
+        }
+
+        input[type=text],
+        input[type=email] {
+            padding: 8px 10px;
+            font-weight: 900;
+            font-size: 16px;
+            color: $text-color;
+            border: 1px solid #a1a1a1;
+            border-radius: 0;
+            transition: all .35s ease-in-out;
+
+            &:focus {
+                border-color: $text-color;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-check {
+            display: flex;
+            padding: 0;
+            margin: 0 0 20px;
+
+            input {
+                margin: 3px 0 0 0;
+                cursor: pointer;
+            }
+
+            label {
+                padding-left: 7px;
+                font-size: 15px;
+                color: $text-color;
+                cursor: pointer;
+            }
+        }
+
+        .btn-brand {
+            justify-content: center;
+            width: 100%;
+            padding: 12px 65px 12px 12px;
+            border-radius: 4px;
+        }
+    }
+
+    .wrapper {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 450px;
+        padding-top: 80px;
+    }
+
+    .heading {
+        font-family: $font-helveticaneue-black;
+        line-height: 1;
+        font-size: 68px;
+
+        span {
+            color: $brand-color;
+        }
+    }
+
+    .subheading {
+        padding-right: 70px;
+        padding-bottom: 60px;
+        line-height: 1.1;
+        font-size: 38px;
+
+        p {
+            line-height: 1.1;
+            font-size: 38px;
+
+            b, strong {
+                color: $brand-color;
+            }
+        }
+    }
+
+    .button-holder {
+        padding-bottom: 70px;
+    }
+
+    @media (max-width: 1199px) {
+        .wrapper {
+            padding-top: 60px;
+        }
+
+        .heading {
+            font-size: 64px;
+        }
+
+        .subheading {
+            padding-bottom: 30px;
+        }
+
+        .button-holder {
+            padding-bottom: 40px;
+        }
+
+        .image-dog {
+            max-width: 555px;
+            max-height: 470px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .image-dog {
+            max-width: 100%;
+            max-height: 100%;
+            opacity: .2;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .image-dog {
+            right: 12px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .newsletter {
+            display: none;
+        }
+
+        .image-dog {
+            right: 0;
+        }
+
+        .badges img {
+            max-height: 70px;
+        }
+
+        .wrapper {
+            padding-top: 20px;
+        }
+
+        .heading {
+            font-size: 40px;
+        }
+
+        .subheading {
+            max-width: 280px;
+            padding-right: 0;
+            padding-bottom: 20px;
+            font-size: 28px;
+
+            p {
+                font-size: 28px;
+            }
+        }
+
+        .button-holder {
+            padding-bottom: 30px;
+        }
+    }
+}
+
 .hero-inner {
     background-size: cover;
     background-repeat: no-repeat;

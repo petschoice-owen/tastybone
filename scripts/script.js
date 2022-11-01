@@ -35,7 +35,33 @@ var customSlider = () => {
             pauseOnHover: false,
             // cssEase: 'linear'
         });
-    }  
+    }
+
+    if ($(".hero-home-slider").length) {
+        $('.hero-slider').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            dots: false,
+            infinite: true,
+            speed: 500,
+            dots: false,
+            prevArrow: false,
+            nextArrow: false,
+            swipe: false,
+            fade: true,
+            pauseOnHover: false,
+            // cssEase: 'linear'
+        });
+
+        var colors = ["#000000","#1c1c1b"];
+        var currentIndex = 0;
+
+        $(".hero-slider").on("beforeChange", function (){
+            $(".hero-home-slider").css("background-color", colors[currentIndex++%colors.length]);
+        });
+    }
 }
   
 // main element - auto padding-top
