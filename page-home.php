@@ -11,8 +11,15 @@
             <div class="container">
                 <div class="hero-top">
                     <ul class="badges">
-                        <li><img src="assets/images/image-queene.png" alt=""></li>
-                        <li><img src="assets/images/image-great-britain.png" alt=""></li>
+                        <?php
+                            if( have_rows('hero_badges') ):
+                            while( have_rows('hero_badges') ) : the_row();
+                                $image = get_sub_field('image'); ?>
+                                <li><img src="<?php echo $image; ?>" alt="" /></li>
+                            <?php endwhile;
+                            else :
+                            endif;
+                        ?>
                     </ul>
                     <!-- <div class="newsletter">
                         <div class="accordion" id="accordionNewsletter">
