@@ -40,15 +40,15 @@ register_nav_menus(
 /* Activate sidebar for Wordpress use
 /*-----------------------------------------------------------------------------------*/
 function theme_register_sidebars() {
-	register_sidebar(array(				// Start a series of sidebars to register
-		'id' => 'product_filter', 					// Make an ID
-		'name' => 'Product Filter',				// Name it
-		'description' => 'Take it on the side...', // Dumb description for the admin side
-		'before_widget' => '<div>',	// What to display before each widget
-		'after_widget' => '</div>',	// What to display following each widget
+	register_sidebar(array(								// Start a series of sidebars to register
+		'id' => 'product_filter', 						// Make an ID
+		'name' => 'Product Filter',						// Name it
+		'description' => 'Take it on the side...', 		// Dumb description for the admin side
+		'before_widget' => '<div>',						// What to display before each widget
+		'after_widget' => '</div>',						// What to display following each widget
 		'before_title' => '<h3 class="side-title">',	// What to display before each widget's title
-		'after_title' => '</h3>',		// What to display following each widget's title
-		'empty_title'=> '',					// What to display in the case of no title defined for a widget
+		'after_title' => '</h3>',						// What to display following each widget's title
+		'empty_title'=> '',								// What to display in the case of no title defined for a widget
 		// Copy and paste the lines above right here if you want to make another sidebar, 
 		// just change the values of id and name to another word/name
 	));
@@ -192,10 +192,10 @@ add_action('acf/input/admin_footer', 'PREFIX_apply_acf_modifications');
 /*-----------------------------------------------------------------------------------*/
 /* Redirect user to "/" or "Front Page" upon successful login
 /*-----------------------------------------------------------------------------------*/
-function my_login_redirect( $redirect_to, $request, $user ) {
-	return home_url('/');
-}
-add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
+// function my_login_redirect( $redirect_to, $request, $user ) {
+// 	return home_url('/');
+// }
+// add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -456,3 +456,17 @@ add_filter( 'rewrite_rules_array', function( $rules ) {
     );
     return $new_rules + $rules;
 });
+
+
+/*-----------------------------------------------------------------------------------*/
+/* Remove Yoast SEO Canonical Meta Tag
+/*-----------------------------------------------------------------------------------*/
+add_filter( 'wpseo_canonical', 'remove_multiple_yoast_meta_tags' );
+
+function remove_multiple_yoast_meta_tags( $removeCanonical ) {
+    if ( is_page () || is_single() || is_singular() || is_product() || is_product_category() || is_category() || is_tax() ) {
+        return false;
+    }
+	
+    return $removeCanonical;
+}
