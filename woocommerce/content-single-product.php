@@ -39,7 +39,10 @@ global $product;
 	<div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 		<div class="single-product-wrapper">
 			<div class="heading-wrapper">
-				<h1 class="single-product-title"><?php echo get_the_title(); ?></h1>
+				<h1 class="single-product-title">
+					<?php echo get_the_title(); ?>
+					<span class="feefo-stars" style="display: block; margin-bottom: 10px;"><?php FEEFO_wc_wp_product_stars_snippet_custom(); ?></span>
+				</h1>
 				<?php $thumbnail_sizes = get_field('product_thumbnail_sizes'); if( $thumbnail_sizes ): ?>
 					<div class="heading-product-sizes <?php foreach( $thumbnail_sizes as $size ): echo $size . ' '; endforeach; ?>">
 						<?php
