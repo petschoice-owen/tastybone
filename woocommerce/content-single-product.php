@@ -136,6 +136,10 @@ global $product;
 				</div>
 			</div>
 
+			<div class="reviews-wrapper">
+				<?php FEEFO_wc_wp_product_widget_snippet_custom(); ?>
+			</div>
+
 			<?php
 				$available_flavours = get_field('product_available_flavours');
 				if ( $available_flavours ): ?>
