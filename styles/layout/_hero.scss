@@ -513,3 +513,44 @@
         }
     }
 }
+
+.hero-promotion {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 100px 0;
+    }
+
+    .page-title {
+        line-height: 1.1;
+        font-size: 62px;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    @media (max-width: 991px) {
+        .wrapper {
+            padding: 70px 0;
+        }
+
+        .page-title {
+            font-size: 56px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .wrapper {
+            padding: 40px 0;
+        }
+
+        .page-title {
+            font-size: 32px;
+        }
+    }
+}

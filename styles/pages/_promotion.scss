@@ -1,0 +1,208 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the promotion page.
+// -----------------------------------------------------------------------------
+
+.page-promotion {
+    .promotion-content {
+        padding: 50px 0;
+    }
+
+    .content-heading {
+        margin-bottom: 20px;
+
+        h1 {
+            line-height: 1;
+            font-size: 54px;
+        }
+
+        b, strong {
+            color: $brand-color;
+        }
+    }
+
+    .content-description {
+        display: flex;
+        flex-direction: column;
+        
+        p {
+            font-size: 24px;
+
+            &:empty {
+                display: none;
+            }
+
+            &:not(:first-child) + p {
+                margin-top: 15px;
+            }
+        }
+
+        div {
+            &:empty {
+                display: none;
+            }
+
+            &:not(:first-child) + div {
+                margin-top: 15px;
+            }
+        }
+    }
+
+    .text-editor {
+        padding: 50px 0;
+
+        & + .circle-images {
+            padding-top: 0;
+        }
+
+        .content-heading,
+        .content-description {
+            text-align: center;
+        }
+
+        .content-description {
+            // max-width: 610px;
+            max-width: 85%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    }
+
+    .full-width-image {
+        display: block;
+        padding: 20px 0;
+
+        img {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+    
+    .circle-images {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 50px 0;
+
+        .circle-image {
+            padding: 15px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 50%;
+        }
+    }
+
+    .line-separator {
+        display: block;
+        width: 100%;
+        height: 2px;
+        margin: 30px 0;
+        background-color: $mid-grey;
+    }
+
+    @media (max-width: 991px) {
+        .promotion-content {
+            padding: 40px 0;
+        }
+
+        .content-heading {
+            h1 {
+                font-size: 50px;
+            }
+        }
+
+        .content-description {
+            p {
+                font-size: 20px;
+            }
+        }
+
+        .text-editor {
+            padding: 40px 0;
+        }
+        
+        .image-text {
+            padding: 40px 0;
+
+            .content-heading h1 {
+                font-size: 44px;
+            }
+            
+            &.image-right .image {
+                padding: 0 0 0 40px;
+            }
+            
+            &.image-left .image {
+                padding: 0 40px 0 0;
+            }
+        }
+
+        .line-separator {
+            margin: 25px 0;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .promotion-content {
+            padding: 25px 0;
+        }
+        
+        .content-heading {
+            margin-bottom: 15px;
+
+            h1 {
+                line-height: 1.1;
+                font-size: 30px;
+            }
+        }
+
+        .content-description {
+            p {
+                line-height: 1.3;
+                font-size: 16px;
+            }
+        }
+
+        .text-editor {
+            padding: 25px 0;
+        }
+        
+        .image-text {
+            flex-direction: column;
+            padding: 25px 0;
+
+            .text,
+            .image {
+                width: 100%;
+            }
+
+            .content-heading h1 {
+                font-size: 28px;
+            }
+
+            &.image-right,
+            &.image-left {
+                .image {
+                    order: 1;
+                    padding: 0;
+                    max-width: 300px;
+                }
+
+                .text {
+                    margin-top: 30px;
+                    order: 2;
+                    text-align: left;
+                }
+            }
+        }
+
+        .line-separator {
+            margin: 20px 0;
+        }
+    }
+}
