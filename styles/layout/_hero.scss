@@ -249,6 +249,11 @@
         max-width: 710px;
         height: auto;
         max-height: 600px;
+
+        &-adjusted {
+            max-width: 600px;
+            max-height: 500px;
+        }
     }
 
     .hero-top {
@@ -418,6 +423,11 @@
         .image-dog {
             max-width: 555px;
             max-height: 470px;
+
+            &-adjusted {
+                max-width: 500px;
+                max-height: 410px;
+            }
         }
     }
 
@@ -426,6 +436,11 @@
             max-width: 100%;
             max-height: 100%;
             opacity: .2;
+
+            &-adjusted {
+                max-width: 100%;
+                max-height: 100%;
+            }
         }
     }
 

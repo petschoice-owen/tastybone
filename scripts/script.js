@@ -49,7 +49,7 @@ var customSlider = () => {
             dots: false,
             prevArrow: false,
             nextArrow: false,
-            swipe: false,
+            swipe: true,
             fade: true,
             pauseOnHover: false,
             // cssEase: 'linear'

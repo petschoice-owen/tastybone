@@ -66,7 +66,7 @@
                             $hero_slider_button_text = get_sub_field('hero_slider_button_text');
                             $hero_slider_button_link = get_sub_field('hero_slider_button_link'); ?>
                             <div class="slide-item">
-                                <img src="<?php echo $hero_slider_banner_image; ?>" class="image-dog" alt="" />
+                                <img src="<?php echo $hero_slider_banner_image; ?>" class="image-dog image-dog-adjusted" alt="" />
                                 <div class="wrapper">
                                     <h1 class="heading"><?php echo $hero_slider_heading_white; ?> <span><?php echo $hero_slider_heading_colored; ?></span></h1>
                                     <div class="subheading">
