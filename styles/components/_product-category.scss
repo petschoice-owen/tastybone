@@ -81,7 +81,7 @@
 
     a {
         display: flex;
-        padding: 25px 22px;
+        padding: 25px 20px;
         font-family: $font-helveticaneue-black;
         font-size: 18px;
         color: $text-color;
@@ -93,6 +93,12 @@
         &.active {
             color: #fff;
             background-color: $brand-color;
+        }
+    }
+
+    @media (max-width: 1399px) {
+        a {
+            padding: 25px 15px;
         }
     }
 
