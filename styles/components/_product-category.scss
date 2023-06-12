@@ -214,3 +214,13 @@
         }
     }
 }
+
+body.term-trio {
+    .page-shop .products .products.product-items .product-item {
+        order: 1;
+    }
+
+    .page-shop .products .products.product-items .product-item.product_cat-dental {
+        order: 2;
+    }
+}
