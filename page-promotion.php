@@ -69,3 +69,27 @@
         </section>
     </main>
 <?php get_footer(); ?>
+
+<script>
+    $(document).ready(function() {
+        $('.promotion-content .content-heading').each(function() {
+            if ( $(this).text() == 'TERMS AND CONDITIONS' ) {
+                $(this).closest('.text-editor').attr('id', 'terms');
+            }  
+        });
+    });
+
+    $(window).on('load', function() {
+        if (window.location.hash) {
+            // setTimeout(() => {
+            //     document.getElementById("terms").scrollIntoView({behavior: "smooth"});
+            // }, 100);
+
+            setTimeout(() => {
+                $('html, body').animate({
+                    scrollTop: $('#terms').offset().top
+                }, 500);
+            }, 100);
+        }
+    });
+</script>

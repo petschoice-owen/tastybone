@@ -25,7 +25,7 @@
                 </ul>
                 <?php if( get_field('footer_newsletter_text', 'option') ): ?>
                     <p class="newsletter-section d-none">
-                        <a href="#" class="newsletter-link">
+                        <a href="#" class="btn-brand newsletter-link">
                             <?php the_field('footer_newsletter_text', 'option'); ?>
                             <?php if( get_field('footer_newsletter_icon', 'option') ): ?>
                                 <img src="<?php the_field('footer_newsletter_icon', 'option'); ?>" alt="" />

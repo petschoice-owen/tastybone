@@ -109,7 +109,6 @@
     }
 
     .copyright-text {
-        // margin-top: 30px;
         margin-top: 15px;
     }
 
@@ -117,12 +116,18 @@
         width: fit-content;
         margin-top: 15px;
         margin-left: auto;
-        text-decoration: underline;
         cursor: pointer;
 
         .newsletter-link {
             display: flex;
             align-items: center;
+            padding: 15px 20px;
+            color: #fff;
+
+            &:hover {
+                color: #fff;
+                opacity: .7;
+            }
         }
 
         img {
@@ -134,10 +139,6 @@
 
 
     @media (max-width: 1199px) {
-        // .container {
-        //     max-width: 100%;
-        // }
-
         a,
         p {
             font-size: 16px;
@@ -206,8 +207,15 @@
             }
         }
 
-        .newsletter-section img {
-            max-width: 16px;
+        .newsletter-section {
+            .newsletter-link {
+                padding: 15px 12px;
+            }
+
+            img {
+                // max-width: 16px;
+                display: none;
+            }
         }
     }
 }
