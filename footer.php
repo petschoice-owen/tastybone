@@ -23,9 +23,9 @@
                         <li><a href="<?php the_field('theme_instagram', 'option'); ?>" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                     <?php endif; ?>
                 </ul>
-                <?php if( get_field('footer_newsletter_text', 'option') ): ?>
-                    <p class="newsletter-section d-none">
-                        <a href="#" class="btn-brand newsletter-link">
+                <?php if( get_field('footer_newsletter_visibility', 'option') == 'show' ): ?>
+                    <p class="newsletter-section">
+                        <a href="<?php if( get_field('footer_newsletter_url', 'option') ) { the_field('footer_newsletter_url', 'option'); } else { echo "#"; } ?>" class="btn-brand newsletter-link">
                             <?php the_field('footer_newsletter_text', 'option'); ?>
                             <?php if( get_field('footer_newsletter_icon', 'option') ): ?>
                                 <img src="<?php the_field('footer_newsletter_icon', 'option'); ?>" alt="" />
