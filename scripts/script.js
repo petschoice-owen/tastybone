@@ -691,6 +691,22 @@ var disableProduct = () => {
         })
     }
 }
+
+// Recycling Info Page - number of items (How to recycle sections)
+var numberOfItems = () => {
+    if ( $('.recycling-plastic .items').length ) {
+        var items = $('.recycling-plastic .items .item').length
+
+        $('.recycling-plastic .items').addClass('items-'+items);
+    }
+    
+    if ( $('.recycling-cardboard .items').length ) {
+        var items = $('.recycling-cardboard .items .item').length
+
+        $('.recycling-cardboard .items').addClass('items-'+items);
+    }
+}
+
   
 // initialize the functions
 windowScrolled();
@@ -707,6 +723,7 @@ $(document).ready(function() {
     categoryBanner();
     productQuantity();
     // singleProduct();
+    numberOfItems();
 });
   
 $(window).resize(function() {
