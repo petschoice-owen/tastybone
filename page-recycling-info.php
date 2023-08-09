@@ -43,7 +43,7 @@
                     </div>
                 <?php endif; ?>
                 <?php if( have_rows('information_plastic_group') ): ?>
-                    <div class="items">
+                    <div class="recycling-items items">
                         <?php while( have_rows('information_plastic_group') ) : the_row(); ?>
                             <?php $image = get_sub_field('image'); ?>
                             <?php $heading = get_sub_field('heading'); ?>
@@ -73,7 +73,7 @@
                     </div>
                 <?php endif; ?>
                 <?php if( have_rows('information_cardboard_group') ): ?>
-                    <div class="items">
+                    <div class="recycling-items items">
                         <?php while( have_rows('information_cardboard_group') ) : the_row(); ?>
                             <?php $image = get_sub_field('image'); ?>
                             <?php $heading = get_sub_field('heading'); ?>
@@ -113,6 +113,6 @@
                 </div>
             </section>
         <?php else : ?>
-        <?php endif; ?>        
+        <?php endif; ?> 
     </main>
 <?php get_footer(); ?>
