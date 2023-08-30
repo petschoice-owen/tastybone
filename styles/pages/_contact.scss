@@ -87,3 +87,8 @@
         }
     }
 }
+
+// Google reCaptcha - show on Contact Page
+.page-template-page-contact .grecaptcha-badge {
+	display: block;
+}

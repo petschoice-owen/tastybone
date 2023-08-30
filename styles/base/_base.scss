@@ -245,3 +245,13 @@ input[type="text"] {
 .opacity-show {
     opacity: 1;
 }
+
+// Feefo Product Review border adjustment
+#feefo-product-review-widgetId {
+	border: none !important;
+}
+
+// Google reCaptcha - hide on all pages
+.grecaptcha-badge {
+	display: none;
+}
