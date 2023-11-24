@@ -234,7 +234,8 @@
 
 .hero-home-slider {
     color: #fff;
-    background-color: #1c1c1b;
+    // background-color: #1c1c1b;
+    background-color: #000;
 
     .container {
         position: relative; 
@@ -369,7 +370,8 @@
         position: relative;
         z-index: 1;
         width: 100%;
-        max-width: 450px;
+        // max-width: 450px;
+        max-width: 580px;
         padding-top: 80px;
     }
 
@@ -379,6 +381,8 @@
         font-size: 68px;
 
         span {
+            // remove display: block; if no longer needed
+            display: block;
             color: $brand-color;
         }
     }
@@ -386,6 +390,7 @@
     .subheading {
         padding-right: 70px;
         padding-bottom: 60px;
+        margin-top: 5px;
         line-height: 1.1;
         font-size: 38px;
 
@@ -403,17 +408,34 @@
         padding-bottom: 70px;
     }
 
+    @media (max-width: 1399px) {
+        .wrapper {
+            max-width: 520px;
+        }
+
+        .heading {
+            font-size: 60px;
+        }
+
+        .subheading p {
+            font-size: 32px;
+        }
+    }
+
     @media (max-width: 1199px) {
         .wrapper {
+            max-width: 480px;
             padding-top: 60px;
         }
 
         .heading {
-            font-size: 64px;
+            // font-size: 64px;
+            font-size: 56px;
         }
 
         .subheading {
             padding-bottom: 30px;
+            font-size: 26px;
         }
 
         .button-holder {
@@ -478,7 +500,8 @@
             font-size: 28px;
 
             p {
-                font-size: 28px;
+                // font-size: 28px;
+                font-size: 22px;
             }
         }
 

@@ -52,15 +52,14 @@ var customSlider = () => {
             swipe: true,
             fade: true,
             pauseOnHover: false,
-            // cssEase: 'linear'
         });
 
-        var colors = ["#000000","#1c1c1b"];
-        var currentIndex = 0;
+        // var colors = ["#000000","#000000","#1c1c1b"];
+        // var currentIndex = 0;
 
-        $(".hero-slider").on("beforeChange", function (){
-            $(".hero-home-slider").css("background-color", colors[currentIndex++%colors.length]);
-        });
+        // $(".hero-slider").on("beforeChange", function (){
+        //     $(".hero-home-slider").css("background-color", colors[currentIndex++%colors.length]);
+        // });
     }
 }
   
