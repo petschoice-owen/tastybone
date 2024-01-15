@@ -79,6 +79,15 @@
         padding: 0;
     }
 
+    .offers {
+        order: 10;
+        
+        a {
+            color: #fff;
+            background-color: #1c1c1b;
+        }
+    }
+
     a {
         display: flex;
         padding: 25px 20px;

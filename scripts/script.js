@@ -706,6 +706,18 @@ var numberOfItems = () => {
     }
 }
 
+// Offers Product Category - highlight
+var productCategoryOffers = () => {
+    if ( $('.product-categories .categories').length ) {
+        var searchText = "Offers";
+        var result = $("ul li:contains('" + searchText + "')"); // Use :contains selector to find the li with specific text
+        
+        if (result.length > 0) {       
+            result.addClass('offers');
+        }
+    }
+}
+
   
 // initialize the functions
 windowScrolled();
@@ -723,6 +735,7 @@ $(document).ready(function() {
     productQuantity();
     // singleProduct();
     numberOfItems();
+    productCategoryOffers();
 });
   
 $(window).resize(function() {
