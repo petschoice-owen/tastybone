@@ -9,3 +9,80 @@ License:        GNU General Public License v3 or later
 License URI:    https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain:    tastybone
 */
+
+
+/* Shop Page - banner */
+/* body.archive .page-shop .hero-inner .page-title {
+	opacity: 0 !important;
+	pointer-events: none;
+}
+
+
+/* Cart Page - product list */
+.woocommerce-cart-form__cart-item .product-thumbnail a,
+.woocommerce-cart-form__cart-item .product-name a {
+    pointer-events: none;
+}
+
+/* Cart Page - checkout button */
+.wc-proceed-to-checkout {
+    display: none;
+}
+
+/* Checkout Page - Free Shipping */
+@media (min-width: 992px) {
+	.woocommerce-checkout.woocommerce-page .page-default .devnet_fsl-free-shipping {
+		margin-bottom: 15px !important;
+	}
+}
+
+/* Checkout Page - Discount Section */
+/*
+    .woocommerce-checkout #order_review .woocommerce-checkout-review-order-table .cart-discount {
+        background-color: #ac8f63;
+    }
+    .woocommerce-checkout #order_review .woocommerce-checkout-review-order-table .cart-discount th,
+    .woocommerce-checkout #order_review .woocommerce-checkout-review-order-table .cart-discount td {
+        color: #fff;
+    }
+    .woocommerce-checkout #order_review .woocommerce-checkout-review-order-table .cart-discount a {
+        color: #1c1c1b;
+    }
+    .woocommerce-checkout #order_review .woocommerce-checkout-review-order-table .cart-discount a:hover {
+        opacity: .5;
+    }
+*/
+
+
+/* TastyBone - Competition Page */
+.page-id-6158 .page-default .default :not(:last-child) {
+	margin-bottom: 0;
+}
+
+/* TastyBone - Newsletter Page */
+.page-id-6608 .page-default .default :not(:last-child) {
+	margin-bottom: 0;
+}
+
+/* Checkout Page - Free Shipping - remove if empty */
+.devnet_fsl-free-shipping:empty {
+	display: none;
+}
+
+/* Checkout Page - Min Max error */
+.woocommerce-checkout.woocommerce-page.min-max-show .woocommerce-checkout-payment,
+.woocommerce-checkout.woocommerce-page.min-max-show .ppc-button-wrapper {
+    display: none;
+}
+.min-max-error {
+    display: none;
+}
+.min-max-error-show {
+    display: block;
+}
+.min-max-message {
+    padding: 15px;
+    margin: 20px 0 0;
+    color: #fff !important;
+    background: #ac8f63;
+}

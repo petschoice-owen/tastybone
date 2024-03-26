@@ -338,12 +338,12 @@ function woo_remove_product_tabs( $tabs ) {
 }
 add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
 
-function remove_gallery_thumbnail_images() {
-	if ( is_product() ) {
-		remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );	// Remove product thumbnails - Single Product Page
-	}
-}
-add_action('loop_start', 'remove_gallery_thumbnail_images');
+// function remove_gallery_thumbnail_images() {
+// 	if ( is_product() ) {
+// 		remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );	// Remove product thumbnails - Single Product Page
+// 	}
+// }
+// add_action('loop_start', 'remove_gallery_thumbnail_images');
 
 // function remove_short_description() {
 // 	remove_meta_box( 'postexcerpt', 'product', 'normal');	// Remove product short description - Single Product Page CMS
@@ -430,6 +430,19 @@ wp_enqueue_script('wc-add-to-cart-variation');
 
 
 /*-----------------------------------------------------------------------------------*/
+/* Shop Page, Category Pages, and Product Page - prevent product variation from displaying if not enabled
+/*-----------------------------------------------------------------------------------*/
+// add_filter( 'woocommerce_dropdown_variation_attribute_options_args', 'remove_disabled_variations_dropdown', 10, 1 );
+// function remove_disabled_variations_dropdown( $args ) {
+//     $args['options'] = array_filter( $args['options'], function( $option ) {
+//         return $option['variation_is_visible'];
+//     } );
+//     return $args;
+// }
+
+
+
+/*-----------------------------------------------------------------------------------*/
 /* Hide shipping rates when free shipping is available.
 /* Updated to support WooCommerce 2.6 Shipping Zones.
 /*-----------------------------------------------------------------------------------*/
@@ -469,4 +482,177 @@ function remove_multiple_yoast_meta_tags( $removeCanonical ) {
     }
 	
     return $removeCanonical;
+}
+
+
+/*----------------------------------------------------------------------------------------*/
+/* WooCommerce Cart Page - set minimum order amount to £10 and maximum order amount to £250
+/*----------------------------------------------------------------------------------------*/
+add_action( 'woocommerce_checkout_process', 'wc_min_max_order_amount' );
+add_action( 'woocommerce_before_cart' , 'wc_min_max_order_amount' );
+
+function wc_min_max_order_amount() {
+    $minimum = 10; // set this variable to specify a minimum order value
+    $maximum = 250; // set this variable to specify a maximum order value
+    $cart_total = WC()->cart->total; // cart total including shipping
+    $shipping_total = WC()->cart->get_shipping_total();  // cost of shipping
+    $cart_subtotal = WC()->cart->subtotal;  // cart total excluding shipping
+
+    if ( ($cart_total - $shipping_total) < $minimum ) {
+        if( is_cart() ) {
+            wc_print_notice( 
+                sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order' , 
+                    wc_price( $cart_subtotal ), 
+                    wc_price( $minimum )
+                ), 'error' 
+            );
+            // JavaScript to hide the element with class "wc-proceed-to-checkout"
+            ?>
+            <script type="text/javascript">
+                document.addEventListener('DOMContentLoaded', function() {
+                    var proceedToCheckout = document.querySelector('.wc-proceed-to-checkout');
+                    if (proceedToCheckout) {
+                        proceedToCheckout.style.display = 'none';
+                    }
+                });
+            </script>
+            <?php
+        } else {
+            wc_add_notice( 
+                sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order' , 
+                    wc_price( $cart_subtotal ), 
+                    wc_price( $minimum )
+                ), 'error' 
+            );
+            // JavaScript to hide the element with class "wc-proceed-to-checkout"
+            ?>
+            <script type="text/javascript">
+                document.addEventListener('DOMContentLoaded', function() {
+                    var proceedToCheckout = document.querySelector('.wc-proceed-to-checkout');
+                    if (proceedToCheckout) {
+                        proceedToCheckout.style.display = 'none';
+                    }
+                });
+            </script>
+            <?php
+        }
+    }
+
+    elseif ( ($cart_total - $shipping_total) > $maximum ) {
+        if( is_cart() ) {
+            wc_print_notice( 
+                sprintf( 'Your order value is %s. We do not currently accept online order values of over %s.' , 
+                    wc_price( $cart_subtotal ), 
+                    wc_price( $maximum )
+                ), 'error' 
+            );
+            // JavaScript to hide the element with class "wc-proceed-to-checkout"
+            ?>
+            <script type="text/javascript">
+                document.addEventListener('DOMContentLoaded', function() {
+                    var proceedToCheckout = document.querySelector('.wc-proceed-to-checkout');
+                    if (proceedToCheckout) {
+                        proceedToCheckout.style.display = 'none';
+                    }
+                });
+            </script>
+            <?php
+        } else {
+            wc_add_notice( 
+                sprintf( 'Your order value is %s. We do not currently accept online order values of over %s.' , 
+                    wc_price( $cart_subtotal ), 
+                    wc_price( $maximum )
+                ), 'error' 
+            );
+            // JavaScript to hide the element with class "wc-proceed-to-checkout"
+            ?>
+            <script type="text/javascript">
+                document.addEventListener('DOMContentLoaded', function() {
+                    var proceedToCheckout = document.querySelector('.wc-proceed-to-checkout');
+                    if (proceedToCheckout) {
+                        proceedToCheckout.style.display = 'none';
+                    }
+                });
+            </script>
+            <?php
+        }
+    }
+}
+
+add_action( 'woocommerce_cart_item_removed' , 'wc_min_max_order_amount', 10, 2 );
+
+
+/*----------------------------------------------------------------------------------------*/
+/* WooCommerce Product Page - Product Gallery 
+/*----------------------------------------------------------------------------------------*/
+// JavaScript/jQuery to initialize Slick Slider on product gallery images
+function custom_init_slick_slider() {
+    ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            // Initialize Slick Slider
+            $('.product-gallery-thumbnails').slick({
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                arrows: true,
+                infinite: false
+            });
+			// Handle click event on gallery images to replace main product image
+			// $('.product-gallery-thumbnails .slick-slide').each(function() {
+			// 	$(this).find('a').click(function(e) {
+			// 		e.preventDefault();
+			// 	});
+			// });
+            // $('.product-gallery-thumbnails .slick-slide').on('click', function() {
+			// 	var $clickedImage = $(this).find('a');
+            //     var newImageUrl = $clickedImage.attr('href');
+            //    $('.product-main-image .woocommerce-product-gallery__image img').attr({
+			//		src: newImageUrl,
+			//		srcset: newImageUrl
+			//	});
+            // });
+			$('.product-image-wrapper .product-main-image a').css('pointer-events','all').attr('target','_blank');
+			$('.product-gallery-thumbnails .slick-slide').each(function() {
+				$(this).click(function() {
+					$('.product-main-image .woocommerce-product-gallery__image img').attr('data-o_src','');
+					$('.product-main-image .woocommerce-product-gallery__image img').attr('data-o_srcset','');
+					$('.product-main-image .woocommerce-product-gallery__image img').attr('data-o_data-src','');
+					$('.product-main-image .woocommerce-product-gallery__image img').attr('data-o_data-large_image','');
+					var $clickedImage = $(this).find('a');
+					var newImageUrl = $clickedImage.attr('href');
+					$('.product-main-image .woocommerce-product-gallery__image').attr('data-thumb', newImageUrl);
+					$('.product-main-image .woocommerce-product-gallery__image a').attr({
+						'href': newImageUrl,
+						'data-thumb': newImageUrl,
+					});
+					$('.product-main-image .woocommerce-product-gallery__image img').attr({
+						'src': newImageUrl,
+						'data-src': newImageUrl,
+						'data-large_image': newImageUrl,
+						'srcset': newImageUrl,
+					});
+				});
+			});
+        });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'custom_init_slick_slider');
+
+// Retrieve product gallery images and insert into Slick Slider, excluding the main product image
+function custom_display_product_gallery() {
+    global $product;
+
+    // Get product gallery attachment IDs
+    $attachment_ids = $product->get_gallery_image_ids();
+
+    if ($attachment_ids) {
+        echo '<div class="product-gallery-thumbnails">';
+        // Loop through attachment IDs and output image HTML
+        foreach ($attachment_ids as $attachment_id) {
+            $image_url = wp_get_attachment_image_url($attachment_id, 'full');
+            echo '<div><img src="' . esc_url($image_url) . '" /></div>';
+        }
+        echo '</div>';
+    }
 }

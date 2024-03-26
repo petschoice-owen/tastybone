@@ -43,22 +43,19 @@ global $product;
 					<?php echo get_the_title(); ?>
 					<span class="feefo-stars" style="display: block; margin-bottom: 10px;"><?php FEEFO_wc_wp_product_stars_snippet_custom(); ?></span>
 				</h1>
+				<?php if ( have_rows('product_icon_banner') ): ?>
+					<div class="heading-product-sizes heading-icon-banner">
+						<ul class="list-unstyled heading-thumbnail-size">
+							<?php while ( have_rows('product_icon_banner') ) : the_row();
+								$icon_image = get_sub_field('icon_image'); ?>
+								<li class="size-detail icon-banner" style="display: block;"><img src="<?php echo $icon_image['url']; ?>" alt="<?php echo $icon_image['alt']; ?>" /></li>
+							<?php endwhile; ?>
+						</ul>
+					</div>
+				<?php else :
+				endif; ?>
 				<?php $thumbnail_sizes = get_field('product_thumbnail_sizes'); if( $thumbnail_sizes ): ?>
 					<div class="heading-product-sizes <?php foreach( $thumbnail_sizes as $size ): echo $size . ' '; endforeach; ?>">
-						<?php
-							// if( have_rows('product_size', 'option') ): ?>
-								<!-- <ul class="list-unstyled heading-thumbnail-size"> -->
-									<?php // while( have_rows('product_size', 'option') ) : the_row();
-										// $size_name = get_sub_field('size_name'); 
-										// $size_name_simple = str_replace(" dog","",$size_name);
-										// $size_text = strtolower($size_name_simple);
-										// $size_thumbnail = get_sub_field('size_thumbnail'); ?>
-										<!-- <li class="size-detail d-none" data-size="<?php echo $size_text; ?>"><img src="<?php echo $size_thumbnail; ?>" alt="size" /></li> -->
-									<?php // endwhile; ?>
-								</ul>
-							<?php // else :
-							// endif;
-						?>
 						<ul class="list-unstyled heading-thumbnail-size">
 							<li class="size-detail toy"><img src="/wp-content/uploads/2022/09/size-toy.png')" alt="size" /></li>
 							<li class="size-detail small"><img src="/wp-content/uploads/2022/09/size-small.png')" alt="size" /></li>
@@ -80,7 +77,6 @@ global $product;
 				do_action( 'woocommerce_before_single_product_summary' );
 				?>
 			</div>
-
 			<div class="description-wrapper">
 				<div class="product-tabs">
 					<nav>
@@ -93,12 +89,12 @@ global $product;
 						<div class="tab-pane fade show active" id="product_info_tab" role="tabpanel" aria-labelledby="nav_product_info">
 							<?php if ( get_the_content() ) { ?>
 								<div class="tab-group">
-									<h2 class="tab-group-heading">Product Description</h2>
+									<h2 class="tab-group-heading">Product Features</h2>
 									<?php echo the_content(); ?>
 								</div>
 							<?php } ?>
 							<?php if( get_field('product_ingredients') ): ?>
-								<div class="tab-group">
+								<div class="tab-group <?php the_field('section_visibility_ingredients'); ?>">
 									<h2 class="tab-group-heading">Ingredients</h2>
 									<p><?php the_field('product_ingredients'); ?></p>
 								</div>
@@ -106,14 +102,14 @@ global $product;
 						</div>
 						<div class="tab-pane fade" id="safety_advice_tab" role="tabpanel" aria-labelledby="nav_safety_advice">
 							<?php if( get_field('product_cleaning_instructions') ): ?>
-								<div class="tab-group">
+								<div class="tab-group <?php the_field('section_visibility_instructions'); ?>">
 									<h2 class="tab-group-heading">Cleaning Instructions</h2>
 									<p><?php the_field('product_cleaning_instructions'); ?></p>
 								</div>
 							<?php endif; ?>
 							<?php if( get_field('product_safety_details') ): ?>
-								<div class="tab-group">
-									<h2 class="tab-group-heading">Safety Details</h2>
+								<div class="tab-group <?php the_field('section_visibility_safety'); ?>">
+									<h2 class="tab-group-heading">Safety Advice</h2>
 									<p><?php the_field('product_safety_details'); ?></p>
 								</div>
 							<?php endif; ?>
@@ -138,11 +134,9 @@ global $product;
 					?>
 				</div>
 			</div>
-
 			<div class="reviews-wrapper">
 				<?php FEEFO_wc_wp_product_widget_snippet_custom(); ?>
 			</div>
-
 			<?php
 				$available_flavours = get_field('product_available_flavours');
 				if ( $available_flavours ): ?>
@@ -163,7 +157,7 @@ global $product;
 					<div class="flavours">
 						<?php
 							if( have_rows('flavour_list', 'option') ):
-								while ( have_rows('flavour_list', 'option') ) : the_row();                                                    
+								while ( have_rows('flavour_list', 'option') ) : the_row(); 
 									if( get_row_layout() == 'flavour_color' ):
 										$flavour_name = get_sub_field('flavour_name','option');
 										$name = strtolower($flavour_name);
@@ -213,10 +207,8 @@ global $product;
 					</div>
 				</div>
 			<?php endif; ?>
-
 		</div>
 	</div>
-
 </div>
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>

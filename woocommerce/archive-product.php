@@ -70,7 +70,7 @@ get_header();
             <section class="hero-inner hero-inner-category">
                 <div class="container">
                     <div class="wrapper">
-                        <h1 class="page-title page-title-category opacity-0"></h1>
+                        <h1 class="page-title page-title-category opacity-0" style="opacity: 0;"></h1>
                     </div>
                 </div>
             </section>
@@ -79,7 +79,7 @@ get_header();
             <section class="hero-inner" style="background-image: url(<?php the_field('shop_hero_background_image', 'option'); ?>);">
                 <div class="container">
                     <div class="wrapper">
-                        <h1 class="page-title"><?php the_field('shop_hero_title', 'option'); ?></h1>
+                        <h1 class="page-title" style="opacity: 0;"><?php the_field('shop_hero_title', 'option'); ?></h1>
                     </div>
                 </div>
             </section>

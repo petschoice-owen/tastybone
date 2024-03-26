@@ -11,7 +11,8 @@
                             <li><a href="<?php the_field('theme_facebook', 'option'); ?>" title="Facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
                         <?php endif; ?>
                         <?php if( get_field('theme_twitter', 'option') ): ?>
-                            <li><a href="<?php the_field('theme_twitter', 'option'); ?>" title="Twitter" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                            <!-- <li><a href="<?php the_field('theme_twitter', 'option'); ?>" title="Twitter" target="_blank"><i class="fa-brands fa-twitter"></i></a></li> -->
+                            <li><a href="<?php the_field('theme_twitter', 'option'); ?>" title="Twitter" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-x.png" alt="" /></a></li>
                         <?php endif; ?>
                         <?php if( get_field('theme_instagram', 'option') ): ?>
                             <li><a href="<?php the_field('theme_instagram', 'option'); ?>" title="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>

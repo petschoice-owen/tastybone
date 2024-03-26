@@ -62,11 +62,10 @@
                             $hero_slider_heading_white = get_sub_field('hero_slider_heading_white');
                             $hero_slider_heading_colored = get_sub_field('hero_slider_heading_colored');
                             $hero_slider_subheading = get_sub_field('hero_slider_subheading');
-                            $hero_slider_bg_color = get_sub_field('hero_slider_bg_color');
                             $hero_slider_banner_image = get_sub_field('hero_slider_banner_image');
                             $hero_slider_button_text = get_sub_field('hero_slider_button_text');
                             $hero_slider_button_link = get_sub_field('hero_slider_button_link'); ?>
-                            <div class="slide-item" data-color="<?php echo $hero_slider_bg_color; ?>">
+                            <div class="slide-item">
                                 <img src="<?php echo $hero_slider_banner_image; ?>" class="image-dog image-dog-adjusted" alt="" />
                                 <div class="wrapper">
                                     <h1 class="heading"><?php echo $hero_slider_heading_white; ?> <span><?php echo $hero_slider_heading_colored; ?></span></h1>

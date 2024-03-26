@@ -516,6 +516,12 @@
             }
         }
     }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        .navbar-toggler {
+            top: 2px;
+        }
+    }
   
     @media (max-width: 767px) {
         .logo-link {

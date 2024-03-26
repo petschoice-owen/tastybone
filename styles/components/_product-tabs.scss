@@ -38,10 +38,26 @@
 
     .tab-group {
         padding-top: 25px;
+        font-size: 18px;
+        line-height: 24px;
 
-        p {
+        &.hide {
+            display: none;
+        }
+
+        div, p {
             font-size: 18px;
-            line-height: 1.3;
+            line-height: 24px;
+        }
+
+        li {
+            font-size: 18px;
+            line-height: 28px; 
+        }
+
+        * + ul,
+        * + ol {
+            padding-top: 10px;
         }
     }
 
@@ -58,8 +74,19 @@
             font-size: 23px;
         }
 
-        .tab-group p {
+        .tab-group {
             font-size: 16px;
+            line-height: 22px;
+
+            div, p {
+                font-size: 16px;
+                line-height: 22px;
+            }
+
+            li {
+                font-size: 16px;
+                line-height: 24px;
+            }
         }
     }
 

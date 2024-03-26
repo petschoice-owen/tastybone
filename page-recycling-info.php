@@ -35,7 +35,7 @@
                 <?php endif; ?>
             </div>
         </section>
-        <section class="recycling-plastic">
+        <!-- <section class="recycling-plastic">
             <div class="container">
                 <?php if( get_field('section_heading_plastic') ): ?>
                     <div class="content-heading">
@@ -64,7 +64,7 @@
                 <?php else : ?>
                 <?php endif; ?>
             </div>
-        </section>
+        </section> -->
         <section class="recycling-cardboard">
             <div class="container">
                 <?php if( get_field('section_heading_cardboard') ): ?>
