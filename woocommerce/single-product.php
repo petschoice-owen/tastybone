@@ -146,7 +146,6 @@ get_header();
 		 */
 		// do_action( 'woocommerce_sidebar' );
 	?>
-
 <?php
 get_footer( 'shop' );
 

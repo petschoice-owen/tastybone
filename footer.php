@@ -308,27 +308,28 @@
             });
         </script>
     <?php } ?>
-<script>
-	 document.addEventListener('click',function(event){
-		var text = event.target.innerText.trim()
-		if(text.indexOf('ADD TO CART')!=-1){
-				 gtag('event', 'add_to_cart_click');
-		}
-	  }, {capture: true});
+
+    <script>
+        document.addEventListener('click',function(event){
+            var text = event.target.innerText.trim()
+            if(text.indexOf('ADD TO CART')!=-1){
+                gtag('event', 'add_to_cart_click');
+            }
+        }, {capture: true});
 	</script>
 
 	<script>
-	  window.addEventListener('load',function(){
-		var x = 0;
-		var timer = setInterval(function(){
-		  if(document.querySelectorAll('[class*="product-template-default single single-product"]').length>0 ){
-			if(x==0){
-				 gtag('event', 'view_item_custom');
-			  x=1;
-			}
-			clearInterval(timer);
-		  }
-		})
+	    window.addEventListener('load',function(){
+            var x = 0;
+            var timer = setInterval(function(){
+                if(document.querySelectorAll('[class*="product-template-default single single-product"]').length>0 ){
+                    if(x==0){
+                        gtag('event', 'view_item_custom');
+                        x=1;
+                    }
+                    clearInterval(timer);
+                }
+		    })
 		})
 	</script>
 </body>
