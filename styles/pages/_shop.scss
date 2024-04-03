@@ -36,6 +36,10 @@
         &-header {
             display: flex;
             justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            text-transform: uppercase;
+            color: #000;
         }
 
         &-button {
@@ -74,7 +78,6 @@
 
             b,
             strong {
-                padding-left: 12px;
                 color: $brand-color;
             }
         }
@@ -93,12 +96,31 @@
             top: calc(100% + 15px);
             left: 0;
             right: 0;
-            z-index: 11;
+            z-index: 51;
             width: 1020px;
             margin: auto;
             background-color: #fff;
             box-shadow: 0 3px 10px 5px  rgba(0,0,0,.1);
             border-radius: 5px;
+        }
+
+        .accordion-collapse-size {
+            position: absolute;
+            top: calc(100% + 15px);
+            left: 0;
+            right: 0;
+            z-index: 51;
+            width: 1020px;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0 3px 10px 5px  rgba(0,0,0,.1);
+            border-radius: 5px;
+        }
+
+        .accordion-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .button-holder {
@@ -329,7 +351,8 @@
         }
 
         .product-filter {
-            .accordion-collapse-flavour {
+            .accordion-collapse-flavour,
+            .accordion-collapse-size {
                 width: 900px;
             }
 
@@ -357,6 +380,10 @@
             height: 16vh;
         }
 
+        .accordion-header {
+            font-size: 20px;
+        }
+
         .accordion-button {
             padding-right: 26px;
             font-size: 20px;
@@ -369,7 +396,8 @@
         }
 
         .product-filter {
-            .accordion-collapse-flavour {
+            .accordion-collapse-flavour,
+            .accordion-collapse-size {
                 width: 690px;
             }
 
@@ -459,8 +487,15 @@
             min-height: 160px;
         }
 
+        .accordion-button::after {
+            border-left-width: 6px;
+            border-right-width: 6px;
+            border-top-width: 7px;
+        }
+
         .product-filter {
-            .accordion-collapse-flavour {
+            .accordion-collapse-flavour,
+            .accordion-collapse-size {
                 width: 510px;
             }
 
@@ -532,13 +567,30 @@
         }
     }
 
+    @media (min-width: 576px) {
+        .show-mobile {
+            display: none;
+        }
+    }
+
     @media (max-width: 575px) {
+        .hide-mobile {
+            display: none;
+        }
+
         .hero-inner .wrapper {
             min-height: 160px;
         }
 
+        .accordion-header,
         .accordion-button {
             font-size: 16px;
+        }
+
+        .accordion-header:not(:first-child) {
+            button {
+                margin-left: 10px;
+            }
         }
 
         .product-filter {
@@ -546,13 +598,15 @@
                 padding: 0;
                 margin: 0;
             }
-            .accordion-collapse-flavour {
+            .accordion-collapse-flavour,
+            .accordion-collapse-size {
                 width: calc(100% - 30px);
             }
 
             .accordion {
                 &-button {
-                    padding: 6px 25px 6px 0;
+                    // padding: 6px 25px 6px 10px;
+                    padding: 6px 20px 6px 0;
                 }
                 
                 .button-holder {

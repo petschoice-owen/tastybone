@@ -1,0 +1,128 @@
+//main: ../main.scss
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the sizes component.
+// -----------------------------------------------------------------------------
+
+// .flavours {
+.sizes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .size-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // width: 20%;
+        width: 150px;
+        padding: 7px;
+    }
+
+    i {
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        margin: auto;
+        font-size: 18px;
+        color: #fff;
+        background-color: #000;
+        border-radius: 50%;
+        transition: all .25s ease-in-out;
+        opacity: 0;
+    }
+
+    .bordered {
+        &::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            width: calc(100% + 6px);
+            height: calc(100% + 6px);
+            border: 1px solid #000;
+            border-radius: 50%;
+            pointer-events: none;
+            transition: all .25s ease-in-out;
+        }
+    }
+
+    .size-link {
+        position: relative;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: 120px;
+        height: 120px;
+        padding: 10px;
+        color: #fff;
+        text-align: center;
+        text-transform: uppercase;
+        background-color: #fff;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        transition: all .25s ease-in-out;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+
+    .size-selected {
+        border-color: #ac8f63;
+
+        &::before {
+            border-color: #ac8f63;
+        }
+
+        i {
+            opacity: 1;
+            background-color: #ac8f63;
+        }
+
+        .size-name {
+            color: #ac8f63;
+        }
+    }
+
+    .size-name {
+        margin-top: -12px;
+        font-family: $font-helveticaneue-black;
+        font-size: 12px;
+        line-height: 1.2;
+        color: #000;
+        transition: all .25s ease-in-out;
+    }
+
+    @media (min-width: 992px) {
+        .size-link:hover {
+            top: -3px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .size-item {
+            width: 120px;
+        }
+
+        .size-link {
+            width: 100px;
+            height: 100px;
+        }
+
+        .size-name {
+            margin-top: -10px;
+            font-size: 11px;
+        }
+    }
+}

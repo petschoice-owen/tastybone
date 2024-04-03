@@ -686,4 +686,21 @@
             }
         */
     }
+
+    @media (max-width: 575px) {
+        .wrapper-free-delivery {
+            .free-delivery {
+                padding: 8px 8px 6px;
+            }
+            
+            img {
+                max-width: 14px;
+                margin-right: 5px;
+            }
+
+            p {
+                font-size: 8px;
+            }
+        }
+    }
 }

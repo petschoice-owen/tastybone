@@ -142,13 +142,20 @@ get_header();
                 <div class="accordion" id="accordionFlavour">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFlavour">
+                            <span class="hide-mobile">Choose</span>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFlavour" aria-expanded="false" aria-controls="collapseFlavour">
-                                Choose <b>Flavours</b></span>
+                                <b>Flavours</b>
                             </button>
-                            <div class="button-holder">
-                                <a href="#" class="btn-brand btn-apply" id="product_filter_trigger">Apply</a>
-                            </div>
                         </h2>
+                        <h2 class="accordion-header" id="headingSize">
+                            <span class="d-none show-mobile">Choose</span>
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSize" aria-expanded="false" aria-controls="collapseSize">
+                                <b>Size</b>
+                            </button>
+                        </h2>
+                        <div class="button-holder">
+                            <a href="#" class="btn-brand btn-apply" id="product_filter_trigger">Apply</a>
+                        </div>
                         <div id="collapseFlavour" class="accordion-collapse accordion-collapse-flavour collapse" aria-labelledby="headingFlavour" data-bs-parent="#accordionFlavour">
                             <div class="accordion-body">
                                 <div class="flavours">
@@ -200,6 +207,27 @@ get_header();
                                         else :
                                         endif;
                                     ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="collapseSize" class="accordion-collapse accordion-collapse-size collapse" aria-labelledby="headingSize" data-bs-parent="#accordionFlavour">
+                            <div class="accordion-body">
+                                <div class="sizes">
+                                    <?php if( have_rows('product_size' , 'option') ):
+                                        while( have_rows('product_size' , 'option') ) : the_row();
+                                            $size_name = get_sub_field('size_name' , 'option');
+                                            $size_name_formatted = strtolower($size_name);
+                                            $size_image = get_sub_field('size_thumbnail' , 'option'); ?>
+                                            <div class="size-item">
+                                                <a href="#" class="size-link bordered" data-size="<?php echo $size_name_formatted; ?>">
+                                                    <i class="fa-solid fa-check"></i>
+                                                    <img src="<?php echo $size_image; ?>" alt="icon-<?php echo $size_name_formatted; ?>" />
+                                                    <span class="size-name"><?php echo $size_name; ?></span>
+                                                </a>
+                                            </div>
+                                        <?php endwhile;
+                                    else :
+                                    endif; ?>
                                 </div>
                             </div>
                         </div>

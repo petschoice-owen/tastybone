@@ -1,8 +1,8 @@
-<?php	
+<?php
 /**
- * The Template for displaying products in a product category. Simply includes the archive template
+ * The Template for displaying product archives, including the main shop page which is a post type archive
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/taxonomy-product-cat.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/archive-product.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -10,14 +10,14 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see         https://docs.woocommerce.com/document/template-structure/
- * @package     WooCommerce\Templates
- * @version     4.7.0
+ * @see https://docs.woocommerce.com/document/template-structure/
+ * @package WooCommerce\Templates
+ * @version 3.4.0
  */
 
 defined( 'ABSPATH' ) || exit;
 
-// get_header( 'shop' );
+// get_header( 'shop' ); 
 get_header(); 
 ?>
 
@@ -70,7 +70,7 @@ get_header();
             <section class="hero-inner hero-inner-category">
                 <div class="container">
                     <div class="wrapper">
-                        <h1 class="page-title page-title-category opacity-0"></h1>
+                        <h1 class="page-title page-title-category opacity-0" style="opacity: 0;"></h1>
                     </div>
                 </div>
             </section>
@@ -79,7 +79,7 @@ get_header();
             <section class="hero-inner" style="background-image: url(<?php the_field('shop_hero_background_image', 'option'); ?>);">
                 <div class="container">
                     <div class="wrapper">
-                        <h1 class="page-title"><?php the_field('shop_hero_title', 'option'); ?></h1>
+                        <h1 class="page-title" style="opacity: 0;"><?php the_field('shop_hero_title', 'option'); ?></h1>
                     </div>
                 </div>
             </section>
@@ -142,20 +142,13 @@ get_header();
                 <div class="accordion" id="accordionFlavour">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingFlavour">
-                            <span class="hide-mobile">Choose</span>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFlavour" aria-expanded="false" aria-controls="collapseFlavour">
-                                <b>Flavours</b>
+                                Choose <b>Flavours</b></span>
                             </button>
+                            <div class="button-holder">
+                                <a href="#" class="btn-brand btn-apply" id="product_filter_trigger">Apply</a>
+                            </div>
                         </h2>
-                        <h2 class="accordion-header" id="headingSize">
-                            <span class="d-none show-mobile">Choose</span>
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSize" aria-expanded="false" aria-controls="collapseSize">
-                                <b>Size</b>
-                            </button>
-                        </h2>
-                        <div class="button-holder">
-                            <a href="#" class="btn-brand btn-apply" id="product_filter_trigger">Apply</a>
-                        </div>
                         <div id="collapseFlavour" class="accordion-collapse accordion-collapse-flavour collapse" aria-labelledby="headingFlavour" data-bs-parent="#accordionFlavour">
                             <div class="accordion-body">
                                 <div class="flavours">
@@ -207,27 +200,6 @@ get_header();
                                         else :
                                         endif;
                                     ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="collapseSize" class="accordion-collapse accordion-collapse-size collapse" aria-labelledby="headingSize" data-bs-parent="#accordionFlavour">
-                            <div class="accordion-body">
-                                <div class="sizes">
-                                    <?php if( have_rows('product_size' , 'option') ):
-                                        while( have_rows('product_size' , 'option') ) : the_row();
-                                            $size_name = get_sub_field('size_name' , 'option');
-                                            $size_name_formatted = strtolower($size_name);
-                                            $size_image = get_sub_field('size_thumbnail' , 'option'); ?>
-                                            <div class="size-item">
-                                                <a href="#" class="size-link bordered" data-size="<?php echo $size_name_formatted; ?>">
-                                                    <i class="fa-solid fa-check"></i>
-                                                    <img src="<?php echo $size_image; ?>" alt="icon-<?php echo $size_name_formatted; ?>" />
-                                                    <span class="size-name"><?php echo $size_name; ?></span>
-                                                </a>
-                                            </div>
-                                        <?php endwhile;
-                                    else :
-                                    endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -302,4 +274,4 @@ get_header();
  */
 // do_action( 'woocommerce_sidebar' );
 
-get_footer(); ?>
+get_footer('shop'); ?>
