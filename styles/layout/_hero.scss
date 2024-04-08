@@ -374,6 +374,13 @@
         max-width: 580px;
         padding-top: 80px;
     }
+    
+    .heading-text {
+        img {
+            max-width: 100%;
+            padding-bottom: 50px;
+        }
+    }
 
     .heading {
         font-family: $font-helveticaneue-black;
@@ -487,6 +494,13 @@
 
         .wrapper {
             padding-top: 20px;
+        }
+
+        .heading-text {
+            img {
+                max-width: 300px;
+                padding-bottom: 20px;
+            }
         }
 
         .heading {

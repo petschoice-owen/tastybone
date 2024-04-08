@@ -62,16 +62,27 @@
                             $hero_slider_heading_white = get_sub_field('hero_slider_heading_white');
                             $hero_slider_heading_colored = get_sub_field('hero_slider_heading_colored');
                             $hero_slider_subheading = get_sub_field('hero_slider_subheading');
+                            $hero_heading_image = get_sub_field('hero_heading_image');
                             $hero_slider_banner_image = get_sub_field('hero_slider_banner_image');
                             $hero_slider_button_text = get_sub_field('hero_slider_button_text');
                             $hero_slider_button_link = get_sub_field('hero_slider_button_link'); ?>
                             <div class="slide-item">
                                 <img src="<?php echo $hero_slider_banner_image; ?>" class="image-dog image-dog-adjusted" alt="" />
                                 <div class="wrapper">
-                                    <h1 class="heading"><?php echo $hero_slider_heading_white; ?> <span><?php echo $hero_slider_heading_colored; ?></span></h1>
-                                    <div class="subheading">
-                                        <?php echo $hero_slider_subheading; ?>
-                                    </div>
+                                    <?php 
+                                        if( get_sub_field('hero_heading_type') == 'image' ) { ?>
+                                            <div class="heading-text">
+                                                <img src="<?php echo $hero_heading_image; ?>" alt="" />
+                                            </div>
+                                        <?php } 
+                                        else { ?>
+                                            <h1 class="heading"><?php echo $hero_slider_heading_white; ?> <span><?php echo $hero_slider_heading_colored; ?></span></h1>
+                                            <div class="subheading">
+                                                <?php echo $hero_slider_subheading; ?>
+                                            </div>
+                                        <?php }
+                                    ?>
+                                    
                                     <div class="button-holder">
                                         <a href="<?php echo $hero_slider_button_link; ?>" class="btn-white btn-arrow-right"><?php echo $hero_slider_button_text; ?></a>
                                     </div>
