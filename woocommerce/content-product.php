@@ -28,7 +28,15 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<li <?php wc_product_class( 'product-item', $product ); ?> data-flavour="<?php echo $flavour; ?>" data-flavours="<?php foreach($data_flavours as $dataflavour){echo $dataflavour->slug . ' ';}; ?>">
+<?php
+	$custom_class = get_field('your_acf_field_name');
+	$custom_class = !empty($custom_class) ? $custom_class : '';
+?>
+	<?php if ( get_field( 'shop_product_order' ) ): ?>
+		<li <?php wc_product_class( 'product-item', $product ); ?> data-flavour="<?php echo $flavour; ?>" data-flavours="<?php foreach($data_flavours as $dataflavour){echo $dataflavour->slug . ' ';}; ?>" style="order: <?php echo esc_html( get_field('shop_product_order') ); ?>;">
+	<?php else: ?>
+		<li <?php wc_product_class( 'product-item', $product ); ?> data-flavour="<?php echo $flavour; ?>" data-flavours="<?php foreach($data_flavours as $dataflavour){echo $dataflavour->slug . ' ';}; ?>">
+	<?php endif; ?>
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.

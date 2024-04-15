@@ -70,7 +70,7 @@
             // add the restricted shipping zone message
             $(document).ready(function() {
                 if ( $('.cart_totals').length ) {
-                    $('<div class="restricted-message-wrapper"><p class="restricted-message">Apologies, the provided address is currently not within our delivery range. We are unable to deliver outside of the UK. This includes Scottish Highlands, Channel Islands, and Northern Ireland.</p></div>').insertAfter('.cart_totals');
+                    $('<div class="restricted-message-wrapper"><p class="restricted-message">Apologies, the provided address is currently not within our delivery range. We only accept orders within the UK mainland - for orders outside this region, please contact the sales office.</p></div>').insertAfter('.cart_totals');
                 }
             });
 
@@ -213,7 +213,7 @@
             // add the restricted shipping zone message
             $(document).ready(function() {
                 if ( $('.woocommerce-checkout-review-order').length ) {
-                    $('<div class="restricted-message-wrapper"><p class="restricted-message">Apologies, the provided address is currently not within our delivery range. We are unable to deliver outside of the UK. This includes Scottish Highlands, Channel Islands, and Northern Ireland.</p></div>').insertAfter('.woocommerce-checkout-review-order');
+                    $('<div class="restricted-message-wrapper"><p class="restricted-message">Apologies, the provided address is currently not within our delivery range. We only accept orders within the UK mainland - for orders outside this region, please contact the sales office.</p></div>').insertAfter('.woocommerce-checkout-review-order');
                 }
             });
 
@@ -308,5 +308,29 @@
             });
         </script>
     <?php } ?>
+
+    <script>
+        document.addEventListener('click',function(event){
+            var text = event.target.innerText.trim()
+            if(text.indexOf('ADD TO CART')!=-1){
+                gtag('event', 'add_to_cart_click');
+            }
+        }, {capture: true});
+	</script>
+
+	<script>
+	    window.addEventListener('load',function(){
+            var x = 0;
+            var timer = setInterval(function(){
+                if(document.querySelectorAll('[class*="product-template-default single single-product"]').length>0 ){
+                    if(x==0){
+                        gtag('event', 'view_item_custom');
+                        x=1;
+                    }
+                    clearInterval(timer);
+                }
+		    })
+		})
+	</script>
 </body>
 </html>
