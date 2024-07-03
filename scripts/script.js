@@ -933,6 +933,16 @@ var productCategoryOffers = () => {
     }
 }
 
+// Size Guide - Size Column
+var sizeGuideColumns = () => {
+    if ( $('.chew-size .bone-sizes .size-item').length ) {
+        var columns = $('.chew-size .bone-sizes .size-item').length;
+        var columnClass = 'column-' + columns;
+
+        $('.chew-size .bone-sizes').addClass(columnClass);
+    }
+}
+
   
 // initialize the functions
 windowScrolled();
@@ -948,6 +958,7 @@ $(document).ready(function() {
     productQuantity();
     numberOfItems();
     productCategoryOffers();
+    sizeGuideColumns();
 });
   
 // $(window).resize(function() { });
