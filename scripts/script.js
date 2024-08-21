@@ -943,6 +943,12 @@ var sizeGuideColumns = () => {
     }
 }
 
+var headerBones = () => {
+    if ($('.navbar-nav .nav-item-bones').length) {
+        $('<div class="bones-wrapper"><div class="bones bones-top-right"><img src="/wp-content/uploads/2024/08/bone-blue.png" alt="bone"></div><div class="bones bones-bottom-left"><img src="/wp-content/uploads/2024/08/bone-red.png" alt="bone"></div></div>').insertAfter('.nav-item-bones a');
+    }
+}
+
   
 // initialize the functions
 windowScrolled();
@@ -968,5 +974,6 @@ window.onload = function() {
     singleProduct();
     disableProduct();
     autoSelectFilteredSize();
+    headerBones();
 }
   

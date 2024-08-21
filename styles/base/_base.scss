@@ -255,3 +255,15 @@ input[type="text"] {
 .grecaptcha-badge {
 	display: none;
 }
+
+@keyframes shake1 {
+    100% {
+        transform: rotate(175deg);
+    }
+}
+
+@keyframes shake2 {
+    100% {
+        transform: rotate(-5deg);
+    }
+}
