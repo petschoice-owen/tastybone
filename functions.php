@@ -656,3 +656,54 @@ function custom_display_product_gallery() {
         echo '</div>';
     }
 }
+
+
+
+// Checkout Page - instance id checker
+// add_action('woocommerce_review_order_before_shipping', 'display_shipping_instance_ids');
+
+function display_shipping_instance_ids() {
+    // Get the chosen shipping methods
+    $chosen_methods = WC()->session->get('chosen_shipping_methods');
+
+    // Get all available shipping methods
+    $available_methods = WC()->shipping->get_packages();
+
+    foreach ($available_methods as $package_key => $package) {
+        foreach ($package['rates'] as $rate_id => $rate) {
+            // Check if this rate is among the chosen methods
+            if (in_array($rate_id, $chosen_methods)) {
+                // Display the instance ID
+                echo '<p class="instance_id" style="display: none;">' . esc_html($rate->method_title) . ' - Instance ID: ' . esc_html($rate->instance_id) . '</p>';
+            }
+        }
+    }
+}
+
+
+
+// Update instance_id in shipping method JSON based on selected shipping method 
+add_filter('woocommerce_package_rates', 'set_shipping_instance_id', 10, 2);
+
+function set_shipping_instance_id($rates, $package) {
+    // Get the chosen shipping methods
+    $chosen_methods = WC()->session->get('chosen_shipping_methods');
+
+    // Loop through each shipping rate
+    foreach ($rates as $rate_id => $rate) {
+        // Check if this rate is among the chosen methods
+        if (in_array($rate_id, $chosen_methods)) {
+            // Force instance_id to 1 for Flat Rate or 2 for Free Shipping
+            if ($rate->method_id === 'flat_rate') {
+                $rates[$rate_id]->instance_id = 1; // Set instance_id to 1 for Flat Rate
+            } elseif ($rate->method_id === 'free_shipping') {
+                $rates[$rate_id]->instance_id = 2; // Set instance_id to 2 for Free Shipping
+            }
+        } else {
+            // Set instance_id to empty if not the chosen method
+            $rates[$rate_id]->instance_id = '';
+        }
+    }
+
+    return $rates;
+}
