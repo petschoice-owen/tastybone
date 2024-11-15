@@ -308,5 +308,6 @@
             });
         </script>
     <?php } ?>
+    <div class="popup-atc-message"><div class="popup-atc-message__content"><span class="js-product-name"></span> has been added to your cart!</div></div>
 </body>
 </html>

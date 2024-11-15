@@ -74,6 +74,10 @@ function theme_scripts() {
 	wp_enqueue_script('bootstrap', get_stylesheet_directory_uri() . '/scripts/vendors/bootstrap.min.js');
 	wp_enqueue_script('slick', get_stylesheet_directory_uri() . '/scripts/vendors/slick.min.js');
 	wp_enqueue_script('custom-script', get_stylesheet_directory_uri() . '/scripts/script.js');
+	wp_localize_script( 'custom-script', 'wc_atc_params', array(
+		'wc_ajax_url' => admin_url( 'admin-ajax.php' ),
+		'wc_add_to_cart_nonce' => wp_create_nonce( 'add_to_cart_nonce' ),
+	));
 }
 add_action( 'wp_enqueue_scripts', 'theme_scripts' ); // Register this fxn and allow Wordpress to call it automatcally in the header
 
@@ -368,7 +372,7 @@ function woo_display_variation_dropdown_on_shop_page() {
 	global $product;
 	if( $product->is_type( 'variable' )) {
 		$attribute_keys = array_keys( $product->get_attributes() ); ?>
-		<form class="variations_form cart" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->id ); ?>" data-product_variations="<?php echo htmlspecialchars( json_encode( $product->get_available_variations() ) ) ?>">
+		<form class="variations_form cart js-shop-atc-variable" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->id ); ?>" data-product_variations="<?php echo htmlspecialchars( json_encode( $product->get_available_variations() ) ) ?>">
 			<?php do_action( 'woocommerce_before_variations_form' ); ?>
 			<?php if ( empty( $product->get_available_variations() ) && false !== $product->get_available_variations() ) : ?>
 				<p class="stock out-of-stock"><?php _e( 'This product is currently out of stock and unavailable.', 'woocommerce' ); ?></p>
@@ -417,9 +421,10 @@ function woo_display_variation_dropdown_on_shop_page() {
 		</form>
 	<?php } 
   	else {
-	   $html = '<form action="' . esc_url( $product->add_to_cart_url() ) . '" class="cart" method="post" enctype="multipart/form-data"><div class="variations varation-items quantity"><div class="variation-item options"><div class="value option-selection variation-quantity">';
+	   $html = '<form action="' . esc_url( $product->add_to_cart_url() ) . '" class="cart js-shop-atc" method="post" enctype="multipart/form-data"><div class="variations varation-items quantity"><div class="variation-item options"><div class="value option-selection variation-quantity">';
 	   $html .= '<div class="product-quantity"><input type="hidden" value="1" class="prod_id"><div class="input-group" id="qty_selector"><a class="qty-btn decrement-btn"></a><input type="text" class="qty-input" value="1"/><a class="qty-btn increment-btn"></a></div></div>';
 	   $html .= '<div class="d-none woocommerce-quantity">' . woocommerce_quantity_input( array(), $product, false ) . '</div>';
+	   $html .= '<input type="hidden" name="product_id" value="'. absint( $product->id ) .'">';
 	   $html .= '<button type="submit" class="button alt">' . esc_html( $product->add_to_cart_text() ) . '</button>';
 	   $html .= '</div></div></div></form>';
 	   return $html;
@@ -428,6 +433,39 @@ function woo_display_variation_dropdown_on_shop_page() {
 
 wp_enqueue_script('wc-add-to-cart-variation');
 
+function tb_ajax_add_to_cart() {
+    // Check for nonce security
+    if ( !isset( $_POST['nonce'] ) || !wp_verify_nonce( $_POST['nonce'], 'add_to_cart_nonce' ) )
+        die();
+
+    // Get the product ID and quantity from the POST request
+    $product_id = absint( $_POST['product_id'] );
+    $quantity = isset( $_POST['quantity'] ) ? absint( $_POST['quantity'] ) : 1;
+	$variation_id = intval($_POST['variation_id']);
+
+    // Add to cart
+    $added = WC()->cart->add_to_cart( $product_id, $quantity, $variation_id );
+
+    // Respond back with success or failure
+    if ( $added ) {
+        $fragments = apply_filters( 'woocommerce_add_to_cart_fragments', array() );
+		// Get cart hash
+		$cart_hash = WC()->cart->get_cart_hash();
+  
+		// Return success response with fragments and cart hash
+		wp_send_json_success(array(
+			'fragments' => $fragments,
+			'cart_hash' => $cart_hash,
+		));
+    } else {
+        wp_send_json_error( array( 'message' => 'Error adding to cart' ) );
+    }
+
+    die();
+}
+
+add_action( 'wp_ajax_tb_ajax_add_to_cart', 'tb_ajax_add_to_cart' );
+add_action( 'wp_ajax_nopriv_tb_ajax_add_to_cart', 'tb_ajax_add_to_cart' );
 
 /*-----------------------------------------------------------------------------------*/
 /* Shop Page, Category Pages, and Product Page - prevent product variation from displaying if not enabled

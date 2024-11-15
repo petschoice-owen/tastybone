@@ -18,6 +18,12 @@ Text Domain:    tastybone
 }
 
 
+/* Shop Page, Category Pages, Single Product Page */
+.product-items .woocommerce-variation-availability .in-stock,
+.single-product-wrapper .description-wrapper .stock.in-stock {
+	display: none;
+}
+
 /* Cart Page - product list */
 .woocommerce-cart-form__cart-item .product-thumbnail a,
 .woocommerce-cart-form__cart-item .product-name a {
@@ -64,6 +70,15 @@ Text Domain:    tastybone
 	margin-bottom: 0;
 }
 
+/* Checkout Page - Stripe - change form top arrow */
+.woocommerce-checkout.woocommerce-page .page-default .woocommerce #payment.woocommerce-checkout-payment .payment_box::before {
+	border-bottom-color: #fff;
+}
+/* Checkout Page - PayPal - form styles */
+.woocommerce-checkout.woocommerce-page .page-default .woocommerce #payment.woocommerce-checkout-payment .payment_box {
+	background-color: #fff;
+}
+
 /* Checkout Page - Free Shipping - remove if empty */
 .devnet_fsl-free-shipping:empty {
 	display: none;
@@ -85,4 +100,52 @@ Text Domain:    tastybone
     margin: 20px 0 0;
     color: #fff !important;
     background: #ac8f63;
+}
+
+/* Home Page */
+.hero-home-slider .button-holder.button-holder-center a {
+    margin: auto;
+}
+@media (max-width: 767px) {
+    .hero-home-slider .button-holder.button-holder-center {
+        width: 300px;
+    }
+}
+
+body.woocommerce-shop .page-shop .hero-inner {
+	background-size: contain;
+    background-color: #000000;
+}
+
+/* new */
+.products .product form.cart button[type="submit"].added:after {
+    display: none;
+}
+.products .product form.cart button[type="submit"].loading:after {
+    right: calc(50% - 10px);
+}
+.products .product form.cart .added_to_cart.wc-forward {
+    display: none;
+}
+.popup-atc-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .35);
+}
+.popup-atc-message__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 9999;
+    padding: 30px;
+    font-size: 16px;
+    transform: translate(-50%, -50%);
+    background-color: #f6f5f8;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px rgba(172, 143, 99, .7);
 }
