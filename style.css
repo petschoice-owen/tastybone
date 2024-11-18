@@ -118,13 +118,16 @@ body.woocommerce-shop .page-shop .hero-inner {
 }
 
 /* new */
-.products .product form.cart button[type="submit"].added:after {
+.products .product form.cart button[type="submit"].added:after,
+.single-product .product form.cart button[type="submit"].added:after {
     display: none;
 }
-.products .product form.cart button[type="submit"].loading:after {
+.products .product form.cart button[type="submit"].loading:after,
+.single-product .product form.cart button[type="submit"].loading:after {
     right: calc(50% - 10px);
 }
-.products .product form.cart .added_to_cart.wc-forward {
+.products .product form.cart .added_to_cart.wc-forward,
+.single-product .product form.cart .added_to_cart.wc-forward {
     display: none;
 }
 .popup-atc-message {

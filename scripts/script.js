@@ -950,7 +950,7 @@ var sizeGuideColumns = () => {
 // }
 
 var ajaxAddToCart = () => {
-    $('.products .js-shop-atc').on('submit', function(e) {
+    $('.products .js-shop-atc, .single-product .product-type-simple form.cart').on('submit', function(e) {
         e.preventDefault();
         
         var form = $(this);
@@ -958,6 +958,10 @@ var ajaxAddToCart = () => {
         var quantity = form.find('input[name="quantity"]').val();
         var product_id = form.find('input[name="product_id"]').val();
         var button = form.find('button[type="submit"]');
+        if($('.single-product .product-type-simple').length > 0) {
+            productName = form.closest('.product').find('.product_title').text();
+            product_id = form.find('button[name="add-to-cart"]').attr('value');
+        }
         button.addClass('loading');
         // Make AJAX request to add to cart
         $.ajax({
@@ -984,7 +988,7 @@ var ajaxAddToCart = () => {
         });
     });
 
-    $('.products .js-shop-atc-variable').on('submit', function(e) {
+    $('.products .js-shop-atc-variable, .single-product .variations_form').on('submit', function(e) {
         e.preventDefault();
         
         var form = $(this);
@@ -993,6 +997,9 @@ var ajaxAddToCart = () => {
         var product_id = form.find('input[name="product_id"]').val();
         var variation_id = form.find('input[name="variation_id"]').val();
         var button = form.find('button[type="submit"]');
+        if($('.single-product .variations_form').length > 0) {
+            productName = form.closest('.product').find('.product_title').text();
+        }
         button.addClass('loading');
         // Make AJAX request to add to cart
         $.ajax({
