@@ -96,30 +96,57 @@
 
                 // hide/show proceed to checkout extended
                 var shippingMessage = $('.woocommerce-shipping-destination').text().trim();
+                var shippingText = $('.woocommerce-shipping-totals [data-title="Shipping"]').contents().filter(function() {
+                    return this.nodeType === 3; // Filter to get only text nodes
+                }).text().trim().toLowerCase();
+
                 if ( shippingMessage.includes("Shipping options") ) {
+                    $('.wc-proceed-to-checkout').hide();
+                }
+                else if ( shippingText.includes("shipping options") ) {
                     $('.wc-proceed-to-checkout').hide();
                 }
                 else {
                     $('.wc-proceed-to-checkout').show();
                 }
 
-                // minimum and maximum order amount validation
-                var minMaxError = $('.woocommerce-error').text().trim();
-                if ( minMaxError.includes("minimum") ) {
-                    $('.wc-proceed-to-checkout').css('display','none');
-                }
-                else if ( minMaxError.includes("order values of over") ) {
-                    $('.wc-proceed-to-checkout').css('display','none');
-                }
-                else {
-                    $('.wc-proceed-to-checkout').css('display','block');
-                }
+                setTimeout(() => {
+                    // minimum and maximum order amount validation
+                    var minMaxError = $('.woocommerce-error').text().trim();
+                    if ( minMaxError.includes("minimum") ) {
+                        setTimeout(() => {
+                            $('.wc-proceed-to-checkout').css('display','none');
+                        }, 100);
+                    }
+                    else if ( minMaxError.includes("order values of over") ) {
+                        setTimeout(() => {
+                            $('.wc-proceed-to-checkout').css('display','none');
+                        }, 100);
+                    }
+                    else {
+                        setTimeout(() => {
+                            if ( shippingText.includes("shipping options") ) {
+                                $('.wc-proceed-to-checkout').css('display','none');
+                            }
+                            else {
+                                $('.wc-proceed-to-checkout').css('display','block');
+                            }
+                        }, 100);
+                    }
+                }, 200);
             });
 
             $(window).on('load', function() {
                 // hide/show proceed to checkout extended
                 var shippingMessage = $('.woocommerce-shipping-destination').text().trim();
+                var shippingText = $('.woocommerce-shipping-totals [data-title="Shipping"]').contents().filter(function() {
+                    return this.nodeType === 3; // Filter to get only text nodes
+                }).text().trim().toLowerCase();
+
                 if ( shippingMessage.includes("Shipping options") ) {
+                    $('.wc-proceed-to-checkout').hide();
+                }
+                else if ( shippingText.includes("shipping options") ) {
                     $('.wc-proceed-to-checkout').hide();
                 }
                 else {
@@ -152,7 +179,14 @@
 
                 // hide/show proceed to checkout extended
                 var shippingMessage = $('.woocommerce-shipping-destination').text().trim();
+                var shippingText = $('.woocommerce-shipping-totals [data-title="Shipping"]').contents().filter(function() {
+                    return this.nodeType === 3; // Filter to get only text nodes
+                }).text().trim().toLowerCase();
+
                 if ( shippingMessage.includes("Shipping options") ) {
+                    $('.wc-proceed-to-checkout').hide();
+                }
+                else if ( shippingText.includes("shipping options") ) {
                     $('.wc-proceed-to-checkout').hide();
                 }
                 else {
@@ -162,13 +196,24 @@
                 // minimum and maximum order amount validation
                 var minMaxError = $('.woocommerce-error').text().trim();
                 if ( minMaxError.includes("minimum") ) {
-                    $('.wc-proceed-to-checkout').css('display','none');
+                    setTimeout(() => {
+                        $('.wc-proceed-to-checkout').css('display','none');
+                    }, 100);
                 }
                 else if ( minMaxError.includes("order values of over") ) {
-                    $('.wc-proceed-to-checkout').css('display','none');
+                    setTimeout(() => {
+                        $('.wc-proceed-to-checkout').css('display','none');
+                    }, 100);
                 }
                 else {
-                    $('.wc-proceed-to-checkout').css('display','block');
+                    setTimeout(() => {
+                        if ( shippingText.includes("shipping options") ) {
+                            $('.wc-proceed-to-checkout').css('display','none');
+                        }
+                        else {
+                            $('.wc-proceed-to-checkout').css('display','block');
+                        }
+                    }, 100);
                 }
 
                 // minimum anx maximum order amount - on update cart
