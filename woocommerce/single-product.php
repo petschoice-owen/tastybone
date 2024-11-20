@@ -55,9 +55,10 @@ get_header();
 		<?php
 			if( have_rows('category_list', 'option') ):
 			while( have_rows('category_list', 'option') ) : the_row();
-				$category_name = get_sub_field('category_name'); 
+				$category_name = get_sub_field('category_name');
+				$category_name_formatted = str_replace(' ', '-', $category_name);
 				$category_banner = get_sub_field('category_banner'); ?>
-				<div class="banner-detail" data-identifier="<?php echo strtolower($category_name); ?>" data-name="<?php echo $category_name; ?>" data-banner="<?php echo $category_banner; ?>"></div>
+				<div class="banner-detail" data-identifier="<?php echo strtolower($category_name_formatted); ?>" data-name="<?php echo $category_name; ?>" data-banner="<?php echo $category_banner; ?>"></div>
 			<?php endwhile;
 			else :
 			endif;
