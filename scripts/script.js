@@ -135,7 +135,7 @@ var filterProducts = () => {
             var arrayFilterSize = removeFirstLast.split('%2C'); // array of selected sizes
             var filterSelected = removeFirstLast.split('%2C'); // array of selected sizes
             var arrayFilterFlavour = [];
-            
+
             $(".sizes .size-link").each(function() {
                 sizeFilter = $(this).data('size');
                 if (filterSelected.indexOf(sizeFilter) !== -1) {
@@ -414,10 +414,11 @@ var autoSelectFilteredSize = () => {
 
                 $('.product-items .product').each(function() {
                     let selectElement = $(this).find('#pa_size');
-                    let valueToMatch = arrayFilter[0];
+                    // let valueToMatch = arrayFilter[0];
+                    let valueToMatch = $(".size-selected").data('size');
                     
                     selectElement.find('option').each(function() {
-                        if ($(this).val() === valueToMatch) {
+                        if ($(this).val() === valueToMatch && $(this).hasClass('enabled')) {
                             $(this).prop('selected', true);
                             selectElement.trigger('change');
                             return false;
@@ -430,7 +431,7 @@ var autoSelectFilteredSize = () => {
                 const endIndex = window.location.href.indexOf('&', startIndex);
                 const filterSizeParam = window.location.href.substring(startIndex, endIndex !== -1 ? endIndex : window.location.href.length);
                 const arrayFilter = filterSizeParam.split('%2C').map(value => decodeURIComponent(value));
-                
+
                 $('.product-items .product').each(function() {
                     let selectElement = $(this).find('#pa_size');
 
@@ -438,7 +439,7 @@ var autoSelectFilteredSize = () => {
                         let valueToMatch = arrayFilter[i];
 
                         selectElement.find('option').each(function() {
-                            if ($(this).val() === valueToMatch) {
+                            if ($(this).val() === valueToMatch && $(this).hasClass('enabled')) {
                                 $(this).prop('selected', true);
                                 selectElement.trigger('change');
                                 return false;
