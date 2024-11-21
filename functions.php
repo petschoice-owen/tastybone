@@ -534,13 +534,16 @@ function wc_min_max_order_amount() {
     $maximum = 250; // set this variable to specify a maximum order value
     $cart_total = WC()->cart->total; // cart total including shipping
     $shipping_total = WC()->cart->get_shipping_total();  // cost of shipping
+	$shipping_taxes = WC()->cart->get_shipping_taxes();
+	$total_shipping_taxes = array_sum($shipping_taxes);
+	$total_shipping = $shipping_total + $total_shipping_taxes;
     $cart_subtotal = WC()->cart->subtotal;  // cart total excluding shipping
 
-    if ( ($cart_total - $shipping_total) < $minimum ) {
+	if ( ($cart_total - $total_shipping) < $minimum ) {
         if( is_cart() ) {
             wc_print_notice( 
                 sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order' , 
-                    wc_price( $cart_subtotal ), 
+                    wc_price( ($cart_total - $total_shipping) ), 
                     wc_price( $minimum )
                 ), 'error' 
             );
@@ -558,7 +561,7 @@ function wc_min_max_order_amount() {
         } else {
             wc_add_notice( 
                 sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order' , 
-                    wc_price( $cart_subtotal ), 
+                    wc_price( ($cart_total - $total_shipping) ), 
                     wc_price( $minimum )
                 ), 'error' 
             );
@@ -576,11 +579,11 @@ function wc_min_max_order_amount() {
         }
     }
 
-    elseif ( ($cart_total - $shipping_total) > $maximum ) {
+    elseif ( ($cart_total - $total_shipping) > $maximum ) {
         if( is_cart() ) {
             wc_print_notice( 
                 sprintf( 'Your order value is %s. We do not currently accept online order values of over %s.' , 
-                    wc_price( $cart_subtotal ), 
+                    wc_price( ($cart_total - $total_shipping) ), 
                     wc_price( $maximum )
                 ), 'error' 
             );
@@ -598,7 +601,7 @@ function wc_min_max_order_amount() {
         } else {
             wc_add_notice( 
                 sprintf( 'Your order value is %s. We do not currently accept online order values of over %s.' , 
-                    wc_price( $cart_subtotal ), 
+                    wc_price( ($cart_total - $total_shipping) ), 
                     wc_price( $maximum )
                 ), 'error' 
             );
@@ -619,6 +622,31 @@ function wc_min_max_order_amount() {
 
 add_action( 'woocommerce_cart_item_removed' , 'wc_min_max_order_amount', 10, 2 );
 
+//  CART | CHECKOUT
+function tb_check_cart_total() {
+    $min_price = 10;
+    $max_price = 250;
+	$shipping_total = WC()->cart->get_shipping_total();  // cost of shipping
+	$shipping_taxes = WC()->cart->get_shipping_taxes();
+	$total_shipping_taxes = array_sum($shipping_taxes);
+	$total_shipping = $shipping_total + $total_shipping_taxes;
+	$cart_total_value = WC()->cart->total - $total_shipping;
+	$total =  wc_price($cart_total_value);
+	$notice = '';
+	if ($min_price && $cart_total_value < $min_price) {
+		$price = wc_price($min_price);
+		$notice .= sprintf('Your current order total is %1s — you must have an order with a minimum of %2s to place your order.', $total, $price);
+	}
+	
+	if ($max_price && $cart_total_value > $max_price) {
+		$price = wc_price($max_price);
+		$notice .= sprintf('Your order value is %1s. We do not currently accept online order values of over %2s.', $total, $price);
+	}
+
+	wp_send_json_success(array('notice' => $notice));
+}
+add_action('wp_ajax_tb_check_cart_total', 'tb_check_cart_total');
+add_action('wp_ajax_nopriv_tb_check_cart_total', 'tb_check_cart_total');
 
 /*----------------------------------------------------------------------------------------*/
 /* WooCommerce Product Page - Product Gallery 
@@ -730,7 +758,7 @@ function set_shipping_instance_id($rates, $package) {
     // Loop through each shipping rate
     foreach ($rates as $rate_id => $rate) {
         // Check if this rate is among the chosen methods
-        if (in_array($rate_id, $chosen_methods)) {
+        if ($chosen_methods && in_array($rate_id, $chosen_methods)) {
             // Force instance_id to 1 for Flat Rate or 2 for Free Shipping
             if ($rate->method_id === 'flat_rate') {
                 $rates[$rate_id]->instance_id = 1; // Set instance_id to 1 for Flat Rate

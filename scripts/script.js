@@ -1030,6 +1030,41 @@ var ajaxAddToCart = () => {
     });
 }
 
+var cartCheckout = () => {
+    if($('.woocommerce-cart').length > 0 || $('.woocommerce-checkout').length > 0) {
+        function updateCartCheckoutNotice() {
+            $.ajax({
+                url: wc_atc_params.wc_ajax_url,
+                type: 'POST',
+                data: {
+                    action: 'tb_check_cart_total'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $('#cart-checkout-notice').remove();
+                        if (response.data.notice) {
+                            if($('.woocommerce-notices-wrapper:eq(0) .woocommerce-error').length > 0) {
+                                $('.woocommerce-notices-wrapper:eq(0) .woocommerce-error').html('<li>'+response.data.notice+'</li>');
+                            }else {
+                                $('.woocommerce-notices-wrapper:eq(0)').append('<div id="cart-checkout-notice" class="woocommerce-error">' + response.data.notice + '</div>');
+                            }
+                            $('.woocommerce-notices-wrapper:eq(0)').show();
+                        }
+                    }
+                }
+            });
+        }
+    
+        $(document.body).on('updated_cart_totals', function() {
+            updateCartCheckoutNotice();
+        });
+
+        $(document.body).on('updated_checkout', function() {
+            updateCartCheckoutNotice();
+        });
+    }
+};
+
   
 // initialize the functions
 windowScrolled();
@@ -1047,6 +1082,7 @@ $(document).ready(function() {
     productCategoryOffers();
     sizeGuideColumns();
     ajaxAddToCart();
+    cartCheckout();
 });
   
 // $(window).resize(function() { });

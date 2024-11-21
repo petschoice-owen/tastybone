@@ -217,36 +217,36 @@
                 }
 
                 // minimum anx maximum order amount - on update cart
-                var minAmount = 10;
-                var maxAmount = 250;
-                var totalAmount = $('.cart-subtotal .amount').text();
-                var total = totalAmount.replace(/^[£]+/,"").replace(",","").replace(".00","");
+                // var minAmount = 10;
+                // var maxAmount = 250;
+                // var totalAmount = $('.cart_totals td[data-title="Total"] .amount').text();
+                // var total = totalAmount.replace(/^[£]+/,"").replace(",","").replace(".00","");
 
-                if ( total < minAmount ) {
-                    $('.woocommerce-error').each(function() {
-                        if ( $(this).text().trim().includes("minimum") || $(this).text().trim().includes("over") ) {
-                            $(this).remove();
-                        }
-                    });
-                    setTimeout(() => {
-                        $('<ul class="woocommerce-error" role="alert"><li>Your current order total is '+totalAmount+' — you must have an order with a minimum of £10.00 to place your order.</li></ul>').insertAfter('.woocommerce-notices-wrapper');
-                    }, 100);
-                }
-                else if ( total > maxAmount ) {
-                    $('.woocommerce-error').each(function() {
-                        if ( $(this).text().trim().includes("minimum") || $(this).text().trim().includes("over") ) {
-                            $(this).remove();
-                        }
-                    });
-                    $('<ul class="woocommerce-error" role="alert"><li>Your order value is '+totalAmount+'. We do not currently accept online order values of over £250.00.</li></ul>').insertAfter('.woocommerce-notices-wrapper');
-                }
-                else {
-                    $('.woocommerce-error').each(function() {
-                        if ( $(this).text().trim().includes("minimum") || $(this).text().trim().includes("over") ) {
-                            $(this).remove();
-                        }
-                    });
-                }
+                // if ( total < minAmount ) {
+                //     $('.woocommerce-error').each(function() {
+                //         if ( $(this).text().trim().includes("minimum") || $(this).text().trim().includes("over") ) {
+                //             $(this).remove();
+                //         }
+                //     });
+                //     setTimeout(() => {
+                //         $('<ul class="woocommerce-error" role="alert"><li>Your current order total is '+totalAmount+' — you must have an order with a minimum of £10.00 to place your order.</li></ul>').insertAfter('.woocommerce-notices-wrapper');
+                //     }, 100);
+                // }
+                // else if ( total > maxAmount ) {
+                //     $('.woocommerce-error').each(function() {
+                //         if ( $(this).text().trim().includes("minimum") || $(this).text().trim().includes("over") ) {
+                //             $(this).remove();
+                //         }
+                //     });
+                //     $('<ul class="woocommerce-error" role="alert"><li>Your order value is '+totalAmount+'. We do not currently accept online order values of over £250.00.</li></ul>').insertAfter('.woocommerce-notices-wrapper');
+                // }
+                // else {
+                //     $('.woocommerce-error').each(function() {
+                //         if ( $(this).text().trim().includes("minimum") || $(this).text().trim().includes("over") ) {
+                //             $(this).remove();
+                //         }
+                //     });
+                // }
             });
         </script>
     <?php } ?>
