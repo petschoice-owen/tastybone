@@ -569,7 +569,7 @@ function wc_min_max_order_amount() {
             ?>
             <script type="text/javascript">
                 document.addEventListener('DOMContentLoaded', function() {
-                    var proceedToCheckout = document.querySelector('.wc-proceed-to-checkout');
+                    var proceedToCheckout = document.querySelector('#payment');
                     if (proceedToCheckout) {
                         proceedToCheckout.style.display = 'none';
                     }
@@ -609,7 +609,7 @@ function wc_min_max_order_amount() {
             ?>
             <script type="text/javascript">
                 document.addEventListener('DOMContentLoaded', function() {
-                    var proceedToCheckout = document.querySelector('.wc-proceed-to-checkout');
+                    var proceedToCheckout = document.querySelector('#payment');
                     if (proceedToCheckout) {
                         proceedToCheckout.style.display = 'none';
                     }

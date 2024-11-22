@@ -1046,9 +1046,16 @@ var cartCheckout = () => {
                             if($('.woocommerce-notices-wrapper:eq(0) .woocommerce-error').length > 0) {
                                 $('.woocommerce-notices-wrapper:eq(0) .woocommerce-error').html('<li>'+response.data.notice+'</li>');
                             }else {
-                                $('.woocommerce-notices-wrapper:eq(0)').append('<div id="cart-checkout-notice" class="woocommerce-error">' + response.data.notice + '</div>');
+                                $('.woocommerce-notices-wrapper:eq(0)').append('<div id="cart-checkout-notice" class="woocommerce-error"><li>' + response.data.notice + '</li></div>');
                             }
                             $('.woocommerce-notices-wrapper:eq(0)').show();
+                            if($('.woocommerce-checkout').length > 0) {
+                                $('#payment').hide();
+                            }
+                        }else {
+                            if($('.woocommerce-checkout').length > 0) {
+                                $('#payment').show();
+                            }
                         }
                     }
                 }
