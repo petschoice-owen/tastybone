@@ -1072,6 +1072,19 @@ var cartCheckout = () => {
     }
 };
 
+var removeDisabledOptions = () => {
+    $('.variations select').each(function() {
+        var options = $(this).find('option');
+        if(options) {
+            options.each(function() {
+                if(!$(this).hasClass('enabled')) {
+                    $(this).remove();
+                }
+            });
+        }
+    });
+};
+
   
 // initialize the functions
 windowScrolled();
@@ -1090,6 +1103,7 @@ $(document).ready(function() {
     sizeGuideColumns();
     ajaxAddToCart();
     cartCheckout();
+    
 });
   
 // $(window).resize(function() { });
@@ -1099,6 +1113,7 @@ window.onload = function() {
     singleProduct();
     disableProduct();
     autoSelectFilteredSize();
+    removeDisabledOptions();
     // headerBones();
 }
   

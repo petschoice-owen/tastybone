@@ -8,18 +8,15 @@
     <?php include 'top-navigation.php'; ?>
     <main class="page-home">
         <section class="hero-home-slider border-bottom-10">
-            <div class="container">
+            <?php if( have_rows('hero_badges') ): ?>
+            <div class="container hero-top-wrapper">
                 <div class="hero-top">
                     <ul class="badges">
                         <?php
-                            if( have_rows('hero_badges') ):
                             while( have_rows('hero_badges') ) : the_row();
                                 $image = get_sub_field('image'); ?>
                                 <li><img src="<?php echo $image; ?>" alt="" /></li>
-                            <?php endwhile;
-                            else :
-                            endif;
-                        ?>
+                            <?php endwhile; ?>
                     </ul>
                     <!-- <div class="newsletter">
                         <div class="accordion" id="accordionNewsletter">
@@ -55,44 +52,64 @@
                         </div>
                     </div> -->
                 </div>
-                <div class="hero-slider">
-                    <?php
-                        if( have_rows('hero_slider_home') ):
-                        while( have_rows('hero_slider_home') ) : the_row();
-                            $hero_slider_heading_white = get_sub_field('hero_slider_heading_white');
-                            $hero_slider_heading_colored = get_sub_field('hero_slider_heading_colored');
-                            $hero_slider_subheading = get_sub_field('hero_slider_subheading');
-                            $hero_heading_image = get_sub_field('hero_heading_image');
-                            $hero_slider_banner_image = get_sub_field('hero_slider_banner_image');
-                            $hero_slider_button_text = get_sub_field('hero_slider_button_text');
-                            $hero_slider_button_link = get_sub_field('hero_slider_button_link'); ?>
-                            <div class="slide-item">
+            </div>
+            <?php endif; ?>
+            <div class="hero-slider">
+                <?php
+                    if( have_rows('hero_slider_home') ):
+                    while( have_rows('hero_slider_home') ) : the_row();
+                        $type = get_sub_field( 'hero_heading_type' );
+                        $hero_bg_color = get_sub_field( 'hero_bg_color' ) ? 'style="background-color: '.get_sub_field( 'hero_bg_color' ).'"' : '';
+                        $hero_is_fullwidth = get_sub_field( 'hero_is_fullwidth' );
+                        $hero_slider_heading_white = get_sub_field('hero_slider_heading_white');
+                        $hero_slider_heading_colored = get_sub_field('hero_slider_heading_colored');
+                        $hero_slider_subheading = get_sub_field('hero_slider_subheading');
+                        $hero_heading_image = get_sub_field('hero_heading_image');
+                        $hero_slider_banner_image = get_sub_field('hero_slider_banner_image');
+                        $hero_slider_button_text = get_sub_field('hero_slider_button_text');
+                        $hero_slider_button_link = get_sub_field('hero_slider_button_link'); ?>
+                        <div class="slide-item <?php echo $type . ($hero_is_fullwidth ? ' is-fullwidth' : ''); ?>" <?php echo $hero_bg_color; ?>>
+                            <?php if( !$hero_is_fullwidth ) : ?>
+                            <div class="container">
+                            <?php endif; ?>
                                 <img src="<?php echo $hero_slider_banner_image; ?>" class="image-dog image-dog-adjusted" alt="" />
-                                <div class="wrapper">
-                                    <?php 
-                                        if( get_sub_field('hero_heading_type') == 'image' ) { ?>
-                                            <div class="heading-text">
-                                                <img src="<?php echo $hero_heading_image; ?>" alt="" />
-                                            </div>
-                                        <?php } 
-                                        else { ?>
-                                            <h1 class="heading"><?php echo $hero_slider_heading_white; ?> <span><?php echo $hero_slider_heading_colored; ?></span></h1>
-                                            <div class="subheading">
-                                                <?php echo $hero_slider_subheading; ?>
-                                            </div>
-                                        <?php }
-                                    ?>
-                                    
-                                    <div class="button-holder">
-                                        <a href="<?php echo $hero_slider_button_link; ?>" class="btn-white btn-arrow-right"><?php echo $hero_slider_button_text; ?></a>
+                                <?php if( $hero_is_fullwidth ) : ?>
+                                <div class="container">
+                                <?php endif; ?>
+                                    <div class="wrapper">
+                                        <?php 
+                                            if( get_sub_field('hero_heading_type') == 'image' ) { ?>
+                                                <div class="heading-text">
+                                                    <img src="<?php echo $hero_heading_image; ?>" alt="" />
+                                                </div>
+                                            <?php } 
+                                            else if ( $type === 'text2' ) {
+                                                echo get_sub_field( 'hero_text2_style_content' ) ? '<div class="heading-text2">'. get_sub_field( 'hero_text2_style_content' ) . '</div>' : '';
+                                            }
+                                            else { ?>
+                                                <h1 class="heading"><?php echo $hero_slider_heading_white; ?> <span><?php echo $hero_slider_heading_colored; ?></span></h1>
+                                                <div class="subheading">
+                                                    <?php echo $hero_slider_subheading; ?>
+                                                </div>
+                                            <?php }
+                                        ?>
+                                        <?php if( $hero_slider_button_link ) : ?>
+                                        <div class="button-holder">
+                                            <a href="<?php echo $hero_slider_button_link; ?>" class="btn-white btn-arrow-right"><?php echo $hero_slider_button_text; ?></a>
+                                        </div>
+                                        <?php endif; ?>
                                     </div>
+                                <?php if( $hero_is_fullwidth ) : ?>
                                 </div>
+                                <?php endif; ?>
+                            <?php if( !$hero_is_fullwidth ) : ?>
                             </div>
-                        <?php endwhile;
-                        else :
-                        endif;
-                    ?>
-                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endwhile;
+                    else :
+                    endif;
+                ?>
             </div>
         </section>
         <section class="tasty border-bottom-10">

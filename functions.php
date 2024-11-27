@@ -319,6 +319,11 @@ function filter_dropdown_option_html( $html, $args ) {
 	$html = str_replace($show_option_none_html, '', $html);
 	return $html;
 }
+// add_filter( 'woocommerce_dropdown_variation_attribute_options_args', 'wc_remove_options_text');
+// function wc_remove_options_text( $args ){
+//     $args['show_option_none'] = '';
+//     return $args;
+// }
 
 
 /*-----------------------------------------------------------------------------------*/

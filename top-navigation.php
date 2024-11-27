@@ -11,7 +11,6 @@
                             <li><a href="<?php the_field('theme_facebook', 'option'); ?>" title="Facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
                         <?php endif; ?>
                         <?php if( get_field('theme_twitter', 'option') ): ?>
-                            <!-- <li><a href="<?php the_field('theme_twitter', 'option'); ?>" title="Twitter" target="_blank"><i class="fa-brands fa-twitter"></i></a></li> -->
                             <li><a href="<?php the_field('theme_twitter', 'option'); ?>" title="Twitter" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-x.png" alt="" /></a></li>
                         <?php endif; ?>
                         <?php if( get_field('theme_instagram', 'option') ): ?>
@@ -71,6 +70,10 @@
     <?php if( get_field('theme_header_free_delivery_text', 'option') ): ?>
         <div class="wrapper-free-delivery">
             <div class="container">
+                <div class="free-delivery black-friday" style="display: none;">
+                    <img src="/wp-content/themes/tastybone/assets/images/icon-discount.png" class="icon-black-friday" alt="" />
+                    <p><span class="top">BLACK FRIDAY SALE! </span><span class="bottom">use code BF20</span></p>
+                </div>
                 <div class="free-delivery">
                     <?php if( get_field('theme_header_free_delivery_icon', 'option') ): ?>
                         <img src="<?php the_field('theme_header_free_delivery_icon', 'option'); ?>" class="icon-truck" alt="" />
@@ -81,3 +84,74 @@
         </div>
     <?php endif; ?>
 </div>
+
+<style>
+    .page-home .hero-top .badges {
+        display: none;
+    }
+    .top-navigation .wrapper-free-delivery .container {
+        position: relative;
+    }
+    .top-navigation .wrapper-free-delivery img {
+        max-height: 17px;
+        width: auto;
+    }
+    .top-navigation .wrapper-free-delivery .free-delivery {
+        padding: 10px 12px;
+    }
+    .top-navigation .wrapper-free-delivery p {
+        font-size: 12px;
+    }
+    .top-navigation .wrapper-free-delivery .black-friday {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .top-navigation .wrapper-free-delivery .black-friday img {
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+    }
+    @media (max-width: 1199px) {
+        .top-navigation .wrapper-free-delivery .black-friday {
+            left: 12px;
+        }
+        .top-navigation .wrapper-free-delivery img {
+            max-height: 14px;
+        }
+    }
+    @media (max-width: 767px) {
+        body .top-navigation + main > section:first-child {
+            padding-top: 35px;
+        }
+        .top-navigation .wrapper-free-delivery img {
+            max-height: 12px;
+        }
+        .top-navigation .wrapper-free-delivery p {
+            font-family: "HelveticaNeue";
+            font-weight: bold;
+            font-size: 10px;
+            letter-spacing: 0;
+        }
+        .top-navigation .wrapper-free-delivery .black-friday {
+            left: 20px;
+        }
+    }
+    @media (max-width: 575px) {
+        .top-navigation .wrapper-free-delivery .black-friday {
+            top: initial;
+            right: initial;
+            bottom: calc(100% + 13px);
+            left: 85px;
+        }
+        .top-navigation .wrapper-free-delivery .black-friday p {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            line-height: 12px;
+        }
+    }
+</style>
