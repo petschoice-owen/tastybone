@@ -87,7 +87,6 @@ get_header();
             </section>
         <?php }
     ?>
-    
     <section class="product-categories box-shadow-hero d-none" <?php if (is_product_category()) { ?> data-archive="<?php echo strtolower($archive_title); ?>"<?php } ?> >
         <div class="container">
             <div class="wrapper">
@@ -242,23 +241,6 @@ get_header();
             </div>
         </div>
     </section>
-    <?php
-    // Get the current term object
-    $term = get_queried_object();
-
-    if ( $term && is_a( $term, 'WP_Term' ) ) {
-        if ( !empty( $term->description ) ) { ?>
-            <section class="product-category-intro">
-                <div class="container">
-                    <div class="wrapper">
-                        <h1 class="product-category-title"><?php echo esc_html( $term->name ); ?></h1>
-                        <div class="product-category-description"><?php echo wp_kses_post( wpautop( $term->description ) ); ?></div>
-                    </div>
-                </div>
-            </section>
-        <?php }
-    }
-    ?>
     <section class="products opacity-0">
         <div class="container">
             <?php
