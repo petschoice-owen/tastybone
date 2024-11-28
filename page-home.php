@@ -66,13 +66,23 @@
                         $hero_slider_subheading = get_sub_field('hero_slider_subheading');
                         $hero_heading_image = get_sub_field('hero_heading_image');
                         $hero_slider_banner_image = get_sub_field('hero_slider_banner_image');
+                        $hero_slider_banner_image_tablet = get_sub_field('hero_slider_banner_image_tablet');
+                        $hero_slider_banner_image_mobile = get_sub_field('hero_slider_banner_image_mobile');
                         $hero_slider_button_text = get_sub_field('hero_slider_button_text');
-                        $hero_slider_button_link = get_sub_field('hero_slider_button_link'); ?>
-                        <div class="slide-item <?php echo $type . ($hero_is_fullwidth ? ' is-fullwidth' : ''); ?>" <?php echo $hero_bg_color; ?>>
+                        $hero_slider_button_link = get_sub_field('hero_slider_button_link');
+                        $is_image_only = get_sub_field( 'hero_is_image_only' );
+                        ?>
+                        <div class="slide-item <?php echo $type . ($hero_is_fullwidth ? ' is-fullwidth' : '') . ($is_image_only ? ' image-only' : ''); ?>" <?php echo $hero_bg_color; ?>>
                             <?php if( !$hero_is_fullwidth ) : ?>
                             <div class="container">
                             <?php endif; ?>
-                                <img src="<?php echo $hero_slider_banner_image; ?>" class="image-dog image-dog-adjusted" alt="" />
+                                <?php if ( $hero_slider_banner_image_mobile ) : ?>
+                                    <img src="<?php echo $hero_slider_banner_image_mobile; ?>" class="image-dog image-dog-adjusted image-dog--mobile" alt="" />
+                                <?php endif; ?>
+                                <?php if ( $hero_slider_banner_image_tablet ) : ?>
+                                    <img src="<?php echo $hero_slider_banner_image_tablet; ?>" class="image-dog image-dog-adjusted image-dog--tablet" alt="" />
+                                <?php endif; ?>
+                                <img src="<?php echo $hero_slider_banner_image; ?>" class="image-dog image-dog-adjusted image-dog--desktop" alt="" />
                                 <?php if( $hero_is_fullwidth ) : ?>
                                 <div class="container">
                                 <?php endif; ?>
