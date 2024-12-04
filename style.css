@@ -199,6 +199,96 @@ body.woocommerce-shop .page-shop .hero-inner {
 .hero-home-slider .image-dog--tablet {
     display: none;
 }
+/* BLACK FRIDAY */
+@keyframes lightning {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+.top-navigation .navbar .menu-item.black-friday-btn a {
+   position: relative;
+    color: #fbcd3c;
+    background-color: #000;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-item.black-friday-btn:before,
+.menu-item.black-friday-btn:after,
+.menu-item.black-friday-btn > a:before,
+.menu-item.black-friday-btn > a:after {
+ content: "";
+    position: absolute;
+    z-index: 2;
+    width: 35px;
+    height: 35px;
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBVcGxvYWRlZCB0bzogU1ZHIFJlcG8sIHd3dy5zdmdyZXBvLmNvbSwgR2VuZXJhdG9yOiBTVkcgUmVwbyBNaXhlciBUb29scyAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIGZpbGw9IiMwMDAwMDAiIHZlcnNpb249IjEuMSIgaWQ9IkNhcGFfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgDQoJIHdpZHRoPSI4MDBweCIgaGVpZ2h0PSI4MDBweCIgdmlld0JveD0iMCAwIDU2MC4zMTcgNTYwLjMxNiINCgkgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Zz4NCgk8Zz4NCgkJPHBhdGggZmlsbD0iI2ZmY2UzYyIgZD0iTTIwNy41MjMsNTYwLjMxNmMwLDAsMTk0LjQyLTQyMS45MjUsMTk0LjQ0NC00MjEuOTg2bDEwLjc5LTIzLjk5N2MtNDEuODI0LDEyLjAyLTEzNS4yNzEsMzQuOTAyLTEzNS41NywzNS44MzMNCgkJCUMyODYuOTYsMTIyLjgxNiwzMjkuMDE3LDAsMzMwLjgyOSwwYy0zOS45NzYsMC03OS45NTIsMC0xMTkuOTI3LDBsLTEyLjE2Nyw1Ny45MzhsLTUxLjE3NiwyMDkuOTk1bDEzNS4xOTEtMzYuODA2DQoJCQlMMjA3LjUyMyw1NjAuMzE2eiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg==') no-repeat center;
+    background-size: contain;
+    animation: lightning 1.5s infinite;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu-item.black-friday-btn:before {
+    top: -5px;
+    left: -12px;
+}
+
+.menu-item.black-friday-btn > a:before {
+    bottom: -19px;
+    left: 11px;
+    animation-delay: .2s;
+}
+
+.menu-item.black-friday-btn > a:after {
+    right: -17px;
+    top: -5px;
+    animation-delay: .4s;
+}
+
+.menu-item.black-friday-btn:after {
+    right: 0;
+    bottom: -22px;
+    animation-delay: .6s;
+}
+
+@media screen and (max-width: 991px) {
+    .menu-item.black-friday-btn:before,
+    .menu-item.black-friday-btn:after,
+    .menu-item.black-friday-btn > a:before,
+    .menu-item.black-friday-btn > a:after {
+        width: 30px;
+        height: 30px;
+    }
+    .menu-item.black-friday-btn:before {
+        left: 0;
+    }
+    .menu-item.black-friday-btn > a:before {
+        bottom: -19px;
+    }
+    .menu-item.black-friday-btn > a:after {
+        right: 0;
+    }
+    .menu-item.black-friday-btn:after {
+        right: 20px;
+    }
+}
+/* END BLACK FRIDAY */
+
 @media (min-width: 768px) and (max-width: 991px) {
     .hero-home-slider .image-dog--tablet {
         display: block;
@@ -240,3 +330,19 @@ body.woocommerce-shop .page-shop .hero-inner {
         display: none;
     }
 }
+
+/* .top-navigation .menu-item:not(.menu-dropdown) a,
+.top-navigation .page_item:not(.menu-dropdown) a {
+    padding: 25px 1.1vw;
+}
+.product-categories .categories li:last-child {
+    order: 11;
+}
+.product-categories .categories li:last-child a {
+    color: #fff;
+    background-color: #000;
+}
+.product-categories .offers a {
+    color: #1c1c1b;
+    background-color: transparent;
+} */

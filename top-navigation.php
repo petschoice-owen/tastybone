@@ -70,10 +70,10 @@
     <?php if( get_field('theme_header_free_delivery_text', 'option') ): ?>
         <div class="wrapper-free-delivery">
             <div class="container">
-                <div class="free-delivery black-friday" style="display: none;">
+                <!-- <div class="free-delivery black-friday" style="display: none;">
                     <img src="/wp-content/themes/tastybone/assets/images/icon-discount.png" class="icon-black-friday" alt="" />
                     <p><span class="top">BLACK FRIDAY SALE! </span><span class="bottom">use code BF20</span></p>
-                </div>
+                </div> -->
                 <div class="free-delivery">
                     <?php if( get_field('theme_header_free_delivery_icon', 'option') ): ?>
                         <img src="<?php the_field('theme_header_free_delivery_icon', 'option'); ?>" class="icon-truck" alt="" />
@@ -85,7 +85,7 @@
     <?php endif; ?>
 </div>
 
-<style>
+<!-- <style>
     .page-home .hero-top .badges {
         display: none;
     }
@@ -154,4 +154,4 @@
             line-height: 12px;
         }
     }
-</style>
+</style> -->
