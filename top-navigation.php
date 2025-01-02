@@ -1,3 +1,7 @@
+<!-- <div class="tb-mini-banner">
+    <div>Last deliveries on the 22nd December</div>
+    <div><a href="/delivery-information" class="btn-brand">Find out more</a></div>
+</div> -->
 <div class="top-navigation">
     <div class="wrapper">
         <nav class="navbar navbar-expand-lg">
