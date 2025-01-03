@@ -87,8 +87,8 @@
                                 <div class="container">
                                 <?php endif; ?>
                                     <div class="wrapper">
-                                        <?php
-                                        if(!$is_image_only) :
+                                        <?php 
+										 if(!$is_image_only) :
                                             if( get_sub_field('hero_heading_type') == 'image' ) { ?>
                                                 <div class="heading-text">
                                                     <img src="<?php echo $hero_heading_image; ?>" alt="" />
@@ -109,7 +109,7 @@
                                             <a href="<?php echo $hero_slider_button_link; ?>" class="btn-white btn-arrow-right"><?php echo $hero_slider_button_text; ?></a>
                                         </div>
                                         <?php endif; ?>
-                                        <?php endif; ?>
+										 <?php endif; ?>
                                     </div>
                                 <?php if( $hero_is_fullwidth ) : ?>
                                 </div>

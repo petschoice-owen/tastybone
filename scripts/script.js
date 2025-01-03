@@ -135,7 +135,7 @@ var filterProducts = () => {
             var arrayFilterSize = removeFirstLast.split('%2C'); // array of selected sizes
             var filterSelected = removeFirstLast.split('%2C'); // array of selected sizes
             var arrayFilterFlavour = [];
-
+            
             $(".sizes .size-link").each(function() {
                 sizeFilter = $(this).data('size');
                 if (filterSelected.indexOf(sizeFilter) !== -1) {
@@ -414,8 +414,8 @@ var autoSelectFilteredSize = () => {
 
                 $('.product-items .product').each(function() {
                     let selectElement = $(this).find('#pa_size');
-                    // let valueToMatch = arrayFilter[0];
-                    let valueToMatch = $(".size-selected").data('size');
+//                     let valueToMatch = arrayFilter[0];
+					let valueToMatch = $(".size-selected").data('size');
                     
                     selectElement.find('option').each(function() {
                         if ($(this).val() === valueToMatch && $(this).hasClass('enabled')) {
@@ -431,7 +431,7 @@ var autoSelectFilteredSize = () => {
                 const endIndex = window.location.href.indexOf('&', startIndex);
                 const filterSizeParam = window.location.href.substring(startIndex, endIndex !== -1 ? endIndex : window.location.href.length);
                 const arrayFilter = filterSizeParam.split('%2C').map(value => decodeURIComponent(value));
-
+                
                 $('.product-items .product').each(function() {
                     let selectElement = $(this).find('#pa_size');
 
@@ -959,7 +959,7 @@ var ajaxAddToCart = () => {
         var quantity = form.find('input[name="quantity"]').val();
         var product_id = form.find('input[name="product_id"]').val();
         var button = form.find('button[type="submit"]');
-        if($('.single-product .product-type-simple').length > 0) {
+		if($('.single-product .product-type-simple').length > 0) {
             productName = form.closest('.product').find('.product_title').text();
             product_id = form.find('button[name="add-to-cart"]').attr('value');
         }
@@ -998,7 +998,7 @@ var ajaxAddToCart = () => {
         var product_id = form.find('input[name="product_id"]').val();
         var variation_id = form.find('input[name="variation_id"]').val();
         var button = form.find('button[type="submit"]');
-        if($('.single-product .variations_form').length > 0) {
+		if($('.single-product .variations_form').length > 0) {
             productName = form.closest('.product').find('.product_title').text();
         }
         button.addClass('loading');
@@ -1049,7 +1049,7 @@ var cartCheckout = () => {
                                 $('.woocommerce-notices-wrapper:eq(0)').append('<div id="cart-checkout-notice" class="woocommerce-error"><li>' + response.data.notice + '</li></div>');
                             }
                             $('.woocommerce-notices-wrapper:eq(0)').show();
-                            if($('.woocommerce-checkout').length > 0) {
+                        	if($('.woocommerce-checkout').length > 0) {
                                 $('#payment').hide();
                             }
                         }else {
@@ -1085,7 +1085,6 @@ var removeDisabledOptions = () => {
     });
 };
 
-  
 // initialize the functions
 windowScrolled();
   
@@ -1101,9 +1100,8 @@ $(document).ready(function() {
     numberOfItems();
     productCategoryOffers();
     sizeGuideColumns();
-    ajaxAddToCart();
-    cartCheckout();
-    
+	ajaxAddToCart();
+	cartCheckout();
 });
   
 // $(window).resize(function() { });
@@ -1113,7 +1111,7 @@ window.onload = function() {
     singleProduct();
     disableProduct();
     autoSelectFilteredSize();
-    removeDisabledOptions();
-    // headerBones();
+	removeDisabledOptions();
+// 	headerBones();
 }
   

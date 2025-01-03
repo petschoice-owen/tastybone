@@ -1,5 +1,5 @@
 <!-- <div class="tb-mini-banner">
-    <div>Last deliveries on the 22nd December</div>
+    <div>No deliveries between 22nd December and 2nd January</div>
     <div><a href="/delivery-information" class="btn-brand">Find out more</a></div>
 </div> -->
 <div class="top-navigation">
@@ -74,7 +74,7 @@
     <?php if( get_field('theme_header_free_delivery_text', 'option') ): ?>
         <div class="wrapper-free-delivery">
             <div class="container">
-                <!-- <div class="free-delivery black-friday" style="display: none;">
+                <!-- <div class="free-delivery black-friday">
                     <img src="/wp-content/themes/tastybone/assets/images/icon-discount.png" class="icon-black-friday" alt="" />
                     <p><span class="top">BLACK FRIDAY SALE! </span><span class="bottom">use code BF20</span></p>
                 </div> -->
@@ -89,10 +89,7 @@
     <?php endif; ?>
 </div>
 
-<!-- <style>
-    .page-home .hero-top .badges {
-        display: none;
-    }
+<style>
     .top-navigation .wrapper-free-delivery .container {
         position: relative;
     }
@@ -106,27 +103,12 @@
     .top-navigation .wrapper-free-delivery p {
         font-size: 12px;
     }
-    .top-navigation .wrapper-free-delivery .black-friday {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    .top-navigation .wrapper-free-delivery .black-friday img {
-        -webkit-filter: invert(100%);
-        filter: invert(100%);
-    }
     @media (max-width: 1199px) {
-        .top-navigation .wrapper-free-delivery .black-friday {
-            left: 12px;
-        }
         .top-navigation .wrapper-free-delivery img {
             max-height: 14px;
         }
     }
     @media (max-width: 767px) {
-        body .top-navigation + main > section:first-child {
-            padding-top: 35px;
-        }
         .top-navigation .wrapper-free-delivery img {
             max-height: 12px;
         }
@@ -136,26 +118,5 @@
             font-size: 10px;
             letter-spacing: 0;
         }
-        .top-navigation .wrapper-free-delivery .black-friday {
-            left: 20px;
-        }
     }
-    @media (max-width: 575px) {
-        .top-navigation .wrapper-free-delivery .black-friday {
-            top: initial;
-            right: initial;
-            bottom: calc(100% + 13px);
-            left: 85px;
-        }
-        .top-navigation .wrapper-free-delivery .black-friday p {
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-            flex-direction: column;
-            line-height: 12px;
-        }
-    }
-</style> -->
+</style>

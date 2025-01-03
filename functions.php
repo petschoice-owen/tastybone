@@ -319,12 +319,12 @@ function filter_dropdown_option_html( $html, $args ) {
 	$html = str_replace($show_option_none_html, '', $html);
 	return $html;
 }
+
 // add_filter( 'woocommerce_dropdown_variation_attribute_options_args', 'wc_remove_options_text');
 // function wc_remove_options_text( $args ){
 //     $args['show_option_none'] = '';
 //     return $args;
 // }
-
 
 /*-----------------------------------------------------------------------------------*/
 /* WooCommerce - Remove elements on WooCommerce
@@ -468,7 +468,6 @@ function tb_ajax_add_to_cart() {
 
     die();
 }
-
 add_action( 'wp_ajax_tb_ajax_add_to_cart', 'tb_ajax_add_to_cart' );
 add_action( 'wp_ajax_nopriv_tb_ajax_add_to_cart', 'tb_ajax_add_to_cart' );
 
@@ -544,11 +543,11 @@ function wc_min_max_order_amount() {
 	$total_shipping = $shipping_total + $total_shipping_taxes;
     $cart_subtotal = WC()->cart->subtotal;  // cart total excluding shipping
 
-	if ( ($cart_total - $total_shipping) < $minimum ) {
+   if ( ($cart_total - $total_shipping) < $minimum ) {
         if( is_cart() ) {
             wc_print_notice( 
                 sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order' , 
-                    wc_price( ($cart_total - $total_shipping) ), 
+                    wc_price( $cart_total - $total_shipping ), 
                     wc_price( $minimum )
                 ), 'error' 
             );
@@ -566,7 +565,7 @@ function wc_min_max_order_amount() {
         } else {
             wc_add_notice( 
                 sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order' , 
-                    wc_price( ($cart_total - $total_shipping) ), 
+                    wc_price( $cart_total - $total_shipping ), 
                     wc_price( $minimum )
                 ), 'error' 
             );
@@ -588,7 +587,7 @@ function wc_min_max_order_amount() {
         if( is_cart() ) {
             wc_print_notice( 
                 sprintf( 'Your order value is %s. We do not currently accept online order values of over %s.' , 
-                    wc_price( ($cart_total - $total_shipping) ), 
+                    wc_price( $cart_total - $total_shipping ), 
                     wc_price( $maximum )
                 ), 'error' 
             );
@@ -606,7 +605,7 @@ function wc_min_max_order_amount() {
         } else {
             wc_add_notice( 
                 sprintf( 'Your order value is %s. We do not currently accept online order values of over %s.' , 
-                    wc_price( ($cart_total - $total_shipping) ), 
+                    wc_price( $cart_total - $total_shipping ), 
                     wc_price( $maximum )
                 ), 'error' 
             );
@@ -636,6 +635,7 @@ function tb_check_cart_total() {
 	$total_shipping_taxes = array_sum($shipping_taxes);
 	$total_shipping = $shipping_total + $total_shipping_taxes;
 	$cart_total_value = WC()->cart->total - $total_shipping;
+
 	$total =  wc_price($cart_total_value);
 	$notice = '';
 	if ($min_price && $cart_total_value < $min_price) {
@@ -652,6 +652,7 @@ function tb_check_cart_total() {
 }
 add_action('wp_ajax_tb_check_cart_total', 'tb_check_cart_total');
 add_action('wp_ajax_nopriv_tb_check_cart_total', 'tb_check_cart_total');
+
 
 /*----------------------------------------------------------------------------------------*/
 /* WooCommerce Product Page - Product Gallery 

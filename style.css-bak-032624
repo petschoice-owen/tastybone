@@ -1,0 +1,258 @@
+/*
+Theme Name:     TastyBone
+Theme URI:      https://www.tastybone.com/
+Author:         Pets Choice Ltd
+Author URI:     https://www.petschoice.co.uk/
+Description:    A Custom WordPress theme especially designed for TastyBone.
+Version:        1.0
+License:        GNU General Public License v3 or later
+License URI:    https://www.gnu.org/licenses/gpl-3.0.html
+Text Domain:    tastybone
+*/
+
+/* Product Page - Product Gallery */
+.single-product-wrapper .product-image-wrapper {
+	-webkit-transition: ease-in-out all .25s;
+    -o-transition: ease-in-out all .25s;
+    transition: ease-in-out all .25s;
+}
+.single-product-wrapper .product-gallery-wrapper {
+    padding-top: 20px;
+}
+.single-product-wrapper .product-gallery-wrapper a {
+    display: block;
+    padding: 3px;
+}
+.single-product-wrapper .product-gallery-wrapper img {
+    padding: 5px;
+    border: 1px solid #ac8f63;
+}
+.single-product-wrapper .product-gallery-wrapper .slick-slide {
+    cursor: pointer;
+}
+.single-product-wrapper .product-gallery-wrapper .slick-prev::before {
+    content: '';
+    display: block;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 15px solid #ac8f63;
+}
+.single-product-wrapper .product-gallery-wrapper .slick-next::before {
+    content: '';
+    display: block;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 15px solid #ac8f63;
+}
+@media (max-width: 1199px) {
+    .single-product-wrapper .product-gallery-wrapper .slick-prev::before {
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 12px solid #ac8f63;
+    }
+    .single-product-wrapper .product-gallery-wrapper .slick-next::before {
+        content: '';
+        display: block;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 12px solid #ac8f63;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .single-product-wrapper .product-gallery-wrapper .slick-prev::before {
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-right: 15px solid #ac8f63;
+    }
+    .single-product-wrapper .product-gallery-wrapper .slick-next::before {
+        content: '';
+        display: block;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-left: 15px solid #ac8f63;
+    }
+}
+@media (max-width: 767px) {
+    .single-product-wrapper .product-gallery-wrapper .slick-prev::before {
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 10px solid #ac8f63;
+    }
+    .single-product-wrapper .product-gallery-wrapper .slick-next::before {
+        content: '';
+        display: block;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-left: 10px solid #ac8f63;
+    }
+}
+
+/* Product Page - Feefo section */
+.single-product-wrapper .reviews-wrapper {
+    width: 100%;
+    max-width: 80%;
+    margin: 20px auto;
+	opacity: 0;
+	-webkit-transition: ease-in-out all .25s;
+    -o-transition: ease-in-out all .25s;
+    transition: ease-in-out all .25s;
+}
+@media (max-width: 991px) {
+    .single-product-wrapper .reviews-wrapper {
+        max-width: 100%;
+    }
+}
+
+/* Product Page - Product Tabs */
+.product-tabs .tab-group.hide {
+	display: none;
+}
+.product-tabs .tab-group,
+.product-tabs .tab-group div,
+.product-tabs .tab-group p {
+    font-size: 18px;
+    line-height: 24px;
+}
+.product-tabs .tab-group li {
+    font-size: 18px;
+    line-height: 28px;
+}
+.product-tabs .tab-group * + ul {
+    padding-top: 10px;
+}
+@media (max-width: 767px) {
+    .product-tabs .tab-group,
+    .product-tabs .tab-group div,
+    .product-tabs .tab-group p{
+        font-size: 16px;
+        line-height: 22px;
+    }
+    .product-tabs .tab-group li {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+
+/* Header - Hamburger menu */
+@media (min-width: 768px) and (max-width: 991px) {
+    .top-navigation .navbar-toggler {
+        top: 2px;
+    }
+}
+
+
+/* Shop Page - banner */
+body.archive .page-shop .hero-inner .page-title {
+	opacity: 0 !important;
+	pointer-events: none;
+}
+.page-shop .hero-inner .wrapper {
+	padding: 0;
+    min-height: 380px;
+    height: 44vh;
+}
+@media (max-width: 1399px) {
+	.page-shop .hero-inner .wrapper {
+		min-height: 300px;
+		height: 30vh;
+	}
+}
+@media (max-width: 1199px) {
+	.page-shop .hero-inner .wrapper {
+		min-height: 250px;
+	}
+}
+@media (max-width: 991px) {
+	.page-shop .hero-inner .wrapper {
+		min-height: 170px;
+    	height: 16vh;
+	}
+}
+@media (max-width: 767px) {
+	.page-shop .hero-inner .wrapper {
+		min-height: 160px;
+	}
+}
+@media (max-width: 575px) {
+	.page-shop .hero-inner .wrapper {
+		min-height: 160px;
+	}
+}
+@media (max-width: 440px) {
+	.page-shop .hero-inner .wrapper {
+		min-height: 90px;
+    	height: 12vh;
+	}
+}
+
+
+
+/* Cart Page - product list */
+.woocommerce-cart-form__cart-item .product-thumbnail a,
+.woocommerce-cart-form__cart-item .product-name a {
+    pointer-events: none;
+}
+
+/* Cart Page - checkout button */
+.wc-proceed-to-checkout {
+    display: none;
+}
+
+/* Checkout Page - Free Shipping */
+@media (min-width: 992px) {
+	.woocommerce-checkout.woocommerce-page .page-default .devnet_fsl-free-shipping {
+		margin-bottom: 15px !important;
+	}
+}
+
+/* Checkout Page - Discount Section */
+/*
+    .woocommerce-checkout #order_review .woocommerce-checkout-review-order-table .cart-discount {
+        background-color: #ac8f63;
+    }
+    .woocommerce-checkout #order_review .woocommerce-checkout-review-order-table .cart-discount th,
+    .woocommerce-checkout #order_review .woocommerce-checkout-review-order-table .cart-discount td {
+        color: #fff;
+    }
+    .woocommerce-checkout #order_review .woocommerce-checkout-review-order-table .cart-discount a {
+        color: #1c1c1b;
+    }
+    .woocommerce-checkout #order_review .woocommerce-checkout-review-order-table .cart-discount a:hover {
+        opacity: .5;
+    }
+*/
+
+
+/* TastyBone - Competition Page */
+.page-id-6158 .page-default .default :not(:last-child) {
+	margin-bottom: 0;
+}
+
+/* TastyBone - Newsletter Page */
+.page-id-6608 .page-default .default :not(:last-child) {
+	margin-bottom: 0;
+}
+
+/* Checkout Page - Free Shipping - remove if empty */
+.devnet_fsl-free-shipping:empty {
+	display: none;
+}
+
+/* Checkout Page - Min Max error */
+.woocommerce-checkout.woocommerce-page.min-max-show .woocommerce-checkout-payment,
+.woocommerce-checkout.woocommerce-page.min-max-show .ppc-button-wrapper {
+    display: none;
+}
+.min-max-error {
+    display: none;
+}
+.min-max-error-show {
+    display: block;
+}
+.min-max-message {
+    padding: 15px;
+    margin: 20px 0 0;
+    color: #fff !important;
+    background: #ac8f63;
+}
